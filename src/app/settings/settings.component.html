@@ -1,0 +1,293 @@
+<div class="container">
+    <form [formGroup]= "userForm" (ngSubmit)="onUpdateUser()">
+        <div class="content">
+        <div class="content__left">
+            <div class="content__left-title">Avatar</div>
+            <div class="content__left-img">
+                <!-- [src]=selectedFile -->
+                <!-- <img src="../../assets/users/" alt=""> -->
+                
+                <img *ngIf= "!imgEditClicked" class="content__left-imgsize" src={{image}} alt="">
+                
+                <div  class="content__left-editImg">
+                    <input
+                        style="display: none"
+                        type="file" 
+                        accept="image/x-png,image/gif,image/jpeg"
+                        (change)="addImage($event)"
+                        #fileInput
+                      
+                        id="recipe-Img"
+                    >
+                     
+                     
+                    <svg (click)="fileInput.click()"  version="1.1" class="editsvg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                        <g>
+                            <g>
+                                <polygon points="51.2,353.28 0,512 158.72,460.8"/>
+                            </g>
+                        </g>
+                        <g>
+                            <g>
+                                
+                                    <rect x="89.73" y="169.097" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -95.8575 260.3719)" width="353.277" height="153.599"/>
+                            </g>
+                        </g>
+                        <g>
+                            <g>
+                                <path d="M504.32,79.36L432.64,7.68c-10.24-10.24-25.6-10.24-35.84,0l-23.04,23.04l107.52,107.52l23.04-23.04
+                                    C514.56,104.96,514.56,89.6,504.32,79.36z"/>
+                            </g>
+                        </g>
+                    </svg>
+                    
+
+                  
+ 
+
+                </div>
+                <!-- <svg *ngIf="selectedFile" version="1.1" class="editsvg-added" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                        <g>
+                            <g>
+                                <g>
+                                    <path d="M474.1,108H145.9c-20.9,0-37.9,17-37.9,37.9v328.3c0,20.9,17,37.9,37.9,37.9h328.3c20.9,0,37.9-17,37.9-37.9V145.9
+                                        C512,125,495,108,474.1,108z M486.8,474.1c0,7-5.7,12.6-12.6,12.6H145.9c-7,0-12.6-5.7-12.6-12.6V145.9c0-7,5.7-12.6,12.6-12.6
+                                        h328.3c7,0,12.6,5.7,12.6,12.6V474.1z"/>
+                                    <path d="M382.1,326.3c-4.9-4.9-12.9-4.9-17.8,0l-29,29l-54.2-54.2c-4.9-4.9-12.9-4.9-17.8,0l-88.4,88.4c-4.9,5-4.8,13,0.2,17.9
+                                        c2.3,2.3,5.4,3.6,8.7,3.6h252.5c7,0,12.7-5.6,12.7-12.6c0-3.4-1.3-6.6-3.7-9L382.1,326.3z"/>
+                                    <circle cx="347.9" cy="246.9" r="37.9"/>
+                                </g>
+                            </g>
+                        </g>
+                        <rect x="50.9" y="5.7" width="22" height="110.3"/>
+                        <rect x="50" y="5.2" transform="matrix(6.123234e-17 -1 1 6.123234e-17 0.617 121.2979)" width="22" height="110.3"/>
+                </svg> -->
+            </div>
+            <div class="content__left-about">
+                <div class="content__left-aboutitle">
+                    <div>About</div>
+                    <svg *ngIf="!aboutEditClicked" (click)="onClickAboutEdit()" version="1.1" class="editsvg-small" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                        <g>
+                            <g>
+                                <polygon points="51.2,353.28 0,512 158.72,460.8 		"/>
+                            </g>
+                        </g>
+                        <g>
+                            <g>
+                                
+                                    <rect x="89.73" y="169.097" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -95.8575 260.3719)" width="353.277" height="153.599"/>
+                            </g>
+                        </g>
+                        <g>
+                            <g>
+                                <path d="M504.32,79.36L432.64,7.68c-10.24-10.24-25.6-10.24-35.84,0l-23.04,23.04l107.52,107.52l23.04-23.04
+                                    C514.56,104.96,514.56,89.6,504.32,79.36z"/>
+                            </g>
+                        </g>
+                    </svg>
+                    <svg *ngIf="aboutEditClicked" (click)="onClickAboutEdit()" class="editsvg-cancel" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                        viewBox="0 0 511.99 511.99" style="enable-background:new 0 0 511.99 511.99;" xml:space="preserve">
+                                            <g>
+                                                <ellipse  cx="255.992" cy="255.999" rx="236.278" ry="236.278"/>
+                                                <path  d="M255.995,511.979c-65.587,0-131.174-24.957-181.108-74.872c-99.849-99.849-99.849-262.348,0-362.217
+                                                    l0,0c99.849-99.829,262.368-99.849,362.217,0c99.849,99.869,99.849,262.348,0,362.217
+                                                    C387.169,487.022,321.562,511.979,255.995,511.979z M102.939,102.942c-84.374,84.394-84.374,221.719,0,306.113
+                                                    c84.414,84.374,221.738,84.394,306.113,0s84.374-221.719,0-306.113C324.637,18.568,187.333,18.568,102.939,102.942L102.939,102.942
+                                                    z"/>
+                                            </g>
+                                            <g>
+                                                <path style="fill:#FFFFFF;" d="M187.115,344.678c-5.079,0-10.157-1.944-14.026-5.813c-7.757-7.757-7.757-20.295,0-28.052
+                                                    l140.26-140.26c7.757-7.757,20.295-7.757,28.052,0c7.757,7.757,7.757,20.295,0,28.052l-140.26,140.26
+                                                    C197.252,342.734,192.193,344.678,187.115,344.678z"/>
+                                                <path style="fill:#FFFFFF;" d="M327.355,344.678c-5.079,0-10.157-1.944-14.026-5.813l-140.26-140.26
+                                                    c-7.757-7.757-7.757-20.295,0-28.052s20.295-7.757,28.052,0l140.26,140.26c7.757,7.757,7.757,20.295,0,28.052
+                                                    C337.513,342.734,332.434,344.678,327.355,344.678z"/>
+                                            </g>
+                    </svg>
+                </div>
+                
+                <div *ngIf="!aboutEditClicked"  class="content__left-aboutbody">
+                    {{userInfo.about}}
+                </div>
+                <div *ngIf="aboutEditClicked" >
+                    <textarea type="text" name="" id="about"
+                    formControlName="about" class="content__left-aboutbodytxt"></textarea>
+                </div>
+                
+            </div>
+        </div>
+        <div class="content__right">
+            <div class="content__right-box">
+                <div class="content__right-title">User Info</div>
+                <div class="content__right-info">
+                
+                <div class="content__right-username">
+                    <div class="content__right-header">Username</div>
+                    <div class="content__right-usernamesub">
+                        <input type="text"
+                        id="username"
+                     formControlName="username">
+                     <!-- <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger"> -->
+                        <div class="caption caption-grey">Change Username</div>
+                    </div>
+                </div>
+                <div [ngClass]= "!passwordEditClicked ? 'content__right-password': 'content__right-passwordedit'">
+                    <div class="content__right-passwordhead">
+                        <div class="content__right-header">Password</div>
+                    <div *ngIf="!passwordEditClicked" (click)="onClickPasswordEdit()">
+                        <svg version="1.1" class="editsvg-small" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                        <g>
+                            <g>
+                                <polygon points="51.2,353.28 0,512 158.72,460.8 		"/>
+                            </g>
+                        </g>
+                        <g>
+                            <g>
+                                
+                                    <rect x="89.73" y="169.097" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -95.8575 260.3719)" width="353.277" height="153.599"/>
+                            </g>
+                        </g>
+                        <g>
+                            <g>
+                                <path d="M504.32,79.36L432.64,7.68c-10.24-10.24-25.6-10.24-35.84,0l-23.04,23.04l107.52,107.52l23.04-23.04
+                                    C514.56,104.96,514.56,89.6,504.32,79.36z"/>
+                            </g>
+                        </g>
+                    </svg>
+                    </div>
+                    <div *ngIf="passwordEditClicked  " (click)="onClickPasswordEdit()">
+                        <svg  class="editsvg-cancel" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                        viewBox="0 0 511.99 511.99" style="enable-background:new 0 0 511.99 511.99;" xml:space="preserve">
+                                            <g>
+                                                <ellipse  cx="255.992" cy="255.999" rx="236.278" ry="236.278"/>
+                                                <path  d="M255.995,511.979c-65.587,0-131.174-24.957-181.108-74.872c-99.849-99.849-99.849-262.348,0-362.217
+                                                    l0,0c99.849-99.829,262.368-99.849,362.217,0c99.849,99.869,99.849,262.348,0,362.217
+                                                    C387.169,487.022,321.562,511.979,255.995,511.979z M102.939,102.942c-84.374,84.394-84.374,221.719,0,306.113
+                                                    c84.414,84.374,221.738,84.394,306.113,0s84.374-221.719,0-306.113C324.637,18.568,187.333,18.568,102.939,102.942L102.939,102.942
+                                                    z"/>
+                                            </g>
+                                            <g>
+                                                <path style="fill:#FFFFFF;" d="M187.115,344.678c-5.079,0-10.157-1.944-14.026-5.813c-7.757-7.757-7.757-20.295,0-28.052
+                                                    l140.26-140.26c7.757-7.757,20.295-7.757,28.052,0c7.757,7.757,7.757,20.295,0,28.052l-140.26,140.26
+                                                    C197.252,342.734,192.193,344.678,187.115,344.678z"/>
+                                                <path style="fill:#FFFFFF;" d="M327.355,344.678c-5.079,0-10.157-1.944-14.026-5.813l-140.26-140.26
+                                                    c-7.757-7.757-7.757-20.295,0-28.052s20.295-7.757,28.052,0l140.26,140.26c7.757,7.757,7.757,20.295,0,28.052
+                                                    C337.513,342.734,332.434,344.678,327.355,344.678z"/>
+                                            </g>
+                    </svg>
+                    </div>
+                    </div>
+                    <div *ngIf="!passwordEditClicked" >
+                        <div class="content__right-passwordisplay">*******</div>
+                        
+                    </div>
+                    <div >
+                        <div *ngIf="passwordEditClicked && !passwordAuthenticated"> 
+                            <div  class="content__right-passwordeditor">
+                                <!-- (Keydown.enter)="onCheckPassword($event)" -->
+                                <form [formGroup]= "oldPasswordForm"  (ngSubmit)="onCheckPassword()">
+                                    <div  class="caption caption-darkgreen">Enter Password</div>
+                                    <div class="content__right-passwordsubcont">
+                                        <div class="content__right-passwordsub">
+                                            <div class="inputCont">
+                                                <input type="text" 
+                                            class="input-short"
+                                            
+                                            placeholder="Enter password & press enter"
+                                            id="oldPassword"
+                                            formControlName="oldPassword"
+                                            name="" >
+                                            <div *ngIf="loadingPassCheck" class="loader">
+                                                <app-small-loader></app-small-loader>
+                                            </div> 
+                                            </div>
+                                            
+                                            <div *ngIf="!loadingPassCheck" class="caption caption-grey"></div>
+                                            
+                                        </div>
+                                        <div>
+                                            <button class="submitbtn"> submit </button>
+                                        </div>
+                                    </div>
+                                
+                                
+                                </form>
+                                
+                            </div>
+                        </div>
+                        
+                        <div *ngIf= "passwordAuthenticated && passwordEditClicked">
+                            <div class="content__right-passwordeditor">
+                                <div class="caption caption-green">New password</div>
+                                <div class="content__right-passwordsub">
+                                    <input
+                                    id="newPassword"
+                                    formControlName="newPassword"
+                                     type="text" name="" >
+                                    <div class="caption caption-grey">Enter new password</div>
+                                  
+                                </div>
+                            </div>
+                            <div class="content__right-passwordeditor">
+                                <div class="caption caption-green">Confirm password</div>
+                                <div class="content__right-passwordsub">
+                                    <input #confirmInput
+                                    id="confirmPassword"
+                                     formControlName="confirmPassword" type="text" name="" >
+                                    <div class="caption caption-grey">Password confirmation</div>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    
+                </div>
+            
+
+
+                
+                </div>
+                <div class="content__right-actions">
+                    <div class="content__right-options">
+                        <button type="submit" class="btn btn-blue">
+                            <div *ngIf="loadingUpdate" class="loader">
+                                <app-small-loader></app-small-loader>
+                            </div>
+                            <div *ngIf="!loadingUpdate">
+                                Update
+                            </div>
+                            
+                        </button>
+                        <button type="button" class="btn btn-black" (click)="onClickCancel()">Cancel</button>
+                    </div>
+                    <div class="content__right-options2">
+                        <button type="button" class="content__right-btndeactivate" (click)="onClickDeactivate()">
+                            Deactivate Account
+                        </button>
+                    </div>
+                    <!-- <input type="file" (change)="onFileChosen($event)"
+                    #fileInput1> -->
+                        <!-- <button (click)="fileInput.click()">Select File</button>
+                        <button (click)="onUpload()">Upload!</button> -->
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    </form> 
+    <div>
+        <!-- <form action="" method="post" enctype="multipart/form-data">
+            <input type="file" ng2FileSelect [uploader]="uploader" />
+            <button (click)="upload()" class="btn">Upload</button>
+            <label>Choose file</label>
+        </form> -->
+    </div>
+    
+    </div>

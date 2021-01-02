@@ -1,0 +1,193 @@
+<div class="container">
+    <form [formGroup]= "recipeForm" (ngSubmit)="onSubmitRecipe()">
+        <div class='form__btns'>
+            <button [disabled]= "!recipeForm.valid" type="submit" class="btn btn--form">
+                <div *ngIf = "!addRecipeLoading">Save</div>
+                <div>
+                    <app-small-loader *ngIf="addRecipeLoading"></app-small-loader>
+                </div>
+                
+            </button>
+                <button type="button" (click)="onCancel()" class="btn btn--form">
+                    Cancel
+                </button>
+        </div>
+        
+        <div class="edit-box">
+      
+            
+            <div class="main">
+                <div class="main__left">
+                    <div class="main__left-section">
+                        <label  class="block" for="">Recipe Name</label>
+                    <input placeholder=".." class="inp margin--s"
+                     type="text"
+                     id="recipe-name"
+                     formControlName="name"
+                     >
+                    </div>
+                    <div class="main__left-section">
+                        <label class="block" for="recipe-desc">Recipe Description</label>
+                        <textarea maxlength="410" class="main__left-textbox"
+                         type="text"
+                         id="recipe-desc"
+                         formControlName="description"
+                         ></textarea>
+                    </div>
+                    <div class="main__left-section">
+                        <label class="block" for="recipe-inst">Cooking Instructions</label>
+                        <textarea class="main__left-textbox"
+                         type="text"
+                         id="recipe-inst"
+                         formControlName="instruction"
+                         ></textarea>
+                    </div>
+                    
+                    
+
+                </div>
+                <div class="main__right">
+                    <div class="main__right-editImg">
+                        <input
+                        style="display: none"
+                        type="file" 
+                        accept="image/x-png,image/gif,image/jpeg"
+                        (change)="addImage($event)"
+                        #fileInput
+                      
+                        id="recipe-Img" 
+                    > 
+                     <svg (click)="fileInput.click()"  version="1.1" class="editsvg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                        <g>
+                            <g>
+                                <polygon points="51.2,353.28 0,512 158.72,460.8"/>
+                            </g>
+                        </g>
+                        <g>
+                            <g>
+                                
+                                    <rect x="89.73" y="169.097" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -95.8575 260.3719)" width="353.277" height="153.599"/>
+                            </g>
+                        </g>
+                        <g>
+                            <g>
+                                <path d="M504.32,79.36L432.64,7.68c-10.24-10.24-25.6-10.24-35.84,0l-23.04,23.04l107.52,107.52l23.04-23.04
+                                    C514.56,104.96,514.56,89.6,504.32,79.36z"/>
+                            </g>
+                        </g>
+                    </svg>
+                    </div>
+                    
+                    <img  *ngIf="!editMode" class="main__right-img" src={{image}} alt="">
+                    <!-- <img  *ngIf="!editMode && recipeForm.value.imgUrl" class="main__right-img" src={{image}} alt=""> -->
+                     
+                    <!-- recipeForm.value.imgUrl -->
+                    <img *ngIf="editMode" class="main__right-img" src="{{image}}" alt="">
+                </div>
+
+                
+                </div>
+                    <div class="sub">
+                        <div class="sub__left">
+                            <div class="sub__header">
+                                <label for="">Ingredients</label>
+                            <button 
+                            (click)="onAddNewIng()"
+                            type="button" class="btn btn--add">+</button>
+                            </div>
+                            <div formArrayName="ingredients" class="sub__left-ing">
+                                <div *ngFor="let ingredientCtrl of ingredientsCt.controls; let i= index"
+                                [formGroupName]="i"
+                                class="inp--container margin--m">
+                                    <input placeholder=".." formControlName="name" class="inp__left " type="text">
+                                    <svg (click)="onDeleteIng(i)" version="1.1" class="svg svg-left" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                        viewBox="0 0 511.99 511.99" style="enable-background:new 0 0 511.99 511.99;" xml:space="preserve">
+                                            <g>
+                                                <ellipse  cx="255.992" cy="255.999" rx="236.278" ry="236.278"/>
+                                                <path  d="M255.995,511.979c-65.587,0-131.174-24.957-181.108-74.872c-99.849-99.849-99.849-262.348,0-362.217
+                                                    l0,0c99.849-99.829,262.368-99.849,362.217,0c99.849,99.869,99.849,262.348,0,362.217
+                                                    C387.169,487.022,321.562,511.979,255.995,511.979z M102.939,102.942c-84.374,84.394-84.374,221.719,0,306.113
+                                                    c84.414,84.374,221.738,84.394,306.113,0s84.374-221.719,0-306.113C324.637,18.568,187.333,18.568,102.939,102.942L102.939,102.942
+                                                    z"/>
+                                            </g>
+                                            <g>
+                                                <path style="fill:#FFFFFF;" d="M187.115,344.678c-5.079,0-10.157-1.944-14.026-5.813c-7.757-7.757-7.757-20.295,0-28.052
+                                                    l140.26-140.26c7.757-7.757,20.295-7.757,28.052,0c7.757,7.757,7.757,20.295,0,28.052l-140.26,140.26
+                                                    C197.252,342.734,192.193,344.678,187.115,344.678z"/>
+                                                <path style="fill:#FFFFFF;" d="M327.355,344.678c-5.079,0-10.157-1.944-14.026-5.813l-140.26-140.26
+                                                    c-7.757-7.757-7.757-20.295,0-28.052s20.295-7.757,28.052,0l140.26,140.26c7.757,7.757,7.757,20.295,0,28.052
+                                                    C337.513,342.734,332.434,344.678,327.355,344.678z"/>
+                                            </g>
+                                        </svg>
+                                    <div class="inp__left-Qty">
+                                        <input placeholder=".." formControlName="quantity" class="inp__left-inp" type="text">
+                                       <span>
+                                        <select  formControlName="symbol" >
+                                            
+                                            <option value="kg" selected>kg</option>
+                                            <option value="unit">unit</option>
+                                            <option value="g">g</option>
+                                            <option value="lb">lb</option>
+                                            <option value="m">m</option>
+                                        </select>
+                                        <!-- <select formControlName="state">
+                                            <option *ngFor="let state of states" [ngValue]="state">
+                                              {{ state.abbrev }}
+                                            </option>
+                                          </select> -->
+                                       </span> 
+                                    </div>
+                                    
+                                </div>
+                                
+                                
+                                
+                            </div>
+                            
+                        </div>
+                        <div   class="sub__right">
+                            <div class="sub__header--vid">
+                                <label for="">Video Urls</label>
+                            <button type="button"
+                             (click)="onAddNewVidUrl()"
+                                [disabled]="disableAdd"
+                              class="btn btn--add">+</button>
+                            </div>
+                            <div formArrayName = "vidUrls" class="sub__right-vid">
+                                <div *ngFor="let vidUrlCtrl of vidUrlsCt.controls; let  i = index"
+                                  [formGroupName]="i"
+                                class="vidUrl-cont">
+                                    <input placeholder=".." formControlName="vidUrl" class="inp margin--m" type="text">
+                                <svg (click)="onDeleteUrl(i)" version="1.1" class="svg svg-right" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                        viewBox="0 0 511.99 511.99" style="enable-background:new 0 0 511.99 511.99;" xml:space="preserve">
+                                            <g>
+                                                <ellipse  cx="255.992" cy="255.999" rx="236.278" ry="236.278"/>
+                                                <path  d="M255.995,511.979c-65.587,0-131.174-24.957-181.108-74.872c-99.849-99.849-99.849-262.348,0-362.217
+                                                    l0,0c99.849-99.829,262.368-99.849,362.217,0c99.849,99.869,99.849,262.348,0,362.217
+                                                    C387.169,487.022,321.562,511.979,255.995,511.979z M102.939,102.942c-84.374,84.394-84.374,221.719,0,306.113
+                                                    c84.414,84.374,221.738,84.394,306.113,0s84.374-221.719,0-306.113C324.637,18.568,187.333,18.568,102.939,102.942L102.939,102.942
+                                                    z"/>
+                                            </g>
+                                            <g>
+                                                <path style="fill:#FFFFFF;" d="M187.115,344.678c-5.079,0-10.157-1.944-14.026-5.813c-7.757-7.757-7.757-20.295,0-28.052
+                                                    l140.26-140.26c7.757-7.757,20.295-7.757,28.052,0c7.757,7.757,7.757,20.295,0,28.052l-140.26,140.26
+                                                    C197.252,342.734,192.193,344.678,187.115,344.678z"/>
+                                                <path style="fill:#FFFFFF;" d="M327.355,344.678c-5.079,0-10.157-1.944-14.026-5.813l-140.26-140.26
+                                                    c-7.757-7.757-7.757-20.295,0-28.052s20.295-7.757,28.052,0l140.26,140.26c7.757,7.757,7.757,20.295,0,28.052
+                                                    C337.513,342.734,332.434,344.678,327.355,344.678z"/>
+                                            </g>
+                                </svg>
+                                </div>
+                                
+                                
+                            </div>
+                            
+                        </div>
+                    </div> 
+      
+       
+        
+            </div>
+</form>
+</div>

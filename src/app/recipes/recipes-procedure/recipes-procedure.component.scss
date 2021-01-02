@@ -1,0 +1,109 @@
+.container{
+    
+
+        width: 100vw;
+        height: calc(100vh - 60px);
+        display :flex;
+        z-index: 50;
+        position: absolute;
+        top:60px;
+        left:0; 
+        align-items: center;
+        justify-content: space-evenly;
+        background:rgba(0, 0, 0, 0.75);
+        
+        //opacity:0.68;
+        &-box{
+            position: absolute;
+            z-index: 100;
+            // margin: 0 auto ;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            left:50%; 
+
+            display:flex;
+            justify-content: space-evenly;
+            align-items: center;
+          
+            width:58rem;
+            height:auto;
+            overflow-y: scroll;
+        }
+        
+}
+
+#svg{
+    &__close{
+        width: 10px;
+        height: 10px;
+      //  margin-right: 14px;
+
+    }
+}
+
+.page{
+    //position: relative;
+    width: 54.5rem;
+   
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    z-index: 100;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    //font-size: 1.7rem;
+
+    &-box{
+        max-height: 62.3rem;
+    }
+    
+
+    &__close{
+        margin-top: 18px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 51rem;
+        height: 25px;
+        
+
+        &-btn{
+            width: 2.2rem;
+            height: 2.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            margin-right: 14px;
+
+            &:hover{
+            background-color: #d7e0e68d;
+            cursor: pointer;
+        }
+        }
+        //  position: sticky;
+        // top:14px;
+       // background-color: white;
+    }
+    &__header{
+        width: 42.0rem;
+        text-align: center;
+        height: 1.8rem;
+        font-size: 1.8rem;
+        //  position: sticky;
+        //  top:18px;
+       // background-color: white;
+    }
+    &__content{
+        
+       // text-align: left;
+        margin: 5px 0;
+        font-size: 1.6rem;
+       margin-top: 20px;
+        width: 48rem;
+        height: auto;
+        margin-bottom: 40px;
+    }
+
+}

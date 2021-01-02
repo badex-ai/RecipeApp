@@ -1,0 +1,130 @@
+
+select{
+    height: 24px;
+    margin-left: 3px;
+    outline: none;
+//overflow-y: scroll;
+}
+.save{
+    width: 3rem;
+    height: 3rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   
+}
+.svg-save{
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+
+    &:active{
+        margin-bottom: -1px;
+    }
+
+}
+.svg-del{
+    position : absolute;
+    height: 13px;
+    top: -3px;
+    right:-3px;
+    width: 13px;
+    fill: #DD9316;
+    display: none;
+}
+
+.submit__box{
+    position: relative;
+    height: 30px;
+    width:120px;
+}
+.submit__box:hover > .svg-del{
+    display: block;
+}
+.btn{
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    outline: none;
+    height: 3rem;
+    margin-right: 1rem;   
+
+    &-clear{
+       
+      
+        background-color:#3F9EE0 ;
+        width:7.8rem;
+        margin-left: 10px;
+        
+     }
+     &-history{
+        background-color: #353733 ;
+        width:7.8rem;
+        margin-left: 10px;
+        margin-left : 20rem;
+     }
+     &-add{
+          
+        
+        width: 12rem;
+        
+        background-color:#064E80 ; 
+     }
+}
+.btn:disabled{
+    
+    background-color: rgba(36, 59, 76, 0.4) ;
+   
+}
+
+
+.shop-input{
+display: flex;
+//align-items: center;
+
+border-bottom: 1px solid #9db9cc66;
+font-size: 1.4rem;
+  //  border-bottom: 1px solid #9db9cc66;
+//color: #3382b9;
+color: #022a4b;
+padding: 4px 8px;
+background-color: gainsboro;
+
+
+&__ingredient-box{
+    width: 40rem;
+    height: 6rem;
+    display : flex;
+    
+    justify-content: space-between;
+}
+
+&__btns{
+    display:flex;
+    margin-top: 8px;
+}
+
+
+}
+
+.input{
+   // width: 12px;
+    height: 22px;
+    font-size: 12px;
+    margin: 5px 0;
+    border: none;
+    background-color: #FaFaFa  ;
+    border: 0.3px solid #BCBCBC;
+    outline: none;
+    padding: 0px 4px;
+    color: #022A49;
+
+    &--qty{
+        width: 8rem;
+    }
+    &--ing{
+        width: 20rem;
+    }
+}

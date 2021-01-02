@@ -1,0 +1,352 @@
+.container{
+    display: flex;
+    width: 100vw;
+    height: auto;
+    justify-content:center;
+    
+    
+    
+    
+    
+}
+.caption{
+    font-size: 2rem;
+    height : 2.8rem;
+    font-weight: 700;
+    //color: #296894;
+    color: #022a4b;
+   //@debug margin-top: -2rem;
+   // margin-bottom: 8px;
+    border-bottom: 1px solid #9db9cc68;
+    //text-align: center;
+}
+#svg{
+    width: 5rem;
+    height:5rem;
+    &-pen{fill:#064E80}
+    &-del{fill:#DD9316}
+}
+
+.history{
+    height: auto;
+    width:45rem;
+   // background-color: transparent;
+    display: flex;
+    flex-direction: column;
+  //  justify-content: ;
+
+    &__item{
+        display: flex;
+        padding: .8rem;
+        background-color: #4b4e48;
+        color: #efececf7;
+        border-bottom: 1px solid #9db9cc68;
+        justify-content: space-between;
+
+
+        &__name{
+            width: auto;
+        }
+
+        &-quantity{
+            width: auto;
+        //margin-left: 35rem;
+        } 
+    }
+
+    &__cont{
+      
+        margin: 5px;
+        border-radius: 5px;
+        width: 44rem;
+        margin-bottom: 8px;
+        margin-top: 10px;
+        font-size: 1.2rem;
+       
+      //  background-color: #9DB9CC
+    }
+
+    &__date{
+        padding: 5px 8px;
+        width: 20rem;
+        border-top-left-radius: 5px ;
+        border-top-right-radius: 5px ;
+        background-color: #0000ff59;
+        border-bottom: 1px solid #9db9cc68;
+    }
+
+    
+    
+}
+.shop-list{
+    
+    width: 112.4rem;
+    height: 58.8rem;
+    background-color: white;
+   // border: 1px solid #808080;
+    padding: 2rem;
+    font-size: 1.4rem;
+    
+   
+    
+    //background-color: red;
+    
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+    
+    
+
+    &__content{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1.4rem;
+        width:58rem;
+        height:60rem;
+        margin-left: -2rem;
+        background-color: #8b9eb050;
+
+        
+        
+    }
+
+    &__left{
+        background-color: transparent;
+        width:51rem;
+        height: 51.4rem;
+        display:flex;
+        flex-direction: column;
+        
+
+        
+        
+        
+        
+    }
+
+    
+
+    &__bag{
+        height: 51.8rem
+    }
+    &__notif{
+        position: absolute;
+        display:flex;
+        top:80px;
+        right:0;
+        height:15rem;
+        width: 15rem;
+        background-color: #353733;
+        border-radius: 50%;
+        justify-content: center;
+        align-items: center;
+        font-size: 10rem;
+        color:white;
+
+    }
+    &__image{
+        display: flex;
+        position:relative;
+        height: 59rem;
+        width: 41rem;
+        align-items: center;
+    }
+
+    &__table{
+        background-color: #f2f2f2;
+        border-radius: 5px;
+        width: 51rem;
+        min-height: 5rem;
+        //max-height:41.4rem;
+        height:auto;
+        
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+        
+        
+        
+        
+
+        
+
+       
+    }
+
+    &__items-box{
+        width:46rem;
+        height: auto;
+        max-height:36rem ;
+       // height: 38.4rem;
+        display: flex;
+        overflow-x: hidden;
+        overflow-y: auto; 
+        flex-direction: column;
+        align-items: center;
+       // padding: 1.7rem 0rem ;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+
+        
+        
+    }
+
+    &__items-empty{
+        display: flex;
+        flex-direction: column;
+      //  border-radius: 50%;
+        width:38.4rem ;
+        height:38.4rem ;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+
+       
+    }
+    &__items-txt{
+        font-size: 1.6rem;
+        color:#1B68A5;
+    }
+    
+    
+
+    
+
+    
+    
+
+    
+
+}
+.shop-list{
+    &__edit{
+        display: flex;
+        justify-content:space-evenly;
+        align-items: center;
+        width:5.4rem;
+        height:3.5rem;
+        
+       // overflow-x: hidden;
+        
+
+        &-box{
+            //transition: display .5s ease;
+            //transition: display
+           margin-right: -54px;
+           display: block;
+           
+           
+           //display: none
+        }
+
+
+        &-btn{
+            width: 15px;
+            height: 15px;
+            fill: #064E80;
+            //cursor: pointer
+        }
+        &-clearbtn{
+            width:15px;
+            height: 15px;
+            fill:#DD9316;
+           // cursor: pointer
+            
+        }
+        
+    }
+    &__item{
+
+        width:45.5rem;
+        height: 3.5rem;
+        cursor:pointer;
+        display: flex;
+
+     
+    }
+
+    &__ingredient{
+        display: flex;
+        justify-content:space-between;
+        width: 46rem;
+        height: 3.5rem;
+        align-items: center;
+        transition: width .5s ease;
+        overflow-x: hidden;
+       
+       // cursor:pointer;
+
+        &-name{
+            margin-left: 1rem;
+            text-transform: capitalize;
+        }
+
+        &-quantity{
+            margin-right: 1rem;
+        }
+        &-edit{
+            background-color: rgba(36, 59, 76, .40) !important;
+           // border: 3px outset black;
+            //border-top: 1px dashed black;
+           // border-bottom: 3px double balck;
+           color: white;
+            border-left: 3.5px solid #3B454D;
+            border-right: 3.5px solid #3B454D ;
+           // box-shadow: 0px 0px 1px black;
+           // margin-bottom: -4px solid green;
+            
+         }
+    }
+
+
+    &__item:hover > &__ingredient {
+        width: 40rem;
+        height: 3.5rem;
+        transition: width .5s ease;
+
+    }
+    &__item:hover > &__edit-box {
+        display: block;
+       // transform: translateX(5px);
+
+    }
+    
+}
+ .svg{
+    width:5rem;
+    height: 5rem;
+    cursor: pointer
+    
+}
+
+.shop-list__item:nth-child(even) > .shop-list__ingredient{
+    background-color: #FFFFFF;
+   }
+
+.shop-list__item:nth-child(odd) > .shop-list__ingredient{
+           background-color: #9DB9CC;
+       }
+
+
+// .bgf:nth-child(even) > :first-child{
+//     background-color: #FFFFFF;
+// }
+
+// .bgf:nth-child(odd) > div:first-of-type {
+//     background-color: #9DB9CC;
+// }
+// .bfg:nth-child(even) > .shop-list__ingredient{
+//     background-color: #FFFFFF;
+//    }
+
+// .bfg__item:nth-child(odd) > .shop-list__ingredient{
+//            background-color: #9DB9CC;
+//        }
+     
+    
+
+    
+

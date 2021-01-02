@@ -1,0 +1,333 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    //margin-top: -40px;
+    height: 61.1rem;
+    background-color: darkkhaki;
+}
+.form__btns{
+    display: flex;
+    align-items: center;
+}
+
+
+
+
+.editsvg{
+    width: 18px;
+    height:18px;
+    position: relative;
+    &-cancel{
+        padding-top: 2.6px;
+        cursor: pointer;
+        width: 14px;
+        height:14px; 
+        fill:#353733;
+    }
+    
+    &-small{
+        cursor: pointer;
+        width: 14px;
+        height:14px; 
+        fill: #064E80
+    }
+    &-added{
+        position: absolute;
+        right: 20px;
+        top: 55px;
+        width: 20px;
+        height:20px; 
+        fill: #064E80
+    }
+}
+
+// form{
+//     height: calc(100vh - 60px);
+//     justify-content: space-evenly;
+//     align-items: center;
+//     margin-top: 50px;
+// }
+
+label{
+    font-size: 14px;
+}
+
+.edit-box{
+    width: 66.6rem;
+    height: 56.6rem;
+    background-color: #fafafa;
+    display: flex;
+    //justify-content: space-evenly;
+    align-items: center;
+    border-radius: 5px;
+    flex-direction: column;
+    
+}
+
+.block{
+    display: block;
+}
+
+.main__left-section:not(:first-child){
+    margin-top: 5px;
+}
+.main{
+    width: 61.3rem;
+    height: 29rem;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    &__left{
+        display: flex;
+        flex-direction: column;
+        //justify-content: space-evenly;
+
+        width: 29.6rem;
+        height: 27.1rem;
+
+        &-textbox{
+            width: 28.5rem;
+            height: 8.65rem;
+            resize: none;
+            margin-top: 5px;
+            border: 0.3px solid #BCBCBC;
+            
+        }
+        
+    }
+ 
+    &__right{
+
+        width: 29.6rem;
+        height: 28.5rem;
+        border: .3px solid #BCBCBC;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+
+        &-editImg{
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            background-color: rgba(254, 254, 254, 0.63);
+            position: absolute;
+            top:1rem;
+            right: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            fill: #064E80;
+            cursor: pointer;
+        
+            &:hover{
+                background-color: rgba(255, 255, 255, 0.857);
+            }
+        }
+
+        &-img{
+            
+            border-radius: 5px;
+            width: 29rem;
+            height: 28rem;
+            object-fit: cover;
+            object-position: center;
+
+        }
+
+        &-empty{
+            width: 20rem;
+            height: 20rem;
+            object-fit: cover;
+            object-position: center;
+           // transform: translate(50%, 50%);
+        }
+        
+
+    }
+}
+.btn{
+    background-color: #064E80;
+    border:none;
+    border-radius: 5px;
+    color:#ffffff;
+    cursor: pointer;
+
+    &--form{
+        width:11rem;
+        height: 3rem;
+       // position: absolute;
+        margin-right:10px;
+        margin-bottom: 1.5rem;
+    }
+
+    &--add{
+        font-size: 20px;
+        width:22px;
+        height:22px;
+    }
+}
+
+.btn:disabled{
+    background-color: rgba(36, 59, 76, 0.4);
+}
+.sub{
+    display: flex;
+    justify-content: space-between;
+   
+    width: 61.2rem;
+    min-height: 6.4rem;
+    margin-top: 20px;
+
+    &__header{
+        display:flex;
+        justify-content: space-between;
+        width: 28.2rem;
+
+        &--vid{
+            display:flex;
+        justify-content: space-between;
+        width: 29.16rem;
+        }
+        
+
+
+    }
+    &__left{
+        position: relative;
+        &-ing{
+            position: absolute;
+            max-height: 15.8rem;
+            overflow-y: auto;
+            width: 29.8rem;
+            margin-top: 8px;
+        }
+    }
+    &__right{
+        // position: relative;
+        width: 29.16rem;
+        &-vid{
+            position: absolute;
+            max-height: 15.8rem;
+            overflow-y: auto;
+            width: 29.8rem;
+            margin-top: 8px;
+        }
+    }
+    
+
+}
+
+.margin--s{
+    margin-top: 5px;
+}
+.margin--m{
+    margin-top: 8px;
+}
+
+.inp--container:not(:first-child):hover svg{
+    display: block;
+}
+
+.vidUrl-cont:not(:first-child):hover > svg{
+    display: block;
+}
+.vidUrl-cont{
+    position : relative
+}
+
+.inp{
+    
+    width: 28rem;
+    height: 22px;
+    font-size: 13px;
+    padding:0 5px;
+    border:none;
+   //border: .5px solid #808080;
+    background-color: #E1EFFC;
+    border: 0.3px solid #BCBCBC;
+    // border: none;
+   // border-radius: 5px;
+
+    &--container{
+        position: relative;
+        width: 28rem;
+         height: 22px;
+        border: 0.3px solid #BCBCBC;
+        display: flex;
+        justify-content: flex-start ;
+        align-items: center;
+        background-color: #E1EFFC;
+        margin-bottom: 10px;
+    }
+
+    &__left{
+        
+        width: 18rem;
+    height: 22px;
+    font-size: 13px;
+    padding:0 5px;
+    border:none;
+    background-color: #E1EFFC;
+    
+    &-inp{
+        width: 3rem;
+        font-size: 13px;
+        height: 18px;
+        border: none;
+        background-color: #Fafafa;
+        text-align: center;
+    }
+
+    &-Qty{
+        border-radius: 5px;
+        width: 8rem;
+        border: 1px solid black;
+        height: 1.8rem;
+       
+        background-color: #Fafafa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #CBD9E3;
+        
+    }
+    
+   }
+}
+*:focus{
+    outline: none;
+    //border: .5px solid #808080;
+    
+}
+select{
+    background-color: #Fafafa ;
+    border: none;
+}
+.svg{
+    position: absolute;
+    width:14px;
+    height:14px;
+    top:0;
+    right:0;
+    display: none;
+    cursor: pointer;
+    fill:#DD9316;
+    
+
+    &-left{
+        margin-top: -6px;
+    margin-right: -6px;
+    }
+
+    &-right{
+        margin-top: 2.5px;
+        margin-right: 2.5px;
+    }
+}
+textarea{
+    padding:2px 5px ;
+    font-size: 13px;
+}

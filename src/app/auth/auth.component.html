@@ -1,0 +1,127 @@
+<div div class="container">
+    <div class="container-auth">
+        <div class="auth__box">
+            <div class="auth__box-left">
+                <div class="auth__box-text">
+                    <div class="auth__box-text--blue block">Explore food recipes from around the world and learn how to make them.</div>
+                    <div class="auth__box-text--yellow block">Sign up Now</div>
+                    
+                </div>
+                <div class="auth__box-img">
+                    <img class="auth__box-img--fire" src="../../assets/images/firewall.svg" alt="">
+                    <img class="auth__box-img--lock" src="../../assets/images/lock.svg" alt="">
+                </div>
+            </div>
+
+            <div class="auth__box-right">
+
+
+                <div [ngClass]=" signIn ? '': 'shapeshadow'">
+                    
+                    <div class="auth__box-right__signUp">
+                        <div class="sign">
+                            <div class="sign__tag sign__tag--signup ">
+                                <button class="signclick" (click)="onclickSignUp()">
+                                    SignUp
+                                </button>
+                            </div>
+                            <div class="sign__info">
+                                Please sign up with your email and password 
+                            </div>
+                            <div  >
+                                <form [formGroup]="signupForm" (ngSubmit)="onSignup()"class="sign__form-box" >
+                                    <div class="sign__item">
+                                        <label class="block" for="signin-username">Username</label>
+                                        <input class="sign-input" 
+                                        type="text"
+                                        id="signin-username"
+                                        formControlName="username" >
+                                    </div>
+                                    <div class="sign__item">
+                                        <label class="block" for="">Email</label>
+                                        <input class="sign-input" 
+                                        type="text"
+                                        id="signup-email"
+                                        formControlName="email">
+                                    </div>
+                                    <div class="sign__item">
+                                        <label class="block" for="">Password</label>
+                                        <input class="sign-input" 
+                                        type="password"
+                                        id="signup-password"
+                                        formControlName="password">
+                                    </div>
+                                    <div class="sign__item">
+                                        <button type="submit" [disabled]="!signupForm.valid" class="sign__loginbtn sign__loginbtn-color">
+                                            <app-small-loader *ngIf="isLoadingSignUp"></app-small-loader>
+                                            <div *ngIf="!isLoadingSignUp"> SignUp</div></button>
+                                    </div>
+                                    <div class="check">
+
+                                     <input type="checkbox">
+                                    <label class="check-keep" for="">Keep me signed in</label>
+                                    </div>
+                                    
+                                </form>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+
+
+
+                <div [ngClass]=" signIn  ?'shapeshadow': ''" >
+                    <div class="auth__box-right__signIn ">
+                        <div class="sign">
+                            <div class="sign__tag sign__tag--signIn">
+                                <button class="signclick" (click)="onclickSignIn()">
+                                    SignIn
+                                </button>
+                            </div>
+                            <div class="sign__info">
+                                Please sign in with your email and password 
+                            </div>
+                            <div>
+                                <form [formGroup]="signinForm" (ngSubmit)="onSignin()" class="sign__form-box">
+                                    <div class="sign__item">
+                                        <label class="block" for="signin-email">Email</label>
+                                        <input class="sign-input" 
+                                        type="text"
+                                        id="signin-email"
+                                        formControlName="email">
+                                        
+                                    </div>
+                                    <div class="sign__item">
+                                        <div>
+                                        <label class="block" for="">Password</label>
+                                        <input class="sign-input"
+                                         type="password"
+                                         id="signin-password"
+                                        formControlName="password">
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="sign__item">
+                                        <button [disabled]="!signinForm.valid" class="sign__loginbtn sign__loginbtn-color" >
+                                            <app-small-loader *ngIf="isLoadingSignIn"></app-small-loader>
+                                            
+                                            <div *ngIf="!isLoadingSignIn"> Login</div>
+                                        </button>
+                                    </div>
+                                    <div class="check">
+                                        <input #rememberMe (click)="onClickRemember(rememberMe.checked)" type="checkbox">
+                                        <label  class="check-keep" for="">Keep me signed in</label>
+                                    </div>
+                                   
+                                </form>
+                            </div>
+                        </div>
+                        
+                    </div>   
+                    
+    </div>
+</div>
+
+

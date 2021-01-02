@@ -1,0 +1,78 @@
+.recipes__item{
+    width: 42rem;
+    height:10.6rem;
+    display: flex;
+   // position: relative;
+    background-color: white;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 2px;
+    color: inherit;
+    &-top{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        
+
+    }
+
+    
+    &--active:link,
+    &--active:visited{
+        border:  0.3px solid #BCBCBC;
+        box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
+       // background-color: rgb(224,224,224);
+        
+    }
+    &-image{
+        width: 9rem;
+        height: 8.6rem;
+        border-radius: .5rem;
+        object-fit:cover;
+        object-position:50% 50%;
+        // background-color: violet;
+    }
+   
+
+    &-description{
+        display: flex;
+        flex-direction: column;
+        width: 28.8rem;
+        height: 9rem;
+        justify-content: space-evenly;
+    }
+
+    &-caption{
+        width: 28.8rem;
+        height: 4.8rem;
+        overflow: hidden;
+        font-size: 1.35rem;
+        text-align: justify;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+    &-title{
+        font-size: 1.6rem;
+        height: 2.2rem;
+        
+    }
+    
+}
+.like{
+   // margin-left: 2.5rem;
+   position: relative;
+    top:3rem;
+    left:39rem;
+    z-index: 200;
+    height: 1.2rem;
+    width: 1.2rem;
+    fill: #064E80;
+    cursor: pointer;
+}
+// .like:hover ~ .recipes__item{
+//     pointer-events: none;
+// }

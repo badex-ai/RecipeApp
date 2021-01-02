@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "recipe-app-4c9e9": {
+      "hosting": {
+        "RecipeApp": [
+          "recipe-app-4c9e9"
+        ]
+      }
+    }
+  }
+}
