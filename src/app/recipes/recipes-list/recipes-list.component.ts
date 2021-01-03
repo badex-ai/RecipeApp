@@ -17,13 +17,10 @@ trigger('changeContainerbox',[
   state('expanded', style({
     width: '!',
   
-  //transformOrigin:'left'
-  //    width: '94rem', 
-  //  // backgroundColor: "green"
+  
      })),
      state('shrunk', style({
-    //  height: '61.1rem',
-      //  width: '52.6rem',
+    
         width: '52.6rem',
 
         
@@ -210,11 +207,7 @@ export class RecipesListComponent implements OnInit {
         //  self.unobserve(entry.target)
         }
         
-          // else if (isLeaving){
-  
-          //   isLeaving= false;
-          //   console.log("loading")
-          //   }
+        
             
       });
       
@@ -260,38 +253,19 @@ onExpand(){
     this.router.navigate(['new'],{relativeTo:this.route});
     this.toState= 'shrunk';
     this.isShrunk= true;
-    //window.scroll({ top: 0,left: 0,behavior: 'smooth' })
+  
     
   }
 
    
-//  document.querySelector('.recipes__home');
-//   let isLeaving = false;
 
-//   const recipes = document.querySelectorAll('.recipe__item');
-//   const config = {
-//   root: document.querySelector('.recipes__box')
-//   rootMargin: '0px',
-  
-//   };
-
-// let observer = new IntersectionObserver(function (entries, self) {
-//   entries.forEach(entry => {
-//       if (entry.isIntersecting) { 
-//   islLeaving= true;
-
-//      }
-//       else if (isLeaving){
-  
-// isLeaving= false
-//   });
-// }, config);
-// recipes.forEach(recipe => { observer.observe(recipe); });
-  
-
-  // changeState(event){
-  //   console.log(event);
-  //   this.toState= event
-  // }
 
 }
+
+//THE AIM IS TO FORM AN ANIMATION RELATIONSHHIP BETWEEN THE RECIPES LIST, THE RECIPES DETAIL AND THE RECIPES EDIT
+//WHEN THE RECIPES LIST IS EXPANDED THE RECIPES DETAIL SHOULD BE SHRUNK AND VICE VERSA
+// THE LAST CONDITION IS WHEN THE RECIPES EDIT IS CANCELLED AND THE URL IS DERICTED TO THE RECIPES DETAIL,
+//SHOULD BE AUTOMATICALLY SHRUNK IN OTHER TO ACCOMODATE THE RECIPES LIST TO EXPAND.
+// I CREATED AN OBSERVABLE TO NOTIFY THE STATE OF THE RECIPES LIST ANIMATED STATUS BUT THIS DOES NOT AFFECT THE RECIPES DETAIL WHEN 
+//THE RECIPES EDIT IS CANCELLED , THIS METHOD I USED MAYBE WRONG BUT HOPEFULLY YOU COULD GIVE ME A BETTER METHOD OF DOING THIS
+//I HOPE I HAVE BEEN ABLE TO PASS ACCROSS MY MESSAGE
