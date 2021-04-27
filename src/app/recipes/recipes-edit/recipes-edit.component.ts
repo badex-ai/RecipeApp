@@ -329,7 +329,7 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
   }
   onCancel(){
     this.recipeService.collapseDetail.next(true);
-    this.recipeService.newState.next('expanded');
+    this.recipeService.isShrunk.next(false);
     this.router.navigate(['../'], {relativeTo: this.route})
   }
   onAddNewVidUrl(){

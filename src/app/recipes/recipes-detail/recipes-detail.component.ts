@@ -13,133 +13,7 @@ import {AlertService} from '../../shared/alert/alert.service';
   selector: 'app-recipes-detail',
   templateUrl: './recipes-detail.component.html',
   styleUrls: ['./recipes-detail.component.scss'],
-//   animations:[
-    
-   
 
-
-
-
- 
-//     trigger('changeDetailBox',[
-//     state('expanded', style({
-//       width: '!', 
-//    //  opacity: '1'
-//    //  // backgroundColor: "green"
-//     })),
-//     state('shrunk', style({
-//       width: '40.6rem',
-//       // opacity: '1'
-//      // display: 'flex',
-//      // justifyContent: 'center'
-//    //  backgroundColor: "red"
-      
-//  })),
-//  transition('expanded<=>shrunk', animate('0s')),
-// // transition(':enter', animate('s'))
-//  ]),
-//     trigger('changeEditor',[
-//     state('expanded', style({
-//    //   width: '90.6rem', 
-//     // opacity: '1'
-//    //  // backgroundColor: "green"
-//     })),
-//     state('shrunk', style({
-//       width: '40.6rem',
-//        opacity: '1'
-//      // display: 'flex',
-//      // justifyContent: 'center'
-//    //  backgroundColor: "red"
-      
-//  })),
-//  //transition('expanded<=>shrunk', animate('.05s')),
-// // transition(':enter', animate('.1s'))
-//  ]),
-//     trigger('changeDetailContent',[
-//     state('expanded', style({
-//    //   width: '90.6rem', 
-//     // opacity: '1'
-//    //  // backgroundColor: "green"
-//     })),
-//     state('shrunk', style({
-//       width: '38.6rem',
-//       height: '54rem'
-//      // display: 'flex',
-//      // justifyContent: 'center'
-//    //  backgroundColor: "red"
-      
-//  })),
-//  //transition('expanded<=>shrunk', animate('.05s')),
-// // transition(':enter', animate('.1s'))
-//  ]),
-//     trigger('changeDetailMain',[
-//     state('expanded', style({
-//    //   width: '90.6rem', 
-//     // opacity: '1'
-//    //  // backgroundColor: "green"
-//     })),
-//     state('shrunk', style({
-//       width: '36.6rem',
-//       height: '50rem',
-//      // display: 'flex',
-//      // justifyContent: 'center'
-//    //  backgroundColor: "red"
-      
-//  })),
-//  //transition('expanded<=>shrunk', animate('.05s')),
-// // transition(':enter', animate('.1s'))
-//  ]),
-//  trigger('changeDetailImg',[
-//   state('expanded', style({
-//  //   width: '90.6rem', 
-//   // opacity: '1'
-//  //  // backgroundColor: "green"
-//   })),
-//   state('shrunk', style({
-//     width: '37rem',
-//     height: '35rem',
-//    // display: 'flex',
-//    // justifyContent: 'center'
-//  //  backgroundColor: "red"
-    
-// })),
-// //transition('expanded<=>shrunk', animate('.05s')),
-// // transition(':enter', animate('.1s'))
-// ]),
-// trigger('changeDetailDesc',[
-//   state('expanded', style({
-//  //   width: '90.6rem', 
-//   // opacity: '1'
-//  //  // backgroundColor: "green"
-//   })),
-//   state('shrunk', style({
-//     marginLeft: '5px',
-//     marginRight: '5px'
-//    // display: 'flex',
-//    // justifyContent: 'center'
-//  //  backgroundColor: "red"
-    
-// })),
-// transition('expanded<=>shrunk', animate('.05s')),
-// // transition(':enter', animate('.1s'))
-// ]),
-//     trigger('changeDetailSub',[
-//     state('expanded', style({
-//    //   width: '90.6rem', 
-//    //  opacity: '1'
-//    //  // backgroundColor: "green"
-//     })),
-//     state('shrunk', style({
-//       display: 'none'
-//      // display: 'flex',
-//      // justifyContent: 'center'
-//    //  backgroundColor: "red"
-      
-//  })),
-//  transition('expanded<=>shrunk', animate('.05s')),
-// // transition(':enter', animate('.1s'))
-//  ])
-// ]
 })
 export class RecipesDetailComponent implements OnInit, OnDestroy {
   recipe:Recipe;
@@ -170,26 +44,27 @@ export class RecipesDetailComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
       
+      
       // if(this.route.url[0].path== 'liked-recipe'){
 
       // }
       
       
-        this.recipeService.collapseDetail.subscribe(value=>{ 
-          this.isCollapsed = value;
-          console.log(value);
-          this.showSub= false;
+//         this.recipeService.collapseDetail.subscribe(value=>{ 
+//           this.isCollapsed = value;
+//           console.log(value);
+//           this.showSub= false;
           
-          var element = document.getElementById('targetElement');
-if ( this.isCollapsed) {
-  element.classList.add('shrink'); // to add a class
-} else {
-  element.classList.remove('shrink'); // to remove a class
-}
+//           var element = document.getElementById('targetElement');
+// if ( this.isCollapsed) {
+//   element.classList.add('shrink'); // to add a class
+// } else {
+//   element.classList.remove('shrink'); // to remove a class
+// }
 
           
     
-        })
+//         })
       
       
 
@@ -228,6 +103,21 @@ if ( this.isCollapsed) {
       
        
      // console.log(this.recipe)
+    })
+
+    this.recipeService.isShrunk.subscribe(value=>{
+      console.log(this.route.snapshot.parent.routeConfig.path);
+
+      if(this.route.snapshot.parent.routeConfig.path === "liked-recipes"){
+        console.log(value)
+        console.log('yooooo in liked', )
+        this.isCollapsed= true
+      }else{
+        console.log(value)
+        console.log('not in liked')
+        this.isCollapsed = value
+      }
+      
     })
 
     
@@ -293,6 +183,7 @@ if ( this.isCollapsed) {
    }
 
       onEditRecipe(){
+        this.recipeService.isShrunk.next(true);
         this.recipeService.editMode.next(true);
         this.router.navigate(['edit'],{relativeTo:this.route})
       }

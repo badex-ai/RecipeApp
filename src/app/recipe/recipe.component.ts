@@ -6,6 +6,7 @@ import{ ShoppingListService} from '../shopping-list/shopping-list.service';
 import{ ActivatedRoute, Router, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import {DataService} from '../shared/data.service';
+import {AlertService} from '../shared/alert/alert.service';
 
 
 @Component({
@@ -26,7 +27,10 @@ export class RecipeComponent implements OnInit {
   rcpSub: Subscription;
   likedRecipes:string[];
   //paramsSub: any;
-  constructor(private recipeService: RecipeService,private shoppingListService: ShoppingListService,private route: ActivatedRoute,private dataService: DataService, private sanitizer:DomSanitizer) { }
+  constructor(private recipeService: RecipeService,private shoppingListService: ShoppingListService,private route: ActivatedRoute,private dataService: DataService,
+     private sanitizer:DomSanitizer,private alertService: AlertService) {
+       
+      }
 
   
 
@@ -107,7 +111,9 @@ export class RecipeComponent implements OnInit {
       onClickShare(){
       //  console.log(...this.recipe.ingredients)
      
-       this.shoppingListService.addIngredient(...this.recipe.ingredients)
+       this.shoppingListService.addIngredient(...this.recipe.ingredients);
+       this.alertService.alert.next(true);
+      this.alertService.message.next("Item Added successfully to Shopping List");
       }
       ngOnDestroy(){ 
         this.paramsSub.unsubscribe();

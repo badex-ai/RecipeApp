@@ -24,31 +24,31 @@ export class DataService {
   // private recipeService: RecipeService 
     ) {
     this.recipesCollection = this.firestore.collection('Recipes');
-    console.log(this.recipesCollection)
+    // console.log(this.recipesCollection)
    }
 
    private capitalizeFirstLetter(string:string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  fetchRecipes():Observable<Recipe[]> {
-     this.recipes = this.recipesCollection.snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as Recipe;
-        const id = a.payload.doc.id;
-        return { id, ...data };
-      })
-      )
+  // fetchRecipes():Observable<Recipe[]> {
+  //    this.recipes = this.recipesCollection.snapshotChanges().pipe(
+  //     map(actions => actions.map(a => {
+  //       const data = a.payload.doc.data() as Recipe;
+  //       const id = a.payload.doc.id;
+  //       return { id, ...data };
+  //     })
+  //     )
       
-      // ,tap(maindata => {
+  //     // ,tap(maindata => {
 
-      // console.log(maindata);
-      //   this.recipeService.setRecipes(recipes);
-     //  })
-      );
-      console.log(this.recipes);
-      return this.recipes
-  }
+  //     // console.log(maindata);
+  //     //   this.recipeService.setRecipes(recipes);
+  //    //  })
+  //     );
+  //     console.log(this.recipes);
+  //     return this.recipes
+  // }
 
 
   searchRecipe(recipe:string)

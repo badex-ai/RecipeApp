@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Recipe} from '../recipe.model';
 import {RecipeService} from '../recipe.service';
@@ -11,248 +11,434 @@ import{AlertService} from '../../shared/alert/alert.service';
   selector: 'app-recipes-list',
   templateUrl: './recipes-list.component.html',
   styleUrls: ['./recipes-list.component.scss'],
-  animations:[
+    animations:[
 
-trigger('changeContainerbox',[
-  state('expanded', style({
-    width: '!',
-  
-  
-     })),
-     state('shrunk', style({
+  trigger('changeContainerbox',[
+    state('expanded', style({
+      width: '!',
     
-        width: '52.6rem',
+    
+       })),
+       state('shrunk', style({
+      
+          width: '52.6rem',
 
+          
+      
         
-    //  backgroundColor: "red"
-       
-  }),),
-  transition('expanded<=>shrunk', animate('200ms')),
-  // transition('expanded<=>shrunk',[group([  
-  //   query('h1', [  
-  //     style({ transform: 'translateY(-20px)' }),  
-  //     animate('.1s ease-out' ) 
-  //   ]),  
-  //   query('.list-group-item',  
-  //     stagger(200, [  
-  //       style({ opacity: 0, transform: 'translateX(-20px)' }),  
-  //       animate(1000)  
-  //     ])  
-  //   )  
-  // ]) ], )
-]),
-trigger('changeRecipehome',[
-  state('expanded', style({
-    width: '*',
-     })),
-     state('shrunk', style({
-      width: '46.6rem',
-    //  backgroundColor: "red"
-       
-  }),),
- // transition('*=>expanded', animate('300ms')),
-// transition('expanded<=>shrunk', animate('100ms')),
-
-]),
-trigger('changeRecipesbox',[
-  state('expanded', style({
-    width: '*',
-     })),
-     state('shrunk', style({
-      width: '44.6rem',
-   //   backgroundColor: "red"
-       
-  }),),
- // transition('*=>expanded', animate('300ms')),
- //transition('expanded<=>shrunk', animate('100ms')),
-
-]),
-trigger('changeRecipeslist',[
-  state('expanded', style({
-   
-     gridTemplateColumns: '*',
+    }),),
+    transition('expanded<=>shrunk', animate('200ms')),
     
+  ]),
+  trigger('changeRecipehome',[
+    state('expanded', style({
+      width: '*',
+       })),
+       state('shrunk', style({
+        width: '46.6rem',
+      
+        
+    }),),
    
-  //  backgroundColor: "green"
-     })),
-     state('shrunk', style({
-      gridTemplateColumns: '1fr',
+
+  ]),
+  trigger('changeRecipesbox',[
+    state('expanded', style({
+      width: '*',
+       })),
+       state('shrunk', style({
+        width: '44.6rem',
+     
+        
+    }),),
+   
+
+  ]),
+  trigger('changeRecipeslist',[
+    state('expanded', style({
     
-      // display: 'flex',
-      // flexDirection: 'column',
-      // justifyContent: 'space-around',
-    //  backgroundColor: "red"
-       
-  }),
+       gridTemplateColumns: '*',
+      
+    
+    //  backgroundColor: "green"
+       })),
+       state('shrunk', style({
+        gridTemplateColumns: '1fr',
+      
+        
+        
+    }),
+    ),
+   
+
+
+  ]
   ),
- // transition('*=>expanded', animate('300ms')),
- //transition('expanded<=>shrunk', animate('5ms')),
 
-
-]),
-
-]
+  ]
 })
 export class RecipesListComponent implements OnInit {
+  @Input() isLikeUrl: boolean;
+  
+
+
   recipes: Recipe[] = [];
   liked:boolean;
   likedItems: string[];
   islikeUrl:boolean;
   nofav:boolean;
-  noInternet: boolean;
+  Internet: boolean= true;              //FOR CHECKING IF INTERNET ACCESS IS PRESENT
   toState:string = "expanded";
-  isShrunk= false;
-  isLoading:boolean = false;
-  //notLoadMoreRecipe: true;
+  expander = false;
+  isLoadingNewRcp:boolean = false;         //FOR DISPLAYIN AND SHOWING THAT NEW SET OF RECIPES ARE LOADED
+  isLoadingFirstRcp: boolean;       //FOR CHECKING IF THE FIRST BATCH OF RECIPES IS BEING LOADED
+  batch= 2;
+  lastkey="";
+  finished= false;
+  isLoadingLike: boolean;                   // FOR CHECKING IS LIKED URL IS BEING LOADED
+  demoRecipes=[1,2,3,4,5,6,7,8,9,10];       //DEMO ARRAY OF RECIPES FOR THE SKELTON LOADER
+  firstIsLoaded: boolean;         //FOR CHECKING IF THE FIRST BATCH OF RECIPE IS LOADED
+  totalFetchedRecipes: Recipe[];
+  // isLeaving: boolean;
+  // observer: IntersectionObserver;
+ 
 
-  private observer: IntersectionObserver;
-  // @ViewChild('anchor1',{static:true}) anchor1: ElementRef<HTMLElement>;
-  // @ViewChild('anchor2',{static:true}) anchor2: ElementRef<HTMLElement>;
+
   
-  constructor(private router: Router, private route: ActivatedRoute, private recipeService: RecipeService) { }
+  
+
+  
+  constructor(private router: Router, private route: ActivatedRoute, private recipeService: RecipeService,private alertService: AlertService) {
+    
+  //  this.isLeaving = false;
+
+  //  const recipeBox = document.getElementById('nada');
+  
+  
+  //    const recipeContainer = document.getElementById('fill');
+   
+  
+  //      const config = {
+  //     root: recipeBox,
+  //     //threshold: 1,
+     
+      
+  //     };
+  
+  //  this.observer = new IntersectionObserver( (entries, self)=>{
+  //     entries.forEach(entry => {
+  
+  //         const currentY = entry.boundingClientRect.y
+  //         const currentRatio = entry.intersectionRatio
+  //         const isIntersecting = entry.isIntersecting
+  
+  
+  //         if (entry.isIntersecting) {
+  //           this.isLeaving= true;
+  //           if(!this.isLoadingFirstRcp){
+  //             this.isLoadingNewRcp = true;
+  //           }
+  
+           
+  
+            
+  //           if(!this.Internet && this.totalFetchedRecipes.length > 0){
+             
+                 
+  //                this.alertService.alert.next(true);
+  //               this.alertService.message.next('Internet connection unavailable')
+  //               }
+            
+  
+          
+            
+  //           var lastVisible = this.recipes[this.recipes.length - 1];
+  //           this.recipeService.loadMoreRecipes(lastVisible.name).subscribe((newRecipes:Recipe[])=>{
+             
+  //             this.isLoadingNewRcp = true;
+  //             if(newRecipes !== []){
+  //               this.totalFetchedRecipes.push(...newRecipes)
+  //             }
+  //             if(newRecipes.length == 0){
+  //               this.isLoadingNewRcp= false
+  //             }
+  //             this.recipeService.rcp.next(this.totalFetchedRecipes)
+             
+  //             this.recipes= this.totalFetchedRecipes
+              
+  //            //  newRecipes.forEach((el)=>{this.recipes.push(el)});
+               
+  //           });
+            
+  //       }
+  //     }); 
+       
+  //   }, config);
+  
+  
+  //  // Array.from(recipes).forEach((recipe: Element) => { observer.observe(recipe) });
+  //    this.observer.observe(recipeContainer);
+   }
 
   ngOnInit() {
     
-   // console.log(this.route.snapshot.url[0])
+  
+  
+   
     this.route.children.forEach((params:Params) => {
-   //   console.log(params)
+   
     })
-    this.recipeService.newState.subscribe(value=>{
-      console.log(value);
-      this.toState = value;
-      if(this.toState ==='shrunk'){
-        this.isShrunk= true;
-      }else{
-        this.isShrunk = !this.isShrunk
-      }
-     // this.recipeService.expandTrigger.next(this.toState)
-    })
+
+    this.recipeService.hasIntConnected.subscribe(val=>{
+      
+      
+      
+      
+       if(val.netConn === false && val.intConn === false ){
+        this.Internet= false
+       
+       }else{
+         this.Internet= true
+       }
+      
+  
     
-   // console.log(this.route.snapshot.routeConfig)
+    
+      
+    })
+
+    this.recipeService.firstIsLoaded.subscribe(val=>{
+      this.firstIsLoaded= val;
+    })
+    this.recipeService.loadingRecipes.subscribe(val=>{
+      this.isLoadingFirstRcp= val
+     
+    })
     
    
-    if(this.route.snapshot.url[0].path === 'liked-recipes'){
+    if(this.isLikeUrl){
+      
+     
+       
+      
+      
       this.islikeUrl = true;
+    
       
       
       let rcp;
       let id;
       let likedItems ;
+      this.Internet= true;
+
+      
       this.recipeService.localData.subscribe((items:string[])=>{
+        this.isLoadingLike= true;
       let recipes= [];
         likedItems = items;
-        //console.log(items);
-      //  console.log(likedItems);
+       
        if(items === null || items.length === 0){
          this.nofav= true
        }
+
         likedItems.forEach(el=>{
           
+          
+         
          this.recipeService.getRecipe(el).subscribe((recipe)=>{
-        //  recipes = []
-        if(recipe == undefined){
-          return this.noInternet= true
-        }
-        this.noInternet= false;
+       
+          this.recipeService.firstIsLoaded.next(true);
+      
+        
            id = el;
-           rcp = {id,...recipe}
-          // console.log(rcp);
-           recipes.unshift(rcp)
-           console.log(recipe)
+           if(recipe){
+              rcp = {id,...recipe}
+              recipes.unshift(rcp)
+          }
+          
+          
+       
         })
          
        });
-      // console.log(rcp)
+      
+      //  if(recipes.length==0){
+      //   this.noInternet= true
+      //  }
       this.recipes = recipes;
-     // console.log(this.recipes)
+      this.isLoadingLike= false
+          this.recipeService.loadingRecipes.next(false)
+      
+     
     }) ;
-    //  console.log(localStorage.getItem("LikedRecipes"))
+    this.recipeService.loadingRecipes.next(false)
        
     }else{
-      // document.querySelector('.recipes__home');
+
+   
+    
+      
+      this.recipeService.isShrunk.subscribe(value=>{
+       
+         
+         this.expander = value
+         if(value){
+           this.toState= "shrunk";
+         }else{
+           this.toState = "expanded";
+         }
+    
+       })
+     
        let isLeaving = false;
 
 
- const recipeBox = document.getElementById('nada');
-//  console.log(document.getElementById('nada'));
-//  console.log(document.getElementById('fill'));
+    const recipeBox = document.getElementById('nada');
 
- let recipeContainer = document.getElementById('fill');
+
+    const recipeContainer = document.getElementById('fill');
  
 
     const config = {
     root: recipeBox,
+    //threshold: 1,
    
     
     };
-     
+   
    
     let observer = new IntersectionObserver( (entries, self)=>{
       entries.forEach(entry => {
+
+          const currentY = entry.boundingClientRect.y
+          const currentRatio = entry.intersectionRatio
+          const isIntersecting = entry.isIntersecting
+
+
           if (entry.isIntersecting) {
             isLeaving= true;
-            this.isLoading = true;
+            if(!this.isLoadingFirstRcp){
+              this.isLoadingNewRcp = true;
+            }
+
+           
+
+            
+            if(!this.Internet && this.totalFetchedRecipes.length > 0){
+             
+                 
+                 this.alertService.alert.next(true);
+                this.alertService.message.next('Internet connection unavailable')
+                }
+            
+
+          
+            
             var lastVisible = this.recipes[this.recipes.length - 1];
-           // console.log(lastVisible);
             this.recipeService.loadMoreRecipes(lastVisible.name).subscribe((newRecipes:Recipe[])=>{
-              this.isLoading = false;
-              this.recipes.push(...newRecipes)
+             
+              this.isLoadingNewRcp = true;
+              if(newRecipes !== []){
+                this.totalFetchedRecipes.push(...newRecipes)
+              }
+              if(newRecipes.length == 0){
+                this.isLoadingNewRcp= false
+              }
+              this.recipeService.rcp.next(this.totalFetchedRecipes)
+             
+              this.recipes= this.totalFetchedRecipes
+              
              //  newRecipes.forEach((el)=>{this.recipes.push(el)});
                
             });
             
-          console.log('it has entered') ;
-            
-            
-        //  self.unobserve(entry.target)
         }
-        
-        
-            
-      });
-      
+      }); 
+       
     }, config);
 
 
    // Array.from(recipes).forEach((recipe: Element) => { observer.observe(recipe) });
-    observer.observe(recipeContainer);
-  
+     observer.observe(recipeContainer);
 
 
-        if(this.recipes.length === 0){
+       
+
+
+
+
+
+
+
+          //********************LOAD FIRST RECIPES ****************/  
+
+      this.recipeService.rcp.subscribe((rcp)=>{
+        if(rcp==null){
           this.recipeService.fetchRecipes().subscribe((recipes: Recipe[]) => {
-            //  console.log(recipes)
-              if(recipes == []){
-                return this.noInternet= true
-              }
-            this.recipes = [...recipes] ;
-          //  console.log(this.recipes)
-            })
-        }
+            
 
-        // this.recipeService.fetchRecipes().subscribe((recipes: Recipe[]) => {
-        //   //  console.log(recipes)
-        //     if(recipes == []){
-        //       return this.noInternet= true
-        //     }
-        //   this.recipes = [...recipes] ;
-        // //  console.log(this.recipes)
-        //   })
+              
+              this.totalFetchedRecipes=[...recipes];
+              this.recipeService.rcp.next(this.totalFetchedRecipes);
+              this.isLoadingNewRcp= false;
+              this.recipes = this.totalFetchedRecipes ;
+              if(this.totalFetchedRecipes.length > 0){
+                this.recipeService.firstIsLoaded.next(true);
+               
+               
+              }
+              
+              this.recipeService.loadingRecipes.next(false)
+
+
+              
+            
+             
+          
+          })
+        }else{
+         
+          this.recipes= [...rcp]
+        }
+      })
+
+                
+        
+
+  
         
        
   }
+  
+
+ 
+
+
 }
 
+
+
+
+
+
+
+
+
+
+
+
 onExpand(){
-  this.toState = 'expanded';
-  this.isShrunk= false;
-  console.log('expanded')
+
+  this.recipeService.isShrunk.next(false)
+  this.expander = false;
+  
 }
 
   onLoadAddNew(){
     this.router.navigate(['new'],{relativeTo:this.route});
-    this.toState= 'shrunk';
-    this.isShrunk= true;
+    this.recipeService.isShrunk.next(true);
+    
+    this.expander= false;
   
     
   }

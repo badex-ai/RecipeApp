@@ -25,6 +25,8 @@
     "cloudinary": "^1.23.0",
     "firebase": "^7.0.0 || ^8.0.0",
     "ng2-file-upload": "^1.4.0",
+    "ngx-connection-service": "^7.0.3",
+    "ngx-infinite-scroll": "^10.0.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

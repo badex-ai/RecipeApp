@@ -5,8 +5,9 @@ import { environment } from "src/environments/environment";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { HttpClientModule } from '@angular/common/http';
-import { FileUploadModule } from 'ng2-file-upload';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {ConnectionServiceModule} from 'ngx-connection-service'; 
 
 
 
@@ -93,7 +94,8 @@ import { ScrollTrackerDirective } from './shared/scroll-tracker.directive';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     HttpClientModule,
-    FileUploadModule,
+    InfiniteScrollModule,
+    ConnectionServiceModule
    // FormsModule,
     // CloudinaryModule
     //CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'your_cloud_name' } as CloudinaryConfiguration),

@@ -1,12 +1,27 @@
 <div class="container-recipes">
-    <div class="cover">
-        <app-recipes-list></app-recipes-list>
-    
-        <router-outlet></router-outlet>
+  <div class="cover">
+    <div [@recipesListAnimation]="isShrunk ? 'shrunk' : 'expanded'">
+      <div>
+        <app-recipes-list
+          [isLikeUrl]="isLikeUrl"
+          *ngIf="isLikeUrl"
+        ></app-recipes-list>
+      </div>
+
+      <div>
+        <app-recipes-list
+          [isLikeUrl]="isLikeUrl"
+          *ngIf="!isLikeUrl"
+        ></app-recipes-list>
+      </div>
     </div>
-   
-    <!-- <app-recipes-default-detail></app-recipes-default-detail> -->
-    <!-- <app-recipes-detail></app-recipes-detail> -->
-    <!-- <app-recipes-edit></app-recipes-edit> -->
-   
+
+    <div [@recipesInfoAnimation]="!isShrunk ? 'shrunk' : 'expanded'">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <!-- <app-recipes-default-detail></app-recipes-default-detail> -->
+  <!-- <app-recipes-detail></app-recipes-detail> -->
+  <!-- <app-recipes-edit></app-recipes-edit> -->
 </div>

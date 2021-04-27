@@ -132,21 +132,7 @@ export class SettingsComponent implements OnInit {
       }
     )
 
-    // this.authService.userDbInfo.subscribe(
-    //   (userDbInfo)=>{
-    //     this.userInfo= userDbInfo;
-    //     console.log(this.userInfo)
-    //   }
-    // )
-
-
-
-    // this.settingsService.getUser(this.user.userId).subscribe(
-    //   value=>{
-    //     this.userInfo = value;
-    //     console.log(this.userInfo)
-    //   }
-    // )
+   
 
 
 
@@ -164,10 +150,7 @@ export class SettingsComponent implements OnInit {
      // console.log(this.userInfo);
     })
 
-    // this.uploadForm = this.fb.group({
-    //   avatar: [null],
-    //   name: ['']
-    // })
+   
 
     this.userForm = this.fb.group({
 

@@ -1,191 +1,280 @@
-.container{
-   // display:flex;
-    
-   // flex-direction: column;
-    //justify-content: center;
-   // align-items: center;box
-   display: flex;
+.container {
+  // display:flex;
+
+  // flex-direction: column;
+  //justify-content: center;
+  // align-items: center;box
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  min-width: 52.6rem;
+  height: 61.1rem;
+  // background-color: rebeccapurple;
+
+  &-like {
+    display: flex;
     justify-content: center;
     align-items: flex-end;
-    min-width: 52.6rem;
+    width: 52.6rem;
     height: 61.1rem;
-    background-color: rebeccapurple;
+  }
 
-    &-like{
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        width: 52.6rem;
-        height: 61.1rem;  
-    }
-
-    &-box{
+  &-box {
     //     height:61.1rem;
     // width: 46rem;
     height: 61.1rem;
-   // background-color: green;
+    // background-color: green;
     width: 94rem;
-   // background-color: blue;
+    // background-color: blue;
+  }
 
-    }
-
-    &-boxlike{
-        height: 61.1rem;
-        width: 52.6rem;
-    }
-    
+  &-boxlike {
+    height: 61.1rem;
+    width: 52.6rem;
+  }
 }
-// 
+//
 
-.tester{
-   // min-width:56.6;
-    //background-color:transparent;
-    height: 1px;
-    
-   // margin-bottom: 2rem;
-    margin: 0 auto;
-   // margin-top: 4rem;
-   // background-color: red;
-}
-.loader{
-//width: 5px;
-    grid-column-start: 1;
-    grid-column-end: -1;
-    
-}
-.expander{
-    width: 1.2rem;
-    height: 56.6rem;
-    background-color: #3b454d;
-    margin-left:  8px;
-   // margin-right: 2px;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    
+.tester {
+  // min-width:56.6;
+  //background-color:transparent;
+  height: 1px;
 
-    &__svgCont{
-        fill: #667886;
-        width: 1rem;
-        height: 1rem;
-
-        
-    }
-
-    &:hover{
-        box-shadow: 1px 0px 1px #00000050
-    }
-    &:hover > .expander__svgCont{
-        box-shadow: 1px 0px 1px #00000050;
-        fill: white;
-    }
+  // margin-bottom: 2rem;
+  margin: 0 auto;
+  // margin-top: 4rem;
+  // background-color: red;
 }
-.noInternet{
-     fill:#D7E0E6;
+.loader {
+  //width: 5px;
+  grid-column-start: 1;
+  grid-column-end: -1;
 }
-.noint{
-    height: 10rem;
+.expander {
+  width: 1.2rem;
+  height: 56.6rem;
+  background-color: #3b454d;
+  margin-left: 8px;
+  // margin-right: 2px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &__svgCont {
+    fill: #667886;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &:hover {
+    box-shadow: 1px 0px 1px #00000050;
+  }
+  &:hover > .expander__svgCont {
+    box-shadow: 1px 0px 1px #00000050;
+    fill: white;
+  }
+}
+.noInternet {
+  fill: #d7e0e6;
+}
+.noint {
+  height: 10rem;
   //  fill:#F2F2F2 ;
 }
-.liked__header{
-    font-size: 1.6rem;
-   // padding-top: 4px;
-    color: #064E80 ;
-    height: 3rem ;
-    width: 10rem;
-    text-align: center;
-   // padding: 8px;
-    background-color: #D7E0E6;
-    border-bottom: 2px solid #064E80 ;
+.liked__header {
+  font-size: 1.6rem;
+  // padding-top: 4px;
+  color: #064e80;
+  height: 3rem;
+  width: 10rem;
+  text-align: center;
+  // padding: 8px;
+  background-color: #d7e0e6;
+  border-bottom: 2px solid #064e80;
+}
+.btn {
+  background-color: #064e80;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  cursor: pointer;
+  outline: none;
 
+  &__m {
+    width: 11rem;
+    height: 3rem;
+    margin-right: 10px;
+    // margin-bottom: 1.5rem;
+  }
 }
-.btn{
-    background-color: #064E80;
-    border: none;
-    border-radius: 5px;
-    color: #ffffff;
-    cursor: pointer;
-    outline: none;
-    
-    &__m{
-        width: 11rem;
-        height: 3rem;
-        margin-right: 10px;
-       // margin-bottom: 1.5rem;
-    }
+.btn__m:hover {
+  // margin-bottom: -1px;
+  // box-shadow: 0 2px 5px rgba(0,0,0,.4);
 }
-.btn__m:hover{
-   // margin-bottom: -1px;
-   // box-shadow: 0 2px 5px rgba(0,0,0,.4);
-}
-.recipes{
-    height: 56.6rem;
-   
-    background-color: #f2f2f2;
-    border-radius: 8px;
-    margin-top: 1.5rem;
-    
-    display:flex;
-    justify-content: center;
+.recipes {
+  height: 56.6rem;
+
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &-like {
+    width: 46.6rem;
+  }
+  &-home {
+    width: 90.6rem;
+  }
+
+  &__box {
+    height: 54.6rem;
+    width: 89rem;
+    //display: grid;
+    overflow-y: scroll;
+    background-color: #bdb76b91;
+  }
+  &__box-like {
+    height: 54.6rem;
+    width: 44.6rem;
+    //display: grid;
+    overflow-y: scroll;
+  }
+  &__list {
+    // width: 42rem;
+    height: auto;
+    padding: 2px 0;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 0px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0.5rem;
+    justify-items: center;
     align-items: center;
+    background-color: #bdb76b5c;
 
-    &-like{
-        width: 46.6rem; 
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: space-around;
+
+    &-like {
+      height: auto;
+      padding: 2px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
     }
-    &-home{
-        width: 90.6rem;
-    }
-
-    &__box{
-        height: 54.6rem;
-        width: 89rem;
-        //display: grid;
-        overflow-y: scroll;
-        background-color: #bdb76b91;
-    }
-    &__box-like{
-        height: 54.6rem;
-        width: 44.6rem;
-        //display: grid;
-        overflow-y: scroll;
-    }
-     &__list{
-       // width: 42rem;
-        height: auto;
-        padding: 2px 0;
-        margin-top: 10px;
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-bottom: 0px;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: .5rem;
-        justify-items: center;
-        align-items: center;
-        background-color: #bdb76b5c; 
-        
-        
-       // display: flex;
-       // flex-direction: column;
-       // justify-content: space-around;
-        
-       &-like{
-        height: auto;
-        padding: 2px 0;
-        display: flex;
-       flex-direction: column;
-       justify-content: space-around;
-       align-items: center;
-
-     }
-        
-
-        
-
-     }
-     
-    
+  }
 }
+
+.recipes__item {
+  width: 42rem;
+  height: 10.6rem;
+  display: flex;
+  // position: relative;
+  background-color: rgba(255, 255, 255);
+  justify-content: space-evenly;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 2px;
+  color: inherit;
+  border: 0.5px solid transparent;
+
+  &--skeleton {
+    width: 42rem;
+    height: 10.6rem;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    background-color: #dbe1e6;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 10px;
+    // cursor: pointer;
+    text-decoration: none;
+    border-radius: 2px;
+    // color: inherit;
+    border: 0.5px solid transparent;
+  }
+  &--skeleton::before {
+    content: " ";
+    background-color: black;
+    position: absolute;
+
+    left: -42rem;
+    top: 0;
+    height: 10.6rem;
+    width: 42rem;
+    background: radial-gradient(
+      circle at top left,
+      #dde3e70c 23%,
+      rgba(255, 255, 255, 0.517) 25%,
+      #dde3e70c 40%
+    );
+    animation: load 0.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  &-topSkeleton {
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 8px;
+    margin-top: 4px;
+    width: 27rem;
+  }
+
+  &-imageSkeleton {
+    width: 9rem;
+    height: 8.6rem;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.6);
+    // object-fit:cover;
+    // object-position: 50% 50%;
+  }
+
+  &-descriptionSkeleton {
+    display: flex;
+    flex-direction: column;
+    width: 28.8rem;
+    height: 9rem;
+  }
+
+  &-captionSkeleton {
+    width: 28.8rem;
+    height: 4.8rem;
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+
+  &-titleSkeleton {
+    height: 2.2rem;
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+
+  @keyframes load {
+    from {
+      left: 0rem;
+    }
+    to {
+      left: 100%;
+    }
+  }
+}
+
+// img {
+//   animation: show 1s;
+// }
+// @keyframes show {
+//   from {
+//     opacity: 0;
+//   }
+//   to {
+//     opacity: 1;
+//   }
+// }

@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import {Recipe} from './recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject,AsyncSubject } from 'rxjs';
 import { VidUrl } from '../shared/vidUrl.model';
 import { Instruction } from '../shared/Instruction.model';
 import {DataService} from '../shared/data.service';
@@ -11,21 +11,28 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 
 
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class RecipeService implements OnInit{
   editMode = new Subject<boolean>();
   recipesHasChanged = new Subject<Recipe[]>();
   expand = new Subject<Instruction>();
   recipesCollection: AngularFirestoreCollection<Recipe>;
   recipeDoc: AngularFirestoreDocument<Recipe>;
+  firstRecipes: Recipe[];
   recipes : Observable<Recipe[]>;
   recipe: Observable<Recipe>;
-  newState = new Subject<string>();
-  collapseDetail = new Subject<boolean>();
+  rcp = new BehaviorSubject<Recipe[]>(null);
+  firstIsLoaded= new BehaviorSubject<boolean>(false);
+  loadingRecipes= new BehaviorSubject<boolean>(true);
+  isShrunk = new BehaviorSubject<boolean>(false);
+  collapseDetail  = new Subject<boolean>();
   expandTrigger = new Subject<string>();
   fetchMoreCount = 1;
+  hasIntConnected= new BehaviorSubject<any>({netConn: true, intConn:true});
  // searchedRecipe: Subject<Recipe>;
   recipeClicked =  new Subject<Recipe>();
   //likeClicked = new Subject<boolean>();
@@ -56,6 +63,7 @@ export class RecipeService implements OnInit{
         return this.recipes
     }
     
+    
   fetchRecipes() {
     this.recipes = this.firestore.collection( 'Recipes', ref => ref.orderBy("name",'asc').limit(10)).snapshotChanges().pipe(
      map(actions => actions.map(a => {
@@ -63,7 +71,10 @@ export class RecipeService implements OnInit{
        const id = a.payload.doc.id;
        return { id, ...data };
      })
-     )
+     ),tap(recipes=>{
+   //    console.log(recipes);
+       this.firstRecipes = recipes
+     })
      
 
      
@@ -79,6 +90,11 @@ export class RecipeService implements OnInit{
      return this.recipes
 
  }
+ 
+//  setRecipes(){
+//   console.log(this.firstRecipes);
+//   return this.firstRecipes
+// }
   
    
 
@@ -156,7 +172,8 @@ this.recipesCollection.doc<Recipe>(id).update(recipe);
   
   addRecipe(recipe:Recipe){
    // this.recipes.push(recipe);
-   this.recipesCollection.add(recipe).then(()=>{return "added"})
+   this.recipesCollection.add(recipe).then(()=>{return "added"});
+   
   }
 
   deleteRecipe(id: string){

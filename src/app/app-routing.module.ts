@@ -10,13 +10,14 @@ import { RecipeGuard } from './recipe.guard';
 import {SettingsGuard} from './settings/settings.guard';
 import { RecipeComponent } from './recipe/recipe.component';
 import { SettingsComponent } from './settings/settings.component';
+import { RecipesResolverService } from './recipes/recipes-resolver.service';
 //import { LikedRecipesComponent } from './liked-recipes/liked-recipes.component';
 //import { LikedRecipesDetailComponent } from './liked-recipes/liked-recipes-detail/liked-recipes-detail.component';
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/recipes', pathMatch: 'full'},
-  {path: 'recipes', canDeactivate:[RecipeGuard],canActivate: [RecipeGuard],component: RecipesComponent, children:[
+  {path: 'recipes', canDeactivate:[RecipeGuard], canActivate: [RecipeGuard],component: RecipesComponent, children:[
     {path: '', pathMatch: 'full', component: RecipesDefaultDetailComponent},
     {path: 'new', component:RecipesEditComponent},
     

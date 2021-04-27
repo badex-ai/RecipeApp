@@ -15,6 +15,7 @@ export class RecipeGuard implements CanActivate, CanDeactivate<unknown> {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+      this.recipeService.isShrunk.next(false)
     //   let userStatus;
     //   this.afAuth.onAuthStateChanged(value=>{
     //     if(value){

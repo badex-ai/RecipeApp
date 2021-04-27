@@ -20,6 +20,7 @@ export class RecipeItemComponent implements OnInit {
 
   isLiked:boolean;
   likedRecipes:string[];
+ 
   
   
   
@@ -32,12 +33,15 @@ export class RecipeItemComponent implements OnInit {
     
 
   ngOnInit() {
+    
+   
     const init = this.getLocalStorage();
   init.forEach(element => {
       if( this.recipe.id == element ){
         this.isLiked= true
       }
     });
+
 
   }
 
@@ -91,6 +95,6 @@ export class RecipeItemComponent implements OnInit {
   onChangeState(){
     // this.loadDetailEvent.emit("shrink")
     //this.newState.next('shrink')
-    this.recipeService.newState.next('shrunk')
+    this.recipeService.isShrunk.next(true)
   }
 }
