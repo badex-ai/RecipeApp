@@ -4,6 +4,7 @@ import { Recipe } from '../../recipe.model';
 import { ReturnStatement } from '@angular/compiler';
 import {Router, ActivatedRoute} from '@angular/router';
 import { Subject } from 'rxjs';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-recipe-item',
@@ -15,6 +16,7 @@ export class RecipeItemComponent implements OnInit {
   @Input('rcpInput') recipe: Recipe;
   @Input() index:string;
   @Input() isLikeUrl:boolean;
+  firstIsLoaded: boolean;
   //@Output() loadDetailEvent = new EventEmitter<string>();
   //newState= new Subject();
 
@@ -28,19 +30,56 @@ export class RecipeItemComponent implements OnInit {
   
 
   constructor(private recipeService: RecipeService, private router: Router, private route: ActivatedRoute) {
-    
+  
   }
     
 
   ngOnInit() {
+
+    this.recipeService.firstIsLoaded.subscribe(val=>{
+      this.firstIsLoaded = val
+    })
     
    
     const init = this.getLocalStorage();
-  init.forEach(element => {
+    init.forEach(element => {
       if( this.recipe.id == element ){
         this.isLiked= true
       }
     });
+
+     let visited= sessionStorage.getItem("visited")
+    // if(!visited){
+    //   console.log(visited)
+    //   let elems= document.getElementsByClassName("recipes__item-image")
+      
+    //   console.log(elems)
+    //   console.log(elems.length)
+      
+    //   var index = 0, length = elems.length;
+    //  for ( ; index < length; index++) {
+    //    elems[index].classList.add('show');
+    //  }
+    //  }
+
+    if(this.firstIsLoaded && visited){
+
+      console.log(this.firstIsLoaded,"this is the check");
+
+      let elems = document.getElementsByClassName("recipes__item-image")
+      
+      console.log(elems)
+      console.log(elems.length)
+      
+      var index = 0, length = elems.length;
+     for ( ; index < length; index++) {
+       elems[index].classList.add('show');
+     }
+     }else{
+       return
+     }
+    
+    // sessionStorage.setItem()
 
 
   }
@@ -75,11 +114,7 @@ export class RecipeItemComponent implements OnInit {
   onClickLike(){
     this.getLocalStorage();
     this.isLiked= !this.isLiked;
-    // console.log(this.recipe);
     
-    // let newLiked = this.likedRecipes;
-    // newLiked.push(this.recipe.id);
-   //  console.log(this.likedRecipes);
      this.likedRecipes.push(this.recipe.id);
   //   console.log(this.likedRecipes);
     localStorage.setItem('LikedRecipes',JSON.stringify(this.likedRecipes))
@@ -97,4 +132,6 @@ export class RecipeItemComponent implements OnInit {
     //this.newState.next('shrink')
     this.recipeService.isShrunk.next(true)
   }
+
+  
 }

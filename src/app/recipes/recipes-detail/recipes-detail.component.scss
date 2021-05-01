@@ -427,3 +427,114 @@
     margin: 2rem 0;
   }
 }
+
+.detail-boxSkeleton {
+  width: 40.6rem;
+  height: 56.6rem;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0.5rem;
+
+  &__edits {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 1rem;
+    width: 36.6rem;
+    height: 1.8rem;
+  }
+  &__edit1 {
+    background-color: rgba(71, 71, 71, 0.5);
+    width: 2rem;
+    margin-left: 1rem;
+    height: 2rem;
+  }
+  &__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 38.6rem;
+    height: 54rem;
+  }
+  &__main {
+    background: linear-gradient(to bottom right, #3f1a0880, #ffa63a84);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 36.6rem;
+    height: 50rem;
+    box-shadow: 0px 1px 6px black;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: " ";
+
+      position: absolute;
+
+      left: -40.6rem;
+      top: 0;
+      width: 36.6rem;
+      height: 50rem;
+      background: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(255, 255, 255, 0.313) 10%,
+        transparent 30%
+      );
+      // background-color: black;
+      animation: load 0.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+  }
+  &__img {
+    margin-left: 1px;
+    width: 36.4rem;
+    margin-top: 1px;
+
+    height: 35rem;
+    background-color: rgba(76, 76, 76, 0.5);
+  }
+
+  &__desc {
+    width: 35.2rem;
+    height: 17rem;
+    color: white;
+    padding: 0.7rem 0.2rem;
+
+    // margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    overflow: hidden;
+  }
+  &__title {
+    font-size: 3rem;
+    margin-top: 5px;
+    height: 3rem;
+    width: 8rem;
+    border-radius: 0.3rem;
+    margin-bottom: 8px;
+    background-color: rgba(76, 76, 76, 0.5);
+  }
+
+  &__caption {
+    font-size: 1.5rem;
+    height: 4rem;
+    width: 35.2rem;
+    border-radius: 0.4rem;
+    margin-top: 4px;
+    text-align: justify;
+    background-color: rgba(76, 76, 76, 0.5);
+  }
+
+  @keyframes load {
+    from {
+      left: 0rem;
+    }
+    to {
+      left: 100%;
+    }
+  }
+}

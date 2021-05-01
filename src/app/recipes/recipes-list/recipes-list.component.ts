@@ -110,74 +110,7 @@ export class RecipesListComponent implements OnInit {
   
   constructor(private router: Router, private route: ActivatedRoute, private recipeService: RecipeService,private alertService: AlertService) {
     
-  //  this.isLeaving = false;
-
-  //  const recipeBox = document.getElementById('nada');
   
-  
-  //    const recipeContainer = document.getElementById('fill');
-   
-  
-  //      const config = {
-  //     root: recipeBox,
-  //     //threshold: 1,
-     
-      
-  //     };
-  
-  //  this.observer = new IntersectionObserver( (entries, self)=>{
-  //     entries.forEach(entry => {
-  
-  //         const currentY = entry.boundingClientRect.y
-  //         const currentRatio = entry.intersectionRatio
-  //         const isIntersecting = entry.isIntersecting
-  
-  
-  //         if (entry.isIntersecting) {
-  //           this.isLeaving= true;
-  //           if(!this.isLoadingFirstRcp){
-  //             this.isLoadingNewRcp = true;
-  //           }
-  
-           
-  
-            
-  //           if(!this.Internet && this.totalFetchedRecipes.length > 0){
-             
-                 
-  //                this.alertService.alert.next(true);
-  //               this.alertService.message.next('Internet connection unavailable')
-  //               }
-            
-  
-          
-            
-  //           var lastVisible = this.recipes[this.recipes.length - 1];
-  //           this.recipeService.loadMoreRecipes(lastVisible.name).subscribe((newRecipes:Recipe[])=>{
-             
-  //             this.isLoadingNewRcp = true;
-  //             if(newRecipes !== []){
-  //               this.totalFetchedRecipes.push(...newRecipes)
-  //             }
-  //             if(newRecipes.length == 0){
-  //               this.isLoadingNewRcp= false
-  //             }
-  //             this.recipeService.rcp.next(this.totalFetchedRecipes)
-             
-  //             this.recipes= this.totalFetchedRecipes
-              
-  //            //  newRecipes.forEach((el)=>{this.recipes.push(el)});
-               
-  //           });
-            
-  //       }
-  //     }); 
-       
-  //   }, config);
-  
-  
-  //  // Array.from(recipes).forEach((recipe: Element) => { observer.observe(recipe) });
-  //    this.observer.observe(recipeContainer);
    }
 
   ngOnInit() {
@@ -238,7 +171,8 @@ export class RecipesListComponent implements OnInit {
         likedItems = items;
        
        if(items === null || items.length === 0){
-         this.nofav= true
+         this.nofav= true;
+         this.isLoadingFirstRcp= false;
        }
 
         likedItems.forEach(el=>{
@@ -382,23 +316,29 @@ export class RecipesListComponent implements OnInit {
               this.recipeService.rcp.next(this.totalFetchedRecipes);
               this.isLoadingNewRcp= false;
               this.recipes = this.totalFetchedRecipes ;
-              if(this.totalFetchedRecipes.length > 0){
+              if(this.totalFetchedRecipes.length === 10){
+                console.log(this.totalFetchedRecipes.length === 10)
                 this.recipeService.firstIsLoaded.next(true);
+                sessionStorage.setItem('visited', "true")
                
                
               }
               
               this.recipeService.loadingRecipes.next(false)
-
+            //  sessionStorage.clear()
 
               
             
              
           
           })
+          
+          // console.log(sessionStorage.getItem('visited'));
+          // sessionStorage.setItem('visited', "true")
         }else{
-         
+          sessionStorage.clear()
           this.recipes= [...rcp]
+          // sessionStorage.setItem('visited',"true")
         }
       })
 

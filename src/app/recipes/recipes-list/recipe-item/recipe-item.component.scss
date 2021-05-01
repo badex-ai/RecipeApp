@@ -138,3 +138,16 @@
     left: 100%;
   }
 }
+
+.show {
+  animation: show 1.5s;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

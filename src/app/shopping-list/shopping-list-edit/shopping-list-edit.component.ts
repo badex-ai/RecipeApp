@@ -65,9 +65,9 @@ initForm(){
   }
 
   onAddIngredientToList(){
-   // console.log(this.editMode);
+   // //console.log(this.editMode);
   // this.shopListForm.value.name=  this.shopListForm.value.name.toLowerCase();
-   console.log(this.shopListForm.value);
+   //console.log(this.shopListForm.value);
     if(this.editMode){
       this.shoppingListService.updateIngredient(this.ingredientIndex,this.shopListForm.value)
     }else{
@@ -79,7 +79,7 @@ initForm(){
       'symbol': "kg"
     })
     //this.shopListForm.patchValue()
-    console.log(this.shopListForm.value)
+    //console.log(this.shopListForm.value)
   } 
 
   onCancelEdit(){

@@ -29,14 +29,14 @@ export class ShoppingListService {
    }
   
   getIngredients(){
-    //console.log(this.ingredients);
+    ////console.log(this.ingredients);
     return this.ingredients.slice();
     
   }
 
   addIngredient(...ingredient: Ingredient[]){
     ingredient.forEach((ingredient=>{
-      console.log(ingredient);
+      //console.log(ingredient);
       ingredient.name= ingredient.name.toLowerCase();
     }))
     
@@ -44,22 +44,22 @@ export class ShoppingListService {
     if(this.ingredients.length > 0){
       let found: boolean;
       for(let ingrid of ingredient){
-      //  console.log("looping 1");
+      //  //console.log("looping 1");
         for( let listIngredient of this.ingredients){
-        //  console.log('looping 2');
-        //  console.log(ingrid.name);
-        //  console.log(listIngredient.name);
+        //  //console.log('looping 2');
+        //  //console.log(ingrid.name);
+        //  //console.log(listIngredient.name);
           if(listIngredient.name == ingrid.name && listIngredient.symbol == ingrid.symbol){
-            console.log(true);
+            //console.log(true);
             let sample = {...ingrid};
-            console.log(sample);
+            //console.log(sample);
             let gege = {...listIngredient};
-          // console.log(gege);
+          // //console.log(gege);
             let result= parseInt(gege.quantity) + parseInt(sample.quantity); 
-          //  console.log(result);
+          //  //console.log(result);
             let index = this.ingredients.indexOf(listIngredient);
-          //  console.log(index);
-          //  console.log(this.ingredients);
+          //  //console.log(index);
+          //  //console.log(this.ingredients);
             this.ingredients.splice(index,1);
              listIngredient.quantity =  `${result}`;
              this.ingredients.unshift(listIngredient)
@@ -68,7 +68,7 @@ export class ShoppingListService {
           }
           
           
-         // console.log(listIngredient)
+         // //console.log(listIngredient)
         }
         
       }
@@ -83,25 +83,25 @@ export class ShoppingListService {
     else{ 
       this.ingredients.unshift(...ingredient);
     }
-    console.log(ingredient)
+    //console.log(ingredient)
    // this.ingredients.unshift(...ingredient);
-    console.log(this.ingredients);
+    //console.log(this.ingredients);
     this.ingredientsHasChanged.next(this.ingredients.slice())
   }
 
   getInventory(userId: string){
   //  this.recipe = this.recipesCollection.doc<Recipe>(id).valueChanges()
   //this.firestore.collection("Inventory").ref()
-    console.log(userId);
+    //console.log(userId);
   this.inventory = this.firestore.collection("Inventory", ref => ref.where("user", "==", `${userId}`)).valueChanges()
-  console.log(this.inventory)
+  //console.log(this.inventory)
    return this.inventory
   }
   
   addIngredientsToInventory(userId: string){
     let today = new Date(Date.now())
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    console.log(this.ingredients)
+    //console.log(this.ingredients)
 
     if(this.ingredients.length > 0){
      let invent = this.inventoryCollection.add({
@@ -119,7 +119,7 @@ export class ShoppingListService {
           
         )
         .catch(this.errorHandler)
-      //  console.log(invent);
+      //  //console.log(invent);
         
       // .update(
       //   { date: `${date}`,
@@ -160,7 +160,7 @@ export class ShoppingListService {
   }
 
   getIngredientToEdit(index:number){
-   // console.log(this.ingredients);
+   // //console.log(this.ingredients);
     return this.ingredients[index] 
     }
 

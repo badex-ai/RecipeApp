@@ -48,33 +48,33 @@ export class RecipeComponent implements OnInit {
       
 
     this.paramsSub = this.route.params.subscribe((params:Params) => {
-      console.log(params['name']);
+      ////console.log(params['name']);
       const init = this.getLocalStorage();
-        console.log(init);
+        //console.log(init);
       let name = params['name'].replace('-',' ');
-      console.log(name);
+      //console.log(name);
       this.dataService.searchRecipe(name).subscribe((result:Recipe[])=>{
-        console.log(result[0].id);
+        //console.log(result[0].id);
         this.recipe= result[0];
-        console.log(this.recipe);
+        //console.log(this.recipe);
         init.forEach(element => {
-          //   console.log(this.recipe.id)
+          //   //console.log(this.recipe.id)
              if( this.recipe.id == element ){
                this.isLiked= true
              }
            })
         this.safeUrls=[];
           
-        //  console.log(this.recipe);
+        //  //console.log(this.recipe);
           let videos = this.recipe.vidUrls;
-        //  console.log(videos);
+        //  //console.log(videos);
           this.safeImg = this.byPassUrl(this.recipe.imgUrl)
   
           for(let i = 0; i < videos.length; i++){
   
             //let safeUrl: SafeResourceUrl;
            this.safeUrl = this.byPassUrl(`${videos[i].vidUrl}`)
-          // console.log(this.safeUrl);
+          // //console.log(this.safeUrl);
             this.safeUrls.push(this.safeUrl);
           
           }
@@ -95,10 +95,10 @@ export class RecipeComponent implements OnInit {
 
   loadvid(){
     setTimeout(function(){ this.isLoading = false;
-   // console.log('shlooomoohhhh') 
+   // //console.log('shlooomoohhhh') 
   }
     , 2000);
-   // console.log('live life')
+   // //console.log('live life')
   }
  
    onExpandInst(){
@@ -109,7 +109,7 @@ export class RecipeComponent implements OnInit {
       
       
       onClickShare(){
-      //  console.log(...this.recipe.ingredients)
+      //  //console.log(...this.recipe.ingredients)
      
        this.shoppingListService.addIngredient(...this.recipe.ingredients);
        this.alertService.alert.next(true);
@@ -121,7 +121,7 @@ export class RecipeComponent implements OnInit {
       }
       getLocalStorage(){
         const existing = JSON.parse(localStorage.getItem('LikedRecipes'));
-        // console.log(existing);
+        // //console.log(existing);
     
          existing ? this.likedRecipes = existing : this.likedRecipes = [];
          return this.likedRecipes
@@ -149,19 +149,19 @@ export class RecipeComponent implements OnInit {
         onClickLike(){
           this.getLocalStorage();
           this.isLiked= !this.isLiked;
-          // console.log(this.recipe);
+          // //console.log(this.recipe);
           
           // let newLiked = this.likedRecipes;
           // newLiked.push(this.recipe.id);
-         //  console.log(this.likedRecipes);
+         //  //console.log(this.likedRecipes);
            this.likedRecipes.push(this.recipe.id);
-        //   console.log(this.likedRecipes);
+        //   //console.log(this.likedRecipes);
           localStorage.setItem('LikedRecipes',JSON.stringify(this.likedRecipes))
       
            this.likedRecipes = JSON.parse(localStorage.getItem('LikedRecipes'));
            this.recipeService.localData.next(this.likedRecipes)
            
-        //   console.log(this.likedRecipes)
+        //   //console.log(this.likedRecipes)
            
           // this.LikedItems.push(rtvLiked)
         }

@@ -1,102 +1,116 @@
-<header  class="header">
+<header class="header">
+  <div class="header__logo">
+    <a class="nav__link" routerLink="/recipes"> Logo </a>
+  </div>
 
-    <div class="header__logo">
-       <a class="nav__link" routerLink="/recipes">
-        Logo
-       </a>
-        
-    </div>
-    
-    <ul class="nav">
-        <li class="nav__item" routerLinkActive="nav__item-active"><a  class="nav__link" routerLink="/recipes">Recipes</a></li>
-        <li *ngIf="isAuthenticated" class="nav__item" routerLinkActive="nav__item-active"><a class="nav__link" routerLink="/shopping-list">Shopping-List</a></li>
-        
-    </ul>
-    
-        <div class="search__cont">
-        <form [formGroup]="searchForm" (ngSubmit)="onSubmitSearch()" class="search">
-        
-            <input 
-            formControlName="searched"
-            #input
-            
-            (keydown) ="searchInput(input)"
-            type="text" class="search__input" placeholder="Search Recipes">
-            <button type="submit" class="search__button">
-                <svg class="svg-search" enable-background="new 0 0 515.558 515.558" height="512" viewBox="0 0 515.558 515.558" width="512" xmlns="http://www.w3.org/2000/svg">
-                    <path d="m378.344 332.78c25.37-34.645 40.545-77.2 40.545-123.333 0-115.484-93.961-209.445-209.445-209.445s-209.444 93.961-209.444 209.445 93.961 209.445 209.445 209.445c46.133 0 88.692-15.177 123.337-40.547l137.212 137.212 45.564-45.564c0-.001-137.214-137.213-137.214-137.213zm-168.899 21.667c-79.958 0-145-65.042-145-145s65.042-145 145-145 145 65.042 145 145-65.043 145-145 145z"/>
-                </svg>
-               
-            </button>
-            
-            <div *ngIf="showSuggestions" class="search__suggestions">
-                <div  class="search__suggestions-tab" (click)="onSelectSuggestion(suggestion)" *ngFor ="let suggestion of suggestions ;let i = index" 
-             
-               >
-                 {{suggestion.name}}
-                </div>
-                
-            </div>
-            <div *ngIf="noResult" class="search__suggestions">
-                <div class="search__suggestions-tabh"  >
-                    Result not found 
-                </div>
-                
-            </div>
-        </form>
-    </div>
-    
-    
-    
-    
-    
-    
-        <a *ngIf="isAuthenticated" routerLinkActive="liked__active" class="liked" routerLink='liked-recipes'>
+  <ul class="nav">
+    <li class="nav__item" routerLinkActive="nav__item-active">
+      <a class="nav__link" routerLink="/recipes">Recipes</a>
+    </li>
+    <li
+      *ngIf="isAuthenticated"
+      class="nav__item"
+      routerLinkActive="nav__item-active"
+    >
+      <a class="nav__link" routerLink="/shopping-list">Shopping-List</a>
+    </li>
+  </ul>
 
-            <svg version="1.1" class="liked__svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-            viewBox="0 0 485 485" style="enable-background:new 0 0 485 485;" xml:space="preserve">
-            <path d="M343.611,22.543c-22.614,0-44.227,5.184-64.238,15.409c-13.622,6.959-26.135,16.205-36.873,27.175
+  <div class="search__cont">
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmitSearch()" class="search">
+      <input
+        formControlName="searched"
+        #input
+        (keydown)="searchInput(input)"
+        type="text"
+        class="search__input"
+        placeholder="Search Recipes"
+      />
+      <button type="submit" class="search__button">
+        <svg
+          class="svg-search"
+          enable-background="new 0 0 515.558 515.558"
+          height="512"
+          viewBox="0 0 515.558 515.558"
+          width="512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m378.344 332.78c25.37-34.645 40.545-77.2 40.545-123.333 0-115.484-93.961-209.445-209.445-209.445s-209.444 93.961-209.444 209.445 93.961 209.445 209.445 209.445c46.133 0 88.692-15.177 123.337-40.547l137.212 137.212 45.564-45.564c0-.001-137.214-137.213-137.214-137.213zm-168.899 21.667c-79.958 0-145-65.042-145-145s65.042-145 145-145 145 65.042 145 145-65.043 145-145 145z"
+          />
+        </svg>
+      </button>
+
+      <div *ngIf="showSuggestions" class="search__suggestions">
+        <div
+          class="search__suggestions-tab"
+          (click)="onSelectSuggestion(suggestion)"
+          *ngFor="let suggestion of suggestions; let i = index"
+        >
+          {{ suggestion.name }}
+        </div>
+      </div>
+      <div *ngIf="noResult" class="search__suggestions">
+        <div class="search__suggestions-tabh">Result not found</div>
+      </div>
+    </form>
+  </div>
+
+  <a
+    *ngIf="isAuthenticated"
+    routerLinkActive="liked__active"
+    class="liked"
+    routerLink="liked-recipes"
+  >
+    <svg
+      version="1.1"
+      class="liked__svg"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      x="0px"
+      y="0px"
+      viewBox="0 0 485 485"
+      style="enable-background: new 0 0 485 485"
+      xml:space="preserve"
+    >
+      <path
+        d="M343.611,22.543c-22.614,0-44.227,5.184-64.238,15.409c-13.622,6.959-26.135,16.205-36.873,27.175
                 c-10.738-10.97-23.251-20.216-36.873-27.175c-20.012-10.225-41.625-15.409-64.239-15.409C63.427,22.543,0,85.97,0,163.932
                 c0,55.219,29.163,113.866,86.678,174.314c48.022,50.471,106.816,92.543,147.681,118.95l8.141,5.261l8.141-5.261
-                c40.865-26.406,99.659-68.479,147.681-118.95C455.837,277.798,485,219.151,485,163.932C485,85.97,421.573,22.543,343.611,22.543z"/>
-            </svg>
-        </a>
-        
+                c40.865-26.406,99.659-68.479,147.681-118.95C455.837,277.798,485,219.151,485,163.932C485,85.97,421.573,22.543,343.611,22.543z"
+      />
+    </svg>
+  </a>
 
-        
-        
-        
-    
+  <div [ngClass]="settingsClicked ? 'auth auth-clicked' : 'auth'">
+    <div *ngIf="!isAuthenticated">
+      <a
+        routerLinkActive="auth__login-active"
+        class="auth__login"
+        routerLink="/login"
+        >SignIn</a
+      >
+    </div>
 
+    <button class="auth__profile" *ngIf="isAuthenticated">
+      <div class="profile__imgcont">
+        <img class="profile__img" src="{{ user.photoURL }}" alt="" />
+      </div>
 
-        <div [ngClass]=" settingsClicked ? 'auth auth-clicked': 'auth'">
+      <div class="profile__username">{{ user.displayName }}</div>
+    </button>
+    <div class="profile__options">
+      <div (click)="onClickSettings()" class="profile__option">
+        <a class="profile__link" routerLink="/settings">SETTINGS</a>
+      </div>
+      <div (click)="onClickLogout()" class="profile__option">
+        <a class="profile__link" routerLink="/login">LOGOUT</a>
+      </div>
+    </div>
+  </div>
 
-            <div *ngIf="!isAuthenticated" ><a routerLinkActive="auth__login-active" class="auth__login" routerLink='/login'>SignIn</a></div>
-
-            
-                
-           
-            <button class="auth__profile"  *ngIf="isAuthenticated" >
-                <div class="profile__imgcont">
-                    <img class="profile__img" src={{user.photoURL}} alt="">
-                </div>
-                
-                <div class="profile__username">{{user.displayName}}</div>
-                
-            </button>
-            <div  class="profile__options">
-                <div  (click)=onClickSettings() class="profile__option"><a class="profile__link" routerLink="/settings">SETTINGS</a></div>
-                <div  (click)=onClickLogout() class="profile__option"><a class="profile__link" routerLink="/login">LOGOUT</a></div>
-            </div>
-            
-            
-        </div>
-        
-        
-
-        <!-- *ngIf="clickedProfile" -->
-        <!-- [ngClass]="clickedProfile ? 'auth__profile auth__profile-clicked' : 'auth__profile'" -->
-    <!-- {{user.displayName}} -->
-    <!-- (click)="onClickProfile()"-->
-
+  <!-- *ngIf="clickedProfile" -->
+  <!-- [ngClass]="clickedProfile ? 'auth__profile auth__profile-clicked' : 'auth__profile'" -->
+  <!-- {{user.displayName}} -->
+  <!-- (click)="onClickProfile()"-->
 </header>

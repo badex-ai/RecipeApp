@@ -321,6 +321,9 @@ public recipesCollection :Observable<any[]>;
 
   onClickSettings(){
     this.settingsClicked = true;
+
+    console.log("click click click")
+    this.router.navigate(['/settings'])
    // this.settingsService.settingsClicked.next(this.settingsClicked)
   }
   onSelectSuggestion(el){

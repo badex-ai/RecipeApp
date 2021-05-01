@@ -55,13 +55,13 @@ recipe: Recipe;
     
     // let newLiked = this.likedRecipes;
     // newLiked.push(this.recipe.id);
-     console.log(this.likedRecipes);
+    //  console.log(this.likedRecipes);
      this.likedRecipes.push(this.recipe.id);
-     console.log(this.likedRecipes);
+    //  console.log(this.likedRecipes);
     localStorage.setItem('LikedRecipes',JSON.stringify(this.likedRecipes))
 
      this.likedRecipes = JSON.parse(localStorage.getItem('LikedRecipes'));
-     console.log(this.likedRecipes)
+    //  console.log(this.likedRecipes)
      
     // this.LikedItems.push(rtvLiked)
   }

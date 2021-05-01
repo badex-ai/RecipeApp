@@ -24,11 +24,11 @@ export class ShoppingListComponent implements OnInit {
       this.user= value
     })
     this.ingredients = this.shoppingListService.getIngredients();
-    console.log(this.ingredients)
+    //console.log(this.ingredients)
 
           this.shoppingListService.getInventory(this.user.userId).subscribe(
           value=>{
-            console.log(value);
+            //console.log(value);
             this.inventoryStat = value }
         )
 
@@ -39,17 +39,17 @@ export class ShoppingListComponent implements OnInit {
 
     this.shoppingListService.ingredientsHasChanged.subscribe((ingredients:Ingredient[])=>{
       this.ingredients  =ingredients;
-      console.log(ingredients)
+      //console.log(ingredients)
     })
 
     this.shoppingListService.historyClicked.subscribe(value=>{
       this.historyClick = value;
-      console.log(value)
+      //console.log(value)
     }
       
     )
     
-   // console.log(this.ingredients)
+   // //console.log(this.ingredients)
   }
 
  
@@ -68,7 +68,7 @@ export class ShoppingListComponent implements OnInit {
   }
   getInventoryIngredients(){
    this.inventoryStat = this.shoppingListService.getInventory(this.user.userId);
-   console.log(this.inventoryStat)
+   //console.log(this.inventoryStat)
    
   }
   saveIngredientList(){

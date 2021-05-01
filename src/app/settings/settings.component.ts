@@ -95,7 +95,7 @@ export class SettingsComponent implements OnInit {
     // this.afAuth.onAuthStateChanged(function(user){
     //   if(user){
     //     this.userState= user;
-    //     console.log(this.userState)
+    //     //console.log(this.userState)
     //   }
     //   else{}
     // })
@@ -106,7 +106,7 @@ export class SettingsComponent implements OnInit {
     this.authService.user.subscribe((user)=>{
      // let userCase;
        this.user = {...user};
-       console.log(this.user)
+       //console.log(this.user)
         this.image= user.photoURL;
 
 
@@ -115,7 +115,7 @@ export class SettingsComponent implements OnInit {
         
        
      }
-      // console.log(this.user)
+      // //console.log(this.user)
 
 
 
@@ -127,7 +127,7 @@ export class SettingsComponent implements OnInit {
 
      this.authService.getUserDbInfo(this.user.userId).subscribe(
       result=>{
-      //  console.log(result);
+      //  //console.log(result);
         this.userInfo= result
       }
     )
@@ -138,7 +138,7 @@ export class SettingsComponent implements OnInit {
 
     this.settingsService.settingsClicked.subscribe( value=>{
       this.settingsClicked = value;
-     // console.log(this.settingsClicked)
+     // //console.log(this.settingsClicked)
     });
 
     // this.authService.user.subscribe(user=>{
@@ -147,7 +147,7 @@ export class SettingsComponent implements OnInit {
     this.route.params.subscribe((params:Params)=>{
       this.settingsClicked = true;
       this.settingsService.settingsClicked.next(this.settingsClicked);
-     // console.log(this.userInfo);
+     // //console.log(this.userInfo);
     })
 
    
@@ -201,10 +201,10 @@ export class SettingsComponent implements OnInit {
   addImage(event){
 
     this.file = (event.target as HTMLInputElement).files[0];
-    console.log(this.file);
+    //console.log(this.file);
    let ext= this.file.name.split('.')[1];
   let name = this.file.name.split('.')[0];
- // console.log(this.file.name.split('.'))
+ // //console.log(this.file.name.split('.'))
   if(ext == 'jpg' || ext == 'jpeg'){
 
     this.selectedFile = this.file;
@@ -227,7 +227,7 @@ export class SettingsComponent implements OnInit {
   }else{
     this.selectedFile = null;
   }
-//  console.log(this.selectedFile);
+//  //console.log(this.selectedFile);
 
  }
 
@@ -243,14 +243,14 @@ export class SettingsComponent implements OnInit {
    // const bool= true;
     
   
-// console.log(this.selectedFile);
+// //console.log(this.selectedFile);
   formData.append('file', this.selectedFile);
   formData.append('upload_preset', environment.CLOUDINARY_UPLOAD_PRESET);
   formData.append('folder', 'recipeApp/users');
  // formData.append('colors', JSON.stringify(true) );
 //  formData.append('colors', true);
 
- // console.log(formData.forEach(value=>{console.log(value)}));
+ // //console.log(formData.forEach(value=>{//console.log(value)}));
 
 
  return new Promise((resolve, reject) => {
@@ -262,10 +262,10 @@ export class SettingsComponent implements OnInit {
     .subscribe(res => {
       if(res) {
         resolve(res);
-        console.log(res);
+        //console.log(res);
         this.response = res;
-        //  console.log(res);
-        //  console.log(typeof(this.response.url)) 
+        //  //console.log(res);
+        //  //console.log(typeof(this.response.url)) 
           this.imageUrl = this.response.url;
           const user = {
            email:this.user.email,
@@ -274,14 +274,14 @@ export class SettingsComponent implements OnInit {
            displayName: this.userForm.value.username,
            photoURL: this.imageUrl
          }
-          console.log(user);
+          //console.log(user);
           this.authService.user.next( user )
-          console.log(this.imageUrl)
+          //console.log(this.imageUrl)
      
           sessionStorage.setItem("tempUser", JSON.stringify(user))
         //return this.response.url
       }
-     // console.log(this.uploadProgress);
+     // //console.log(this.uploadProgress);
    
 
       
@@ -325,7 +325,7 @@ this.loadingUpdate= true
     
       
     (await user1).updateProfile(editedInfo).then(()=>{
-        //  console.log(result);
+        //  //console.log(result);
         //  let updatedInfo = new User{
         //   userInfo2.email,
         //   userData.userId,
@@ -337,17 +337,17 @@ this.loadingUpdate= true
         this.alertService.alert.next(true);
        // this.authService.user.next()
         this.alertService.message.next("User info update successfull")
-          console.log('username changed ')
-         // console.log(result)
-          console.log('update successful')
+          //console.log('username changed ')
+         // //console.log(result)
+          //console.log('update successful')
         }
         ).catch((error)=>{
           let returnedmessage =this.authService.handleError(error);
           this.alertService.alert.next(true);
           this.alertService.message.next(returnedmessage);
-        //  console.log(error)
+        //  //console.log(error)
           this.resetValues();
-          console.log("An error happened.") 
+          //console.log("An error happened.") 
         });
       
       // sessionStorage.setItem("tempUser", JSON.stringify(user))
@@ -358,7 +358,7 @@ this.loadingUpdate= true
       
       (await user1).updatePassword(newPassword).then(function() {
         
-        console.log('password Changed!!');
+        //console.log('password Changed!!');
         this.authService.signIn(this.user.email,newPassword);
         this.alertService.alert.next(true);
         this.alertService.message.next("Password updated successfully")
@@ -367,7 +367,7 @@ this.loadingUpdate= true
          this.alertService.alert.next(true);
          let response= this.authService.handleError(error);
          this.alertService.message.next(response);
-         console.log(error)
+         //console.log(error)
        });
     }
   
@@ -376,7 +376,7 @@ this.loadingUpdate= true
   // // this.postFile(this.file).subscribe(data => {
   // //   // do something, if upload success
   // //   }, error => {
-  // //     console.log(error);
+  // //     //console.log(error);
   // //   });
 
     // if(this.file){
@@ -384,15 +384,15 @@ this.loadingUpdate= true
     //     displayName: this.userForm.value.username,
     //     photoURL: this.imageUrl
     //   }).then(function() {
-    //   //  console.log(this.imageUrl)
-    //     console.log('update successful')
+    //   //  //console.log(this.imageUrl)
+    //     //console.log('update successful')
     //   }).catch(function(error) {
-    //     console.log(error)
-    //     console.log("An error happened.") 
+    //     //console.log(error)
+    //     //console.log("An error happened.") 
     //   });
     // }
   
-   // console.log(this.image)
+   // //console.log(this.image)
 
    
 
@@ -441,7 +441,7 @@ this.loadingUpdate= true
   onClickPasswordEdit(){
     this.editmode= !this.editmode;
     this.deactivateClicked= false;
-    console.log(this.deactivateClicked);
+    //console.log(this.deactivateClicked);
     this.passwordEditClicked= !this.passwordEditClicked;
     this.passwordAuthenticated= false;
     this.oldPasswordForm.reset()
@@ -450,7 +450,7 @@ this.loadingUpdate= true
 
 
    // this.afAuth.sendPasswordResetEmail;
-   // console.log(this.user);
+   // //console.log(this.user);
   // const newPassword = getASecureRandomPassword();
 
 
@@ -460,18 +460,18 @@ this.loadingUpdate= true
     this.loadingPassCheck = true;
     let email = this.user.email;
     let password = this.oldPasswordForm.value.oldPassword
-   // console.log(this.oldPasswordForm.value.oldPassword);
+   // //console.log(this.oldPasswordForm.value.oldPassword);
 
 
      const credential = firebase.auth.EmailAuthProvider.credential(email, password);
-   //  console.log(credential);
+   //  //console.log(credential);
     // firebase.default.auth
      let user1 = this.afAuth.currentUser;
-   //   console.log(user1)
+   //   //console.log(user1)
 
 
         const result = (await user1).reauthenticateWithCredential(credential).catch(error=>{
-          console.log(error);
+          //console.log(error);
           this.loadingPassCheck= false;
         
           this.alertService.alert.next(true);
@@ -483,7 +483,7 @@ this.loadingUpdate= true
           }
           
           //this.alertService.message
-          console.log(error.message)
+          //console.log(error.message)
         });
 
         result.then(async user=>{
@@ -504,11 +504,11 @@ this.loadingUpdate= true
                 
                 
                
-             console.log(" Account deleted ")
+             //console.log(" Account deleted ")
              
               })
             }else{
-              console.log(this.user.userId)
+              //console.log(this.user.userId)
               return 
             }
               
@@ -525,12 +525,12 @@ this.loadingUpdate= true
             this.passwordAuthenticated = false;
           }
           
-          console.log("ok okay")
+          //console.log("ok okay")
         }).catch(function(error) {
           this.loadingPassCheck= false;
 
-          console.log(error.message)
-          console.log("Error occurred")
+          //console.log(error.message)
+          //console.log("Error occurred")
          })
 
   }
@@ -562,13 +562,13 @@ this.loadingUpdate= true
 
     this.aboutEditClicked = !this.aboutEditClicked;
    // var user1 = this.afAuth.currentUser;
-  //  console.log(user1)
+  //  //console.log(user1)
   }
 
   // this.reauthenticate(currentPassword).then(() => {
   //   var user = firebase.auth().currentUser;
   //   user.updatePassword(newPassword).then(() => {
-  //     console.log("Password updated!");
+  //     //console.log("Password updated!");
   //   })
 
 
@@ -594,7 +594,7 @@ this.loadingUpdate= true
 //           //  { headers: yourHeadersConfig }
 //             ).pipe(
 //               catchError((e) =>
-//             console.log( `${e}`+'occured')),
+//             //console.log( `${e}`+'occured')),
 //               map(() => { return true; })
 //             )
 

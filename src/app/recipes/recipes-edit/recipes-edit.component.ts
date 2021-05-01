@@ -37,12 +37,12 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
   //   let vidUrls = new FormArray([]);
   //   let ingredients = new FormArray([]);
 
-  //   console.log(this.recipe)
+  //   //console.log(this.recipe)
     
 
      
-  //     // console.log(this.recipe);
-  //     // console.log(this.editMode);
+  //     // //console.log(this.recipe);
+  //     // //console.log(this.editMode);
 
   //   if(this.editMode){ 
   //   let  vidUrls = new FormArray([]);
@@ -50,8 +50,8 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
   //     if(this.recipe.ingredients){
         
   //       for(let ingredient of this.recipe.ingredients){
-  //       //  console.log(ingredient);
-  //        // console.log(ingredient.symbol);
+  //       //  //console.log(ingredient);
+  //        // //console.log(ingredient.symbol);
   //         ingredients.push(
   //           new FormGroup({
   //             'name': new FormControl(ingredient.name,[Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z ]+[a-zA-Z]+$/)]),
@@ -62,12 +62,12 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
           
   //       }
   //     }
-  //     console.log(ingredients)
+  //     //console.log(ingredients)
 
   //     if(this.recipe.vidUrls){
         
   //       for(let recipeVidUrl of this.recipe.vidUrls){
-  //       //  console.log(recipeVidUrl);
+  //       //  //console.log(recipeVidUrl);
   //         vidUrls.push(
   //           new FormGroup({
   //             'vidUrl': new FormControl(`${recipeVidUrl}`,Validators.required),
@@ -77,7 +77,7 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
           
           
   //       }
-  //       console.log(vidUrls);
+  //       //console.log(vidUrls);
   //       this.disableAdd = this.recipe.vidUrls.length >= 3 ? true: false
   //     }
 
@@ -92,13 +92,13 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
   //     })
 
   //   }else{
-  //    // console.log('zagadat');
+  //    // //console.log('zagadat');
   //   //   vidUrls.push(
   //   //     new FormGroup({
   //   //       'vidUrl': new FormControl( null, Validators.required)
   //   //     })
   //   //   );
-  //   //  // console.log(vidUrls)
+  //   //  // //console.log(vidUrls)
         
   //   //       ingredients.push(
   //   //         new FormGroup({
@@ -135,13 +135,13 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
    
     this.index = this.route.snapshot.params['id'];
     this.editMode = this.route.snapshot.params['id'] != null;
-   // console.log(this.editMode);
-   // console.log(this.index)
+   // //console.log(this.editMode);
+   // //console.log(this.index)
    
 
     this.route.params.subscribe((params: Params)=>{
       this.index = params['id'];
-     // console.log(this.index)
+     // //console.log(this.index)
       
      
     });
@@ -158,7 +158,7 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
     if(this.editMode){
       this.recipeService.getRecipe(this.index).subscribe(recipe => {
         this.recipe = recipe;
-     //   console.log(this.recipe);
+     //   //console.log(this.recipe);
         this.image= this.recipe.imgUrl
          
       let  vidUrls = new FormArray([]);
@@ -166,8 +166,8 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
         if(this.recipe.ingredients){
           
           for(let ingredient of this.recipe.ingredients){
-          //  console.log(ingredient);
-           // console.log(ingredient.symbol);
+          //  //console.log(ingredient);
+           // //console.log(ingredient.symbol);
             ingredients.push(
               new FormGroup({
                 'name': new FormControl(ingredient.name,[Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z ]+[a-zA-Z]+$/)]),
@@ -178,12 +178,12 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
             
           }
         }
-      //  console.log(ingredients)
+      //  //console.log(ingredients)
   
         if(this.recipe.vidUrls){
           
           for(let recipeVidUrl of this.recipe.vidUrls){
-          //  console.log(recipeVidUrl);
+          //  //console.log(recipeVidUrl);
             vidUrls.push(
               new FormGroup({
                 'vidUrl': new FormControl(`${recipeVidUrl.vidUrl}`,Validators.required),
@@ -193,7 +193,7 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
             
             
           }
-       //   console.log(vidUrls);
+       //   //console.log(vidUrls);
           this.disableAdd = this.recipe.vidUrls.length >= 3 ? true: false
         }
   
@@ -217,7 +217,7 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
     //       'vidUrl': new FormControl( null, Validators.required)
     //     })
     //   );
-    //  // console.log(vidUrls)
+    //  // //console.log(vidUrls)
         
     //       ingredients.push(
     //         new FormGroup({
@@ -248,7 +248,7 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
           'vidUrl': new FormControl( null, Validators.required)
         })
       );
-     // console.log(vidUrls)
+     // //console.log(vidUrls)
         
           ingredients.push(
             new FormGroup({
@@ -288,14 +288,14 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
 
   async onSubmitRecipe(){
     this.addRecipeLoading= true;
-    console.log(this.recipeForm.value)
+    //console.log(this.recipeForm.value)
     const recipe = this.recipeForm.value
     if(this.editMode){
     
       
       this.recipeService.updateRecipe(recipe, this.index);
      const ali =  this.recipeService.updateIndex(this.index,recipe);
-    console.log(ali);
+    //console.log(ali);
     this.recipeService.recipesHasChanged.next(this.recipeForm.value)
     }else{
       await this.onUploadImg().then(()=>{
@@ -310,7 +310,7 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
       ;
     }; 
     
-   // console.log(this.recipesForm.value);
+   // //console.log(this.recipesForm.value);
     this.router.navigate(['../'], {relativeTo: this.route})
   }
 
@@ -341,7 +341,7 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
     })
     )
     this.disableAdd = newForm.length >= 3 ? true: false;  
-   // console.log(newForm.length);
+   // //console.log(newForm.length);
   }
   
   onAddNewIng(){
@@ -359,10 +359,10 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
   addImage(event){
 
     this.file = (event.target as HTMLInputElement).files[0];
-    console.log(this.file);
+    //console.log(this.file);
    let ext= this.file.name.split('.')[1];
   let name = this.file.name.split('.')[0];
- // console.log(this.file.name.split('.'))
+ // //console.log(this.file.name.split('.'))
   if(ext == 'jpg' || ext == 'jpeg'){
 
     this.selectedFile = this.file;
@@ -384,7 +384,7 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
   }else{
     this.selectedFile = null;
   }
-//  console.log(this.selectedFile);
+//  //console.log(this.selectedFile);
 
  }
 
@@ -393,7 +393,7 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
     // const bool= true;
      
    
- // console.log(this.selectedFile);
+ // //console.log(this.selectedFile);
    formData.append('file', this.selectedFile);
    formData.append('upload_preset', environment.CLOUDINARY_UPLOAD_PRESET);
    formData.append('folder', 'recipeApp/users');
@@ -403,10 +403,10 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
     .subscribe(res => {
       if(res) {
         resolve(res);
-        console.log(res);
+        //console.log(res);
         this.response = res;
-        //  console.log(res);
-        //  console.log(typeof(this.response.url)) 
+        //  //console.log(res);
+        //  //console.log(typeof(this.response.url)) 
           this.recipeForm.patchValue({
             'imgUrl': this.response.url
           }) 
@@ -417,7 +417,7 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
          
         //return this.response.url
       }
-     // console.log(this.uploadProgress);
+     // //console.log(this.uploadProgress);
    
 
       
@@ -426,7 +426,7 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
      
       // alert('Uploaded Successfully.');
     },(err)=>{
-      console.log(err);
+      //console.log(err);
       this.alertService.alert.next(true);
       this.alertService.message.next("Somthing went wrong, make  sure image is uploaded");
       this.addRecipeLoading= false;

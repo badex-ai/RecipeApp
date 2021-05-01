@@ -29,6 +29,7 @@ export class RecipesDetailComponent implements OnInit, OnDestroy {
   rcpSub: Subscription;
   triggered: string = 'expanded';
   showSub: boolean= true;
+  isLoadingRcp:boolean= true;
   
 
   constructor(private router: Router, private route: ActivatedRoute, private recipeService: RecipeService, private sanitizer:DomSanitizer,private shoppingListService: ShoppingListService,
@@ -44,6 +45,7 @@ export class RecipesDetailComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
       
+     
       
       // if(this.route.url[0].path== 'liked-recipe'){
 
@@ -52,7 +54,7 @@ export class RecipesDetailComponent implements OnInit, OnDestroy {
       
 //         this.recipeService.collapseDetail.subscribe(value=>{ 
 //           this.isCollapsed = value;
-//           console.log(value);
+//           //console.log(value);
 //           this.showSub= false;
           
 //           var element = document.getElementById('targetElement');
@@ -71,29 +73,33 @@ export class RecipesDetailComponent implements OnInit, OnDestroy {
        this.paramsSub = this.route.params.subscribe((params:Params) => {
       
       this.id = params['id'];
-     // console.log(this.id)
+      //console.log(this.isLoadingRcp, "to check the detail load")
+      
+     // //console.log(this.id)
         this.recipeService.getRecipe(this.id).subscribe(
+          
         (recipe) => {
           this.recipe = recipe;
-       //   console.log(this.id);
+          this.isLoadingRcp= false;
+         //console.log(this.isLoadingRcp,'this is the inner check');
           this.safeUrls=[];
           
-        //  console.log(this.recipe);
+        //  //console.log(this.recipe);
           let videos = this.recipe.vidUrls;
-        //  console.log(videos);
+        //  //console.log(videos);
           this.safeImg = this.byPassUrl(this.recipe.imgUrl)
   
           for(let i = 0; i < videos.length; i++){
   
             //let safeUrl: SafeResourceUrl;
            this.safeUrl = this.byPassUrl(`${videos[i].vidUrl}`)
-          // console.log(this.safeUrl);
+          // //console.log(this.safeUrl);
             this.safeUrls.push(this.safeUrl);
           
           }
           this.loadvid()
-      //    console.log(this.safeUrls)
-       //   console.log(this.recipe)
+      //    //console.log(this.safeUrls)
+       //   //console.log(this.recipe)
           
           
         }
@@ -102,19 +108,19 @@ export class RecipesDetailComponent implements OnInit, OnDestroy {
        );
       
        
-     // console.log(this.recipe)
+     // //console.log(this.recipe)
     })
 
     this.recipeService.isShrunk.subscribe(value=>{
-      console.log(this.route.snapshot.parent.routeConfig.path);
+      //console.log(this.route.snapshot.parent.routeConfig.path);
 
       if(this.route.snapshot.parent.routeConfig.path === "liked-recipes"){
-        console.log(value)
-        console.log('yooooo in liked', )
+        //console.log(value)
+        //console.log('yooooo in liked', )
         this.isCollapsed= true
       }else{
-        console.log(value)
-        console.log('not in liked')
+        //console.log(value)
+        //console.log('not in liked')
         this.isCollapsed = value
       }
       
@@ -126,56 +132,56 @@ export class RecipesDetailComponent implements OnInit, OnDestroy {
       
        
       
-      //console.log(this.safeUrl);
-      //console.log(this.video);
+      ////console.log(this.safeUrl);
+      ////console.log(this.video);
       
        
-  //    // console.log(this.safeUrls)
-  //     // console.log(this.safeUrls)
-  //     //console.log(this.recipe)
+  //    // //console.log(this.safeUrls)
+  //     // //console.log(this.safeUrls)
+  //     ////console.log(this.recipe)
   //   });
 
     //  this.recipeService.fetchRecipes().subscribe((recipes: Recipe[])=>{
     //    this.recipes = recipes;
     //   //this.safeUrls=[];
     //   let recCont = this.recipes.filter((el)=>{
-    //     console.log(el.id)
-    //     console.log(this.id)
+    //     //console.log(el.id)
+    //     //console.log(this.id)
     //     return el.id === this.id
     //   });
-    // //  console.log(recCont)
+    // //  //console.log(recCont)
     //    this.recipe = recCont[0]
     //  // this.recipe = recipes[this.id];
-    //   console.log(this.recipe);
-    //  // console.log(this.recipe.vidUrls);
+    //   //console.log(this.recipe);
+    //  // //console.log(this.recipe.vidUrls);
     //   let videos = this.recipe.vidUrls;
-    //   // console.log(videos);
+    //   // //console.log(videos);
     //   for(let i = 0;i < videos.length; i++){
 
     //     //let safeUrl: SafeResourceUrl;
     //    this.safeUrl = this.byPassUrl(`${videos[i].vidUrl}`)
-    //     console.log(this.safeUrl);
+    //     //console.log(this.safeUrl);
     //      this.safeUrls.push(this.safeUrl);
-    //      console.log(this.safeUrls)
+    //      //console.log(this.safeUrls)
       
     //    }
     //   // // videos= ;
     //   // // 
-    //   //  console.log(this.safeUrls)
+    //   //  //console.log(this.safeUrls)
       
     // })
 
     
-  //  //console.log(this.recipe)
+  //  ////console.log(this.recipe)
   //  this.isLoading = false
    
  }
   loadvid(){
     setTimeout(function(){ this.isLoading = false;
-   // console.log('shlooomoohhhh') 
+   // //console.log('shlooomoohhhh') 
   }
     , 2000);
-   // console.log('live life')
+   // //console.log('live life')
   }
  
    onExpandInst(){
@@ -198,11 +204,11 @@ export class RecipesDetailComponent implements OnInit, OnDestroy {
       }
       onClickShrink(){
         this.toState= 'shrunk';
-        console.log('Button Clicked');
+        //console.log('Button Clicked');
         this.showSub = false;
       }
       onClickShare(){
-      //  console.log(...this.recipe.ingredients)
+      //  //console.log(...this.recipe.ingredients)
        this.shoppingListService.addIngredient(...this.recipe.ingredients);
        this.alertService.alert.next(true);
       this.alertService.message.next("Item Added successfully to Shopping List");

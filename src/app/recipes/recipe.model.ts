@@ -9,14 +9,19 @@ export class Recipe{
   public imgUrl: string;
   public instruction: string;
   public vidUrls: VidUrl[] ;
+  public creator?: string;
+  public createdOn?: Date;
 
-  constructor(name: string, description: string, imgUrl: string, instruction: string, ingredients:Ingredient[] ,vidUrls:VidUrl[]){
+  constructor(name: string, description: string, imgUrl: string, instruction: string, ingredients:Ingredient[] ,vidUrls:VidUrl[],creator: string, createdOn: Date){
     this.name = name;
     this.description = description;
     this.instruction = instruction;
     this.ingredients = ingredients;
     this.imgUrl = imgUrl;
-    this.vidUrls = vidUrls
+    this.vidUrls = vidUrls;
+    this.creator = creator;
+    this.createdOn = createdOn
+
   }
   
 
