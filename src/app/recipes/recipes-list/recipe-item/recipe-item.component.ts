@@ -64,12 +64,12 @@ export class RecipeItemComponent implements OnInit {
 
     if(this.firstIsLoaded && visited){
 
-      console.log(this.firstIsLoaded,"this is the check");
+      // console.log(this.firstIsLoaded,"this is the check");
 
       let elems = document.getElementsByClassName("recipes__item-image")
       
-      console.log(elems)
-      console.log(elems.length)
+      // console.log(elems)
+      // console.log(elems.length)
       
       var index = 0, length = elems.length;
      for ( ; index < length; index++) {

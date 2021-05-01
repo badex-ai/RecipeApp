@@ -34,7 +34,7 @@
           </app-recipe-item>
 
           <div
-            *ngIf="isLoadingFirstRcp || isLoadingLike"
+            *ngIf="isLoadingFirstRcp || (isLoadingLike && !nofav)"
             [ngClass]="!isLikeUrl ? 'recipes__list' : 'recipes__list-like'"
           >
             <div *ngFor="let recipe of demoRecipes">

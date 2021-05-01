@@ -299,15 +299,16 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
     this.recipeService.recipesHasChanged.next(this.recipeForm.value)
     }else{
       await this.onUploadImg().then(()=>{
-       
-        let returned = this.recipeService.addRecipe(this.recipeForm.value);
-        this.recipeService.updateIndex(this.index,recipe);
-        if(returned != null){
-          this.addRecipeLoading= false
-        }
       }
       );
-      ;
+      const respId = await this.recipeService.addRecipe(this.recipeForm.value)
+      
+         // console.log(respId)
+          // this.recipeService.updateIndex(respId,recipe);
+          if(respId != null){
+           this.addRecipeLoading= false
+         }
+       
     }; 
     
    // //console.log(this.recipesForm.value);

@@ -116,7 +116,9 @@ export class RecipesListComponent implements OnInit {
   ngOnInit() {
     
   
-  
+    this.recipeService.rcp.subscribe(val=>{
+      this.recipes= val;
+    })
    
     this.route.children.forEach((params:Params) => {
    
@@ -173,28 +175,30 @@ export class RecipesListComponent implements OnInit {
        if(items === null || items.length === 0){
          this.nofav= true;
          this.isLoadingFirstRcp= false;
-       }
-
+       }else{
         likedItems.forEach(el=>{
           
           
          
-         this.recipeService.getRecipe(el).subscribe((recipe)=>{
-       
-          this.recipeService.firstIsLoaded.next(true);
-      
+          this.recipeService.getRecipe(el).subscribe((recipe)=>{
         
-           id = el;
-           if(recipe){
-              rcp = {id,...recipe}
-              recipes.unshift(rcp)
-          }
-          
-          
+           this.recipeService.firstIsLoaded.next(true);
        
-        })
          
-       });
+            id = el;
+            if(recipe){
+               rcp = {id,...recipe}
+               recipes.unshift(rcp)
+           }
+           
+           
+        
+         })
+          
+        });
+       }
+
+        
       
       //  if(recipes.length==0){
       //   this.noInternet= true
@@ -280,7 +284,8 @@ export class RecipesListComponent implements OnInit {
               }
               this.recipeService.rcp.next(this.totalFetchedRecipes)
              
-              this.recipes= this.totalFetchedRecipes
+              
+              // this.recipes= this.totalFetchedRecipes
               
              //  newRecipes.forEach((el)=>{this.recipes.push(el)});
                
@@ -317,7 +322,7 @@ export class RecipesListComponent implements OnInit {
               this.isLoadingNewRcp= false;
               this.recipes = this.totalFetchedRecipes ;
               if(this.totalFetchedRecipes.length === 10){
-                console.log(this.totalFetchedRecipes.length === 10)
+                // console.log(this.totalFetchedRecipes.length === 10)
                 this.recipeService.firstIsLoaded.next(true);
                 sessionStorage.setItem('visited', "true")
                

@@ -104,7 +104,9 @@ export class RecipeService implements OnInit{
   updateRecipe(recipe:Recipe, id: string){
    
 
-this.recipesCollection.doc<Recipe>(id).update(recipe);
+this.recipesCollection.doc<Recipe>(id).update(recipe).then(
+  
+);
 
  
   
@@ -152,8 +154,24 @@ this.recipesCollection.doc<Recipe>(id).update(recipe);
 
   }
 
+
+  
+  addRecipe(recipe:Recipe){
+   // this.recipes.push(recipe);
+   let responseId
+    this.recipesCollection.add(recipe).then(res=>{
+      // console.log(res.id)
+      responseId = res.id
+      this.updateIndex(res.id,recipe)
+     
+    })
+   
+    return responseId
+  }
+
   updateIndex(recipeId: string, recipe: Recipe){
     const Id = recipeId;
+    // console.log(Id)
     const rcp = recipe ;
     const searchableIndex = this.createIndex(rcp.name)
     const indexedRecipe = {...rcp,searchableIndex}
@@ -165,15 +183,6 @@ this.recipesCollection.doc<Recipe>(id).update(recipe);
     
 
 
-  }
-
-  
-   
-  
-  addRecipe(recipe:Recipe){
-   // this.recipes.push(recipe);
-   this.recipesCollection.add(recipe).then(()=>{return "added"});
-   
   }
 
   deleteRecipe(id: string){
