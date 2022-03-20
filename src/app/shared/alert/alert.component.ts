@@ -13,7 +13,7 @@ export class AlertComponent implements OnInit {
   ngOnInit() {
     this.alertService.message.subscribe(message=>{
       this.message = message;
-      console.log(message)
+      // console.log(message)
     })
   }
 

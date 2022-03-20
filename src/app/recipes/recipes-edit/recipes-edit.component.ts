@@ -289,14 +289,23 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
   async onSubmitRecipe(){
     this.addRecipeLoading= true;
     //console.log(this.recipeForm.value)
-    const recipe = this.recipeForm.value
+    let recipe = this.recipeForm.value
     if(this.editMode){
-    
+      // console.log(this.recipeForm.value.imgUrl)
+      if(this.selectedFile){
+        await this.onUploadImg().then((res)=>{
+          // console.log(res)
+          // console.log(this.recipeForm.value)
+        }
+        
+         );
+
+      }
       
-      this.recipeService.updateRecipe(recipe, this.index);
-     const ali =  this.recipeService.updateIndex(this.index,recipe);
+        this.recipeService.updateRecipe(this.recipeForm.value, this.index);
+    
     //console.log(ali);
-    this.recipeService.recipesHasChanged.next(this.recipeForm.value)
+    // this.recipeService.recipesHasChanged.next(this.recipeForm.value)
     }else{
       await this.onUploadImg().then(()=>{
       }
@@ -360,7 +369,7 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
   addImage(event){
 
     this.file = (event.target as HTMLInputElement).files[0];
-    //console.log(this.file);
+    // console.log(this.file);
    let ext= this.file.name.split('.')[1];
   let name = this.file.name.split('.')[0];
  // //console.log(this.file.name.split('.'))
@@ -411,6 +420,7 @@ export class RecipesEditComponent implements OnInit,OnDestroy {
           this.recipeForm.patchValue({
             'imgUrl': this.response.url
           }) 
+         // console.log(this.recipeForm)
           
           
           

@@ -254,7 +254,7 @@ export class RecipesListComponent implements OnInit {
 
 
           if (entry.isIntersecting) {
-            isLeaving= true;
+            isLeaving = true;
             if(!this.isLoadingFirstRcp){
               this.isLoadingNewRcp = true;
             }
@@ -370,7 +370,31 @@ export class RecipesListComponent implements OnInit {
 
 
 
-
+// onScroll(){
+//   console.log("scrolling")
+//   if(!this.Internet && this.totalFetchedRecipes.length > 0){
+             
+                 
+//                    this.alertService.alert.next(true);
+//                   this.alertService.message.next('Internet connection unavailable')
+//                   }
+              
+  
+            
+              
+//               var lastVisible = this.recipes[this.recipes.length - 1];
+//               this.recipeService.loadMoreRecipes(lastVisible.name).subscribe((newRecipes:Recipe[])=>{
+               
+//                 this.isLoadingNewRcp = true;
+//                 if(newRecipes !== []){
+//                   this.totalFetchedRecipes.push(...newRecipes)
+//                 }
+//                 if(newRecipes.length == 0){
+//                   this.isLoadingNewRcp= false
+//                 }
+//                 this.recipeService.rcp.next(this.totalFetchedRecipes)
+//               })
+//   }
 
 onExpand(){
 

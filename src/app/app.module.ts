@@ -5,9 +5,10 @@ import { environment } from "src/environments/environment";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { HttpClientModule } from '@angular/common/http';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+// import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ConnectionServiceModule} from 'ngx-connection-service'; 
+
 
 
 
@@ -43,6 +44,7 @@ import { LikedItemComponent } from './liked-recipes/liked-list/liked-item/liked-
 import { RecipeComponent } from './recipe/recipe.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ScrollTrackerDirective } from './shared/scroll-tracker.directive';
+import {InfiniteScrollComponent} from './shared/infinite-scroll/infinite-scroll.component';
 
 //import { getLocaleDateFormat } from '@angular/common';
 
@@ -77,6 +79,7 @@ import { ScrollTrackerDirective } from './shared/scroll-tracker.directive';
   RecipeComponent,
   SettingsComponent,
   ScrollTrackerDirective,
+  InfiniteScrollComponent
   
   //SafePipe,
    // RecipesIngredientComponent,
@@ -94,7 +97,7 @@ import { ScrollTrackerDirective } from './shared/scroll-tracker.directive';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     HttpClientModule,
-    InfiniteScrollModule,
+    // InfiniteScrollModule,
     ConnectionServiceModule
    // FormsModule,
     // CloudinaryModule

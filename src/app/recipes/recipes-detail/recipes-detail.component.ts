@@ -80,6 +80,7 @@ export class RecipesDetailComponent implements OnInit, OnDestroy {
           
         (recipe) => {
           this.recipe = recipe;
+          console.log(this.recipe.createdOn)
           this.isLoadingRcp= false;
          //console.log(this.isLoadingRcp,'this is the inner check');
           this.safeUrls=[];
@@ -200,6 +201,7 @@ export class RecipesDetailComponent implements OnInit, OnDestroy {
           this.recipeService.deleteRecipe(this.id);
         this.router.navigate(['../'], {relativeTo: this.route})
         }
+        this.recipeService.isShrunk.next(false)
         
       }
       onClickShrink(){

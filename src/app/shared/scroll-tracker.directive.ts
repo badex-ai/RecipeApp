@@ -6,11 +6,11 @@ import { Directive, Output, EventEmitter, HostListener, ElementRef } from '@angu
 export class ScrollTrackerDirective {
 
   constructor(private el: ElementRef) {
-    console.log(this.el);
+    // console.log(this.el);
   //   console.log( "IH",this.el.innerHeight); 
   //   console.log('SY',this.el.scrollY);
-   console.log('OH',this.el.nativeElement.offsetHeight);
-   console.log('OH',this.el.nativeElement.scrollHeight) 
+  //  console.log('OH',this.el.nativeElement.offsetHeight);
+  //  console.log('OH',this.el.nativeElement.scrollHeight) 
   }
   @Output() scrollingFinished = new EventEmitter<void>();
   

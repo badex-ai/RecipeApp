@@ -51,7 +51,7 @@ export class RecipeService implements OnInit{
      // var lastVisible = this.recipes[this.recipes.length-1];
       //let startingPoint= ((this.fetchMoreCount * 2) + 1) ;
       
-      this.recipes = this.firestore.collection( 'Recipes', ref => ref.orderBy("name",'asc').startAfter(last).limit(10)).snapshotChanges().pipe(
+      this.recipes = this.firestore.collection( 'Recipes', ref => ref.orderBy("createdOn",'desc').startAfter(last).limit(10)).snapshotChanges().pipe(
         map(actions => actions.map(a => {
           const data = a.payload.doc.data() as Recipe;
           const id = a.payload.doc.id;
@@ -65,7 +65,7 @@ export class RecipeService implements OnInit{
     
     
   fetchRecipes() {
-    this.recipes = this.firestore.collection( 'Recipes', ref => ref.orderBy("name",'asc').limit(10)).snapshotChanges().pipe(
+    this.recipes = this.firestore.collection( 'Recipes', ref => ref.orderBy("createdOn",'desc').limit(10)).snapshotChanges().pipe(
      map(actions => actions.map(a => {
        const data = a.payload.doc.data() as Recipe;
        const id = a.payload.doc.id;
@@ -191,7 +191,7 @@ this.recipesCollection.doc<Recipe>(id).update(recipe).then(
 
   private errorHandler(errorRes: HttpErrorResponse){
     if(errorRes.error.error.message){
-      console.log('no internet Connection')
+      // console.log('no internet Connection')
     }
   }
   
