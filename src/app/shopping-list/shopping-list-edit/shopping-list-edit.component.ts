@@ -4,6 +4,8 @@ import { ShoppingListService} from '../shopping-list.service';
 import { Ingredient } from 'src/app/shared/ingredient.model';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/user.model';
+import { Store } from '@ngrx/store';
+import * as ShoppingListAction from '../store/shopping-list.actions'
 
 
 @Component({
@@ -18,7 +20,10 @@ export class ShoppingListEditComponent implements OnInit {
   shopListForm: FormGroup;
   ingredientToEdit: Ingredient;
   historyClicked: boolean = false;
-  constructor(private shoppingListService :ShoppingListService, private authService: AuthService) { }
+
+  constructor(private shoppingListService :ShoppingListService, private authService: AuthService,
+   private store: Store<{shoppingList:{ingredients: Ingredient[]}}> 
+   ) { }
 
 initForm(){
 
@@ -45,6 +50,8 @@ initForm(){
       //this.editMode= this.ingredientToEdit.name !== null
 
       if(this.editMode){
+
+        
         this.shopListForm = new FormGroup({
           'name': new FormControl(this.ingredientToEdit.name, [Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z ]+[a-zA-Z]+$/)]),
           'quantity': new FormControl(this.ingredientToEdit.quantity, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
@@ -81,6 +88,8 @@ initForm(){
     //this.shopListForm.patchValue()
     //console.log(this.shopListForm.value)
   } 
+
+  // this.store.dispatch(new ShoppingListAction.AddIngredient(this.ingredientIndex,this.shopListForm.value)
 
   onCancelEdit(){
     this.editMode= !this.editMode;

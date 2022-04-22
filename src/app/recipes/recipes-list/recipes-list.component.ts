@@ -4,6 +4,8 @@ import {Recipe} from '../recipe.model';
 import {RecipeService} from '../recipe.service';
 import {trigger,state,style, animate, transition} from '@angular/animations';
 import{AlertService} from '../../shared/alert/alert.service';
+import {AuthService} from '../../auth/auth.service';
+
 
 
 
@@ -81,7 +83,7 @@ export class RecipesListComponent implements OnInit {
   @Input() isLikeUrl: boolean;
   
 
-
+  isAuthenticated:boolean = false;
   recipes: Recipe[] = [];
   liked:boolean;
   likedItems: string[];
@@ -108,7 +110,7 @@ export class RecipesListComponent implements OnInit {
   
 
   
-  constructor(private router: Router, private route: ActivatedRoute, private recipeService: RecipeService,private alertService: AlertService) {
+  constructor(private router: Router, private route: ActivatedRoute, private recipeService: RecipeService,private authService: AuthService,private alertService: AlertService) {
     
   
    }
@@ -124,23 +126,58 @@ export class RecipesListComponent implements OnInit {
    
     })
 
-    this.recipeService.hasIntConnected.subscribe(val=>{
-      
-      
-      
-      
-       if(val.netConn === false && val.intConn === false ){
-        this.Internet= false
+    this.authService.user.subscribe((user)=>{
+         
+      //   console.log(user)
+         this.isAuthenticated = !!user;
+        //  this.user = {...user};
+        // console.log(this.user)
+         // console.log(this.user.photoURL.split("upload/"));
+         // console.log(arr);
+         //console.log('i am  2 working')
+         
+         if(!user){
+            this.authService.checkSession();
+           //  let arr = this.user.photoURL.split("upload/");
+           //  console.log(arr);
+         }
+ 
        
-       }else{
-         this.Internet= true
-       }
+         
+         
+       
+       
+       
+      
+ 
+ 
+ 
+       
+       
+ 
+        
+         
+        
+         
+       })
+
+    // this.recipeService.hasIntConnected.subscribe(val=>{
+      
+      
+      
+      
+    //    if(val.netConn === false && val.intConn === false ){
+    //     this.Internet= false
+       
+    //    }else{
+    //      this.Internet= true
+    //    }
       
   
     
     
       
-    })
+    // })
 
     this.recipeService.firstIsLoaded.subscribe(val=>{
       this.firstIsLoaded= val;
@@ -176,7 +213,7 @@ export class RecipesListComponent implements OnInit {
          this.nofav= true;
          this.isLoadingFirstRcp= false;
        }else{
-        likedItems.forEach(el=>{
+        likedItems.forEach((el: string)=>{
           
           
          
@@ -245,60 +282,60 @@ export class RecipesListComponent implements OnInit {
     };
    
    
-    let observer = new IntersectionObserver( (entries, self)=>{
-      entries.forEach(entry => {
+  //   let observer = new IntersectionObserver( (entries, self)=>{
+  //     entries.forEach(entry => {
 
-          const currentY = entry.boundingClientRect.y
-          const currentRatio = entry.intersectionRatio
-          const isIntersecting = entry.isIntersecting
+  //         const currentY = entry.boundingClientRect.y
+  //         const currentRatio = entry.intersectionRatio
+  //         const isIntersecting = entry.isIntersecting
 
 
-          if (entry.isIntersecting) {
-            isLeaving = true;
-            if(!this.isLoadingFirstRcp){
-              this.isLoadingNewRcp = true;
-            }
+  //         if (entry.isIntersecting) {
+  //           isLeaving = true;
+  //           if(!this.isLoadingFirstRcp){
+  //             this.isLoadingNewRcp = true;
+  //           }
 
            
 
             
-            if(!this.Internet && this.totalFetchedRecipes.length > 0){
+  //           if(!this.Internet && this.totalFetchedRecipes.length > 0){
              
                  
-                 this.alertService.alert.next(true);
-                this.alertService.message.next('Internet connection unavailable')
-                }
+  //                this.alertService.alert.next(true);
+  //               this.alertService.message.next('Internet connection unavailable')
+  //               }
             
 
           
             
-            var lastVisible = this.recipes[this.recipes.length - 1];
-            this.recipeService.loadMoreRecipes(lastVisible.name).subscribe((newRecipes:Recipe[])=>{
+  //           var lastVisible = this.recipes[this.recipes.length - 1];
+  //           this.recipeService.loadMoreRecipes(lastVisible.name).subscribe((newRecipes:Recipe[])=>{
              
-              this.isLoadingNewRcp = true;
-              if(newRecipes !== []){
-                this.totalFetchedRecipes.push(...newRecipes)
-              }
-              if(newRecipes.length == 0){
-                this.isLoadingNewRcp= false
-              }
-              this.recipeService.rcp.next(this.totalFetchedRecipes)
+  //             this.isLoadingNewRcp = true;
+  //             if(newRecipes !== []){
+  //               this.totalFetchedRecipes.push(...newRecipes)
+  //             }
+  //             if(newRecipes.length == 0){
+  //               this.isLoadingNewRcp= false
+  //             }
+  //             this.recipeService.rcp.next(this.totalFetchedRecipes)
              
               
-              // this.recipes= this.totalFetchedRecipes
+  //             // this.recipes= this.totalFetchedRecipes
               
-             //  newRecipes.forEach((el)=>{this.recipes.push(el)});
+  //            //  newRecipes.forEach((el)=>{this.recipes.push(el)});
                
-            });
+  //           });
             
-        }
-      }); 
+  //       }
+  //     }); 
        
-    }, config);
+  //   }, config);
 
 
-   // Array.from(recipes).forEach((recipe: Element) => { observer.observe(recipe) });
-     observer.observe(recipeContainer);
+  //  // Array.from(recipes).forEach((recipe: Element) => { observer.observe(recipe) });
+  //    observer.observe(recipeContainer);
 
 
        

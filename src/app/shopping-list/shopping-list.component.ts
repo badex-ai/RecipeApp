@@ -1,30 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../auth/user.model';
 import { Ingredient } from '../shared/ingredient.model';
 import {ShoppingListService} from './shopping-list.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.scss']
 })
-export class ShoppingListComponent implements OnInit {
+export class ShoppingListComponent implements OnInit,OnDestroy {
+
   ingredients: Ingredient[];
+  // ingredients : Observable<{ingredients:Ingredient[] }
   user: User;
   inventoryStat;
   editedid:number;
   historyClick: boolean;
   editMode:Boolean= false ;
-  constructor(private shoppingListService: ShoppingListService,private authService: AuthService) { }
+
+  
+  constructor(
+    private shoppingListService: ShoppingListService,
+    private authService: AuthService,
+    private store: Store<{shoppingList: {ingredients: Ingredient[]}}>
+    ) { }
 
   ngOnInit(){
   
+    // this.ingredients = this.store.select('shoppingList')
+    // this.store.select('shoppingList').subscribe();
+
+
     this.authService.user.subscribe(value=>{
       this.user= value
     })
     this.ingredients = this.shoppingListService.getIngredients();
-    //console.log(this.ingredients)
 
           this.shoppingListService.getInventory(this.user.userId).subscribe(
           value=>{
@@ -39,12 +52,10 @@ export class ShoppingListComponent implements OnInit {
 
     this.shoppingListService.ingredientsHasChanged.subscribe((ingredients:Ingredient[])=>{
       this.ingredients  =ingredients;
-      //console.log(ingredients)
     })
 
     this.shoppingListService.historyClicked.subscribe(value=>{
       this.historyClick = value;
-      //console.log(value)
     }
       
     )
@@ -73,5 +84,10 @@ export class ShoppingListComponent implements OnInit {
   }
   saveIngredientList(){
 
+  }
+
+
+  ngOnDestroy(): void {
+    
   }
 }

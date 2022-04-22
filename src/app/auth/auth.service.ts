@@ -89,7 +89,7 @@ export class AuthService {
        
     });
  // this.inventoryCollection.doc(userInfo.uid).set({})
-      console.log(resData.user);
+      // console.log(resData.user);
       const avi= "../../assets/images/defaultavi.jpg"
     const name =  resData.user.updateProfile({
         displayName: displayName,
@@ -173,7 +173,7 @@ export class AuthService {
       // })
      
       var user = this.afAuth.currentUser;
-      console.log(user);
+      // console.log(user);
         let userInfo= resData.user;
         this.getUserDbInfo(userInfo.uid)
        // console.log(userInfo);
@@ -306,14 +306,14 @@ export class AuthService {
   
   checkSession(){
     let tempData = JSON.parse(sessionStorage.getItem('tempUser'))
-    console.log(tempData);
+    // console.log(tempData);
         if (tempData){
           let expiry = new Date();
           const {email,userId,displayName,photoURL} = tempData;
     
           const protoUser= new User(email,userId,expiry, displayName,photoURL);
           
-          console.log(protoUser)
+          // console.log(protoUser)
          // console.log(this.logOutclicked);
           // if(this.logOutclicked){
           //   this.user.next(null)
@@ -381,7 +381,7 @@ export class AuthService {
   }
 
    handleError(errorRes){
-     console.log(errorRes.code)
+    //  console.log(errorRes.code)
     
     let errorMessage = 'An unknown error occurred, try again';
     if(!errorRes.code || !errorRes.message){

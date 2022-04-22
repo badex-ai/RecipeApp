@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable, Subject,AsyncSubject } from 'rxjs';
 import { VidUrl } from '../shared/vidUrl.model';
 import { Instruction } from '../shared/Instruction.model';
 import {DataService} from '../shared/data.service';
-import {map, tap, take, exhaustMap, catchError} from 'rxjs/operators';
+import {map, tap, take, exhaustMap, catchError, retry} from 'rxjs/operators';
 import { AngularFirestore,  AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -70,19 +70,38 @@ export class RecipeService implements OnInit{
        const data = a.payload.doc.data() as Recipe;
        const id = a.payload.doc.id;
        return { id, ...data };
-     })
+     }),
+     retry(2)
      ),tap(recipes=>{
    //    console.log(recipes);
        this.firstRecipes = recipes
      })
-     
-
-     
-     // ,tap(maindata => {
-
-     // console.log(maindata);
-     //   this.recipeService.setRecipes(recipes);
+    // this.recipes = this.firestore.collection( 'Recipes', ref => ref.orderBy("createdOn",'desc').limit(10)).snapshotChanges().pipe(
+    //  map(actions => actions.map(a => {
+    //    const data = a.payload.doc.data() as Recipe;
+    //    const id = a.payload.doc.id;
+    //    return { id, ...data };
     //  })
+    //  ),tap(recipes=>{
+    //   console.log(recipes);
+    //    this.firstRecipes = [{
+    //       id: '',
+    //       name: '',
+    //       ingredients: [],
+    //       instructions: [],
+    //       createdOn: Date.now(),
+    //       likes: 0,
+
+    //    }]
+    //  })
+     
+
+     
+    // //  ,tap(maindata => {
+
+    // //  console.log(maindata);
+    // //    this.recipeService.setRecipes(recipes);
+    // //  })
     );
     
     

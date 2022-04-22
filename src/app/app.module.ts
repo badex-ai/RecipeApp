@@ -8,13 +8,12 @@ import { HttpClientModule } from '@angular/common/http';
 // import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ConnectionServiceModule} from 'ngx-connection-service'; 
+import { StoreModule } from '@ngrx/store';
 
 
 
 
-//import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
-//import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
-//import { Cloudinary } from 'cloudinary-core';
+
 
 
 
@@ -45,6 +44,7 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ScrollTrackerDirective } from './shared/scroll-tracker.directive';
 import {InfiniteScrollComponent} from './shared/infinite-scroll/infinite-scroll.component';
+import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
 
 //import { getLocaleDateFormat } from '@angular/common';
 
@@ -69,18 +69,18 @@ import {InfiniteScrollComponent} from './shared/infinite-scroll/infinite-scroll.
     ShoppingListEditComponent,
   // RecipesIngredientComponent,
     RecipesProcedureComponent,
-  LoadingComponent,
-  AlertComponent,
-  SmallLoaderComponent,
-  LikedRecipesComponent,
-  LikedListComponent,
-  LikedDetailComponent,
-  LikedItemComponent,
-  RecipeComponent,
-  SettingsComponent,
-  ScrollTrackerDirective,
-  InfiniteScrollComponent
-  
+    LoadingComponent,
+    AlertComponent,
+    SmallLoaderComponent,
+    LikedRecipesComponent,
+    LikedListComponent,
+    LikedDetailComponent,
+    LikedItemComponent,
+    RecipeComponent,
+    SettingsComponent,
+    ScrollTrackerDirective,
+    InfiniteScrollComponent
+    
   //SafePipe,
    // RecipesIngredientComponent,
    // ShoppingListItemComponent,
@@ -90,7 +90,7 @@ import {InfiniteScrollComponent} from './shared/infinite-scroll/infinite-scroll.
    // IonicModule.forRoot({animated: false}),
     BrowserModule,
     //.forRoot({animated: false}),
-   
+    StoreModule.forRoot({shoppingList: shoppingListReducer}),
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,

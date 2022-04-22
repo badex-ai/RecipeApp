@@ -487,7 +487,7 @@
         transparent 30%
       );
       // background-color: black;
-      animation: load 0.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      // animation: load 0.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     }
   }
   &__img {
@@ -529,12 +529,12 @@
     background-color: rgba(76, 76, 76, 0.5);
   }
 
-  @keyframes load {
-    from {
-      left: 0rem;
-    }
-    to {
-      left: 100%;
-    }
-  }
+  // @keyframes load {
+  //   from {
+  //     left: 0rem;
+  //   }
+  //   to {
+  //     left: 100%;
+  //   }
+  // }
 }

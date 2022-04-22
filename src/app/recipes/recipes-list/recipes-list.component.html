@@ -3,13 +3,18 @@
     [@changeContainerbox]="toState"
     [ngClass]="!isLikeUrl ? 'container-box' : 'container-boxlike'"
   >
-    <div>
-      <button *ngIf="!isLikeUrl" class="btn btn__m" (click)="onLoadAddNew()">
+    <!-- <div class="tip">
+      <button
+        type="button"
+        *ngIf="!isLikeUrl && isAuthenticated"
+        class="btn btn__m"
+        (click)="onLoadAddNew()"
+      >
         + Add Recipes
       </button>
-    </div>
+      <div *ngIf="isLikeUrl" class="liked__header">Favourites</div>
+    </div> -->
 
-    <div *ngIf="isLikeUrl" class="liked__header">Favourites</div>
     <div
       [@changeRecipehome]="toState"
       [ngClass]="!isLikeUrl ? 'recipes recipes-home' : 'recipes recipes-like'"
@@ -37,9 +42,8 @@
           >
             <div *ngFor="let recipe of demoRecipes">
               <a class="recipes__item--skeleton">
-                <div>
-                  <img class="recipes__item-imageSkeleton" />
-                </div>
+                <div class="recipes__item-imageSkeleton"></div>
+
                 <div class="recipes__item-descriptionSkeleton">
                   <div class="recipes__item-topSkeleton">
                     <div class="recipes__item-titleSkeleton"></div>

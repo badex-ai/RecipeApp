@@ -80,7 +80,7 @@ export class RecipesDetailComponent implements OnInit, OnDestroy {
           
         (recipe) => {
           this.recipe = recipe;
-          console.log(this.recipe.createdOn)
+          // console.log(this.recipe.createdOn)
           this.isLoadingRcp= false;
          //console.log(this.isLoadingRcp,'this is the inner check');
           this.safeUrls=[];

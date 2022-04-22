@@ -31,7 +31,7 @@ export class LikedListComponent implements OnInit {
         let recipes = [];
         const likedItems = JSON.parse(localStorage.getItem("LikedRecipes")) ;
       //  console.log(localStorage.getItem("LikedRecipes"))
-         console.log(likedItems);
+        //  console.log(likedItems);
          
           likedItems.forEach(el=>{
            this.recipeService.getRecipe(el).subscribe((recipe)=>{
@@ -44,7 +44,7 @@ export class LikedListComponent implements OnInit {
       }else{
           this.recipeService.fetchRecipes().subscribe((recipes: Recipe[]) => {
           this.recipes = recipes;
-          console.log(this.recipes)
+          // console.log(this.recipes)
           })
     }
   }

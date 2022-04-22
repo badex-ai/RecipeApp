@@ -50,7 +50,7 @@ export class AuthComponent implements OnInit {
   //  console.log(email);
 
     this.authService.signUp( password,email,username).subscribe((response)=>{
-      console.log(response)
+      // console.log(response)
     this.authenticated = true;
     this.isLoadingSignUp = false;
     setTimeout(()=>{
@@ -65,7 +65,7 @@ export class AuthComponent implements OnInit {
     this.alertService.alert.next(true);
     this.alertService.message.next(returnedmessage)
    // this.error= errorMessage;
-    console.log(error)
+    // console.log(error)
   
   })
   
@@ -83,7 +83,7 @@ export class AuthComponent implements OnInit {
     }
     this.isLoadingSignIn=true;
     this.authService.signIn(email, password).subscribe((response)=>{
-        console.log(response)
+        // console.log(response)
         this.authenticated= true;
        
         setTimeout(()=>{
@@ -97,7 +97,7 @@ export class AuthComponent implements OnInit {
       this.alertService.alert.next(true);
       this.alertService.message.next(returnedmessage)
      // this.error= errorMessage;
-      console.log(error)
+      // console.log(error)
     
     }
     )
