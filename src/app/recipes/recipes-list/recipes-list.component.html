@@ -1,8 +1,5 @@
 <div [ngClass]="!isLikeUrl ? 'container' : 'container-like'">
-  <div
-    [@changeContainerbox]="toState"
-    [ngClass]="!isLikeUrl ? 'container-box' : 'container-boxlike'"
-  >
+  <div [@changeContainerbox]="toState" class="container-box">
     <!-- <div class="tip">
       <button
         type="button"
@@ -15,86 +12,91 @@
       <div *ngIf="isLikeUrl" class="liked__header">Favourites</div>
     </div> -->
 
-    <div
+    <!-- <div
       [@changeRecipehome]="toState"
       [ngClass]="!isLikeUrl ? 'recipes recipes-home' : 'recipes recipes-like'"
+    > -->
+    <div
+      id="nada"
+      [@changeRecipesbox]="toState"
+      [ngClass]="!isLikeUrl ? 'recipes__box' : 'recipes__box-like'"
     >
       <div
-        id="nada"
-        [@changeRecipesbox]="toState"
-        [ngClass]="!isLikeUrl ? 'recipes__box' : 'recipes__box-like'"
+        [@changeRecipeslist]="toState"
+        [ngClass]="!isLikeUrl ? 'recipes__list' : 'recipes__list-like'"
       >
+        <!-- <div *ngIf="nofav">No Liked recipes</div> -->
+        <app-recipe-item
+          *ngFor="let recipe of recipes"
+          [index]="recipe.id"
+          [rcpInput]="recipe"
+          [isLikeUrl]="isLikeUrl"
+        >
+        </app-recipe-item>
         <div
-          [@changeRecipeslist]="toState"
+          *ngIf="isLoadingFirstRcp || (isLoadingLike && !nofav)"
           [ngClass]="!isLikeUrl ? 'recipes__list' : 'recipes__list-like'"
         >
-          <div *ngIf="nofav">No Liked recipes</div>
-          <app-recipe-item
-            *ngFor="let recipe of recipes"
-            [index]="recipe.id"
-            [rcpInput]="recipe"
-            [isLikeUrl]="isLikeUrl"
-          >
-          </app-recipe-item>
-          <div
-            *ngIf="isLoadingFirstRcp || (isLoadingLike && !nofav)"
-            [ngClass]="!isLikeUrl ? 'recipes__list' : 'recipes__list-like'"
-          >
-            <div *ngFor="let recipe of demoRecipes">
-              <a class="recipes__item--skeleton">
-                <div class="recipes__item-imageSkeleton"></div>
+          <!-- this it the skeleton recipe demo -->
+          <div *ngFor="let recipe of demoRecipes">
+            <a class="recipes__item--skeleton">
+              <div class="recipes__item-imageSkeleton"></div>
 
-                <div class="recipes__item-descriptionSkeleton">
-                  <div class="recipes__item-topSkeleton">
-                    <div class="recipes__item-titleSkeleton"></div>
-                  </div>
-                  <div class="recipes__item-captionSkeleton"></div>
+              <div class="recipes__item-descriptionSkeleton">
+                <div class="recipes__item-topSkeleton">
+                  <div class="recipes__item-titleSkeleton"></div>
                 </div>
-              </a>
-            </div>
-          </div>
-          <app-small-loader
-            class="loader"
-            *ngIf="isLoadingNewRcp && !isLoadingFirstRcp && Internet"
-          ></app-small-loader>
-        </div>
-        <div *ngIf="!Internet && !firstIsLoaded">
-          no internet connection<span class="loading"></span> retrying
-          <div class="noint">
-            <svg
-              class="noInternet"
-              version="1.1"
-              id="Layer_1"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              x="0px"
-              y="0px"
-              viewBox="0 0 485 485"
-              style="enable-background: new 0 0 485 485"
-              xml:space="preserve"
-            >
-              <path
-                d="M91.4,55.7c0,9-5.7,17-14.2,20L29.6,28.1c8.2-8,21.4-7.8,29.4,0.5c1.9,2,3.5,4.4,4.5,7
-                    c11.1-3.7,23.1,2.3,26.9,13.4C91,51.1,91.4,53.4,91.4,55.7z M25.9,32.9l-5.3-5.3l-4.2,4.2l7.3,7.3c-0.2,1.3-0.4,2.6-0.4,3.9
-                    c-0.4,0-0.9-0.1-1.3-0.1c-9.4,0-17,7.6-17,17s7.6,17,17,17h39.6l10,10l4.3-4.3L70,76.9L25.9,32.9z"
-              />
-            </svg>
+                <div class="recipes__item-captionSkeleton"></div>
+              </div>
+            </a>
           </div>
         </div>
-        <!-- <div id="fill" class="tester"></div> -->
+
+        <!-- this is the loader for more recipes -->
+        <app-small-loader
+          class="loader"
+          *ngIf="isLoadingNewRcp && !isLoadingFirstRcp && Internet"
+        ></app-small-loader>
       </div>
 
-      <div *ngIf="!isLikeUrl">
-        <div (click)="onExpand()" *ngIf="expander" class="expander">
-          <div class="expander__svgCont">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26">
-              <path
-                d="M15.405,13L6.821,4.236C6.438,3.845,6.442,3.217,6.829,2.83l1.536-1.536c0.391-0.391,1.026-0.39,1.417,0.002l10.925,10.997 C20.902,12.488,21,12.744,21,13c0,0.256-0.098,0.512-0.293,0.707L9.782,24.704c-0.39,0.393-1.025,0.394-1.417,0.002L6.829,23.17 c-0.387-0.387-0.391-1.015-0.008-1.406L15.405,13z"
-              />
-            </svg>
-          </div>
+      <div *ngIf="!Internet && !firstIsLoaded">
+        no internet connection<span class="loading"></span> retrying
+        <div class="noint">
+          <svg
+            class="noInternet"
+            version="1.1"
+            id="Layer_1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 485 485"
+            style="enable-background: new 0 0 485 485"
+            xml:space="preserve"
+          >
+            <path
+              d="M91.4,55.7c0,9-5.7,17-14.2,20L29.6,28.1c8.2-8,21.4-7.8,29.4,0.5c1.9,2,3.5,4.4,4.5,7
+                    c11.1-3.7,23.1,2.3,26.9,13.4C91,51.1,91.4,53.4,91.4,55.7z M25.9,32.9l-5.3-5.3l-4.2,4.2l7.3,7.3c-0.2,1.3-0.4,2.6-0.4,3.9
+                    c-0.4,0-0.9-0.1-1.3-0.1c-9.4,0-17,7.6-17,17s7.6,17,17,17h39.6l10,10l4.3-4.3L70,76.9L25.9,32.9z"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <!-- <div id="fill" class="tester"></div> -->
+    </div>
+
+    <div *ngIf="!isLikeUrl">
+      <div (click)="onExpand()" *ngIf="expander" class="expander">
+        <div class="expander__svgCont">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26">
+            <path
+              d="M15.405,13L6.821,4.236C6.438,3.845,6.442,3.217,6.829,2.83l1.536-1.536c0.391-0.391,1.026-0.39,1.417,0.002l10.925,10.997 C20.902,12.488,21,12.744,21,13c0,0.256-0.098,0.512-0.293,0.707L9.782,24.704c-0.39,0.393-1.025,0.394-1.417,0.002L6.829,23.17 c-0.387-0.387-0.391-1.015-0.008-1.406L15.405,13z"
+            />
+          </svg>
         </div>
       </div>
     </div>
+    <!-- </div> -->
   </div>
 </div>
