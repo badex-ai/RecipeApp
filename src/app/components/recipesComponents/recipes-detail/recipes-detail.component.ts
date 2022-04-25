@@ -1,13 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import{ ActivatedRoute, Router, Params } from '@angular/router';
-import {RecipeService} from '../recipe.service';
-import {Recipe} from '../recipe.model';
+import {RecipeService} from '../../../recipes/recipe.service';
+import {Recipe} from '../../../recipes/recipe.model';
 import { Observable, Subscription } from 'rxjs';
 import { Ingredient } from 'src/app/shared/ingredient.model';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import{ ShoppingListService} from '../../shopping-list/shopping-list.service';
+import{ ShoppingListService} from '../../../shopping-list/shopping-list.service';
 import {trigger,state,style, animate, transition} from '@angular/animations';
-import {AlertService} from '../../shared/alert/alert.service';
+import {AlertService} from '../../../shared/alert/alert.service';
 
 @Component({
   selector: 'app-recipes-detail',

@@ -1,4 +1,5 @@
-<div class="recipe__item--skeleton">
+<div class="recipe__item">
+  <!-- this is the heart like part -->
   <div (click)="onClickUnlike()" *ngIf="isLiked" class="like">
     <svg
       version="1.1"
@@ -19,6 +20,7 @@
       />
     </svg>
   </div>
+
   <div (click)="onClickLike()" *ngIf="!isLiked" class="like">
     <svg
       version="1.1"
@@ -44,6 +46,7 @@
       </g>
     </svg>
   </div>
+
   <!-- <a *ngIf="isLoading" class="recipes__item--skeleton">
     <div>
       <img class="recipes__item-imageSkeleton" />

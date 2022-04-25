@@ -1,20 +1,20 @@
 import { Component, OnInit , ViewChild, ElementRef} from '@angular/core';
-import {AuthService} from '../auth/auth.service';
+import {AuthService} from '../../auth/auth.service';
 //import { Subscription } from 'rxjs';
-import {User} from '../auth/user.model';
-import {DataService} from '../shared/data.service';
+import {User} from '../../auth/user.model';
+import {DataService} from '../../shared/data.service';
 import {FormGroup, FormControl,Validators } from '@angular/forms';
-import {RecipeService } from '../recipes/recipe.service';
+import {RecipeService } from '../../recipes/recipe.service';
 import { Observable, of, Subject } from 'rxjs';
 import {Router,ActivatedRoute} from '@angular/router';
-import {SettingsService} from '../settings/settings.service';
+import {SettingsService} from '././../../components/settings/settings.service';
 import{AngularFireAuth} from '@angular/fire/auth';
 
 //import { forkJoin } from 'rxjs';
 import {map,switchMap, filter, mergeMap} from 'rxjs/operators';
 import { combineLatest } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection,AngularFirestoreDocument } from '@angular/fire/firestore';
-import {Recipe} from '../recipes/recipe.model';
+import {Recipe} from '../../recipes/recipe.model';
 
 
 

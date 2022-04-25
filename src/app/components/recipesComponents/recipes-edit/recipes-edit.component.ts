@@ -3,10 +3,10 @@ import {FormGroup, FormControl,Validators, FormArray } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Recipe } from '../recipe.model';
-import { RecipeService} from '../recipe.service';
+import { Recipe } from '../../../recipes/recipe.model';
+import { RecipeService} from '../../../recipes/recipe.service';
 import {HttpClient, HttpEvent, HttpErrorResponse, HttpEventType, HttpResponse} from '@angular/common/http';
-import {AlertService} from '../../shared/alert/alert.service';
+import {AlertService} from '../../../shared/alert/alert.service';
 
 
 @Component({

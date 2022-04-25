@@ -1,0 +1,116 @@
+.item-load{
+ 
+
+
+
+
+
+  &--skeleton {
+    width: 42rem;
+    height: 10.6rem;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    background-color: #d2dbe2;
+    justify-content: space-evenly;
+    align-items: center;
+    // 
+    margin-left:1.2rem;
+    margin-right:1.2rem;
+    margin-top: 1rem;
+    // cursor: pointer;
+    text-decoration: none;
+    border-radius: 2px;
+    // color: inherit;
+    border: 0.5px solid transparent;
+    animation: load 1s  infinite;
+    animation-delay: 0.2s;
+  }
+
+  &-topSkeleton {
+    background-color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 16px;
+    margin-top: 4px;
+    width: 27rem;
+    position: relative;
+    overflow: hidden;
+  
+  }
+
+  &-imageSkeleton {
+    width: 9rem;
+    height: 8.6rem;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.6);
+    // object-fit:cover;
+    // object-position: 50% 50%;
+    position: relative;
+    overflow: hidden
+  }
+
+  &-descriptionSkeleton {
+    display: flex;
+    flex-direction: column;
+    width: 28.8rem;
+    height: 9rem;
+    position: relative;
+    overflow: hidden
+  }
+
+  &-captionSkeleton {
+    width: 28.8rem;
+    height: 4.8rem;
+    background-color: #edf1f3;
+    position: relative;
+    overflow: hidden
+  }
+
+  &-titleSkeleton {
+    height: 1.6rem;
+    background-color: #edf1f3;
+    position: relative;
+    overflow: hidden
+  }
+
+
+  &-imageSkeleton::before,
+  &-captionSkeleton::before
+  {
+    content:"";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(to right, #edf1f3 0%,rgba(0,0,0,0.05) 20%, #edf1f3 40%, #edf1f3 100%);
+    background-size: 450px 400px;
+    background-repeat: no-repeat;
+    animation : shimmer 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+  &-captionSkeleton::before
+  {
+    animation-delay: 0.16s;
+  }
+}
+
+
+
+
+
+  @keyframes shimmer {
+    0%{
+      background-position: -450px 0 ;
+
+    }
+    100%{
+      background-position: 450px 0;
+    }
+    
+  }
+
+  @keyframes load {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0.8;
+    }
+  }

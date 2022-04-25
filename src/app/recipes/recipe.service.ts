@@ -69,10 +69,41 @@ export class RecipeService implements OnInit{
      map(actions => actions.map(a => {
        const data = a.payload.doc.data() as Recipe;
        const id = a.payload.doc.id;
+
+
+      
+
        return { id, ...data };
-     }),
-     retry(2)
-     ),tap(recipes=>{
+
+      
+     })
+     
+     
+     ),map(data=>{
+        
+         let imgArray = data.map(item=>{
+          
+         
+          return item.imgUrl
+        })
+        let images = new Array()
+
+        function preload(...ir :string[]) {
+          for (let i = 0; i < ir.length; i++) {
+            console.log(ir.length)
+
+            images[i] = new Image()
+            // images[i].src = preload.arguments[i]
+            images[i].src = ir[i]
+          }
+        }
+
+        preload(
+          ...imgArray
+        )
+        console.log(images)
+        return data
+     }),retry(2),tap(recipes=>{
    //    console.log(recipes);
        this.firstRecipes = recipes
      })

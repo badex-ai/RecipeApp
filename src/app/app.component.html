@@ -1,18 +1,15 @@
 <div class="container">
   <app-header></app-header>
   <div class="container__box">
-    
-    <app-alert  *ngIf="alert"></app-alert> 
-    <app-recipes-procedure *ngIf="expandState"
-    [rcvRecipe]="recipe"></app-recipes-procedure> 
+    <app-alert *ngIf="alert"></app-alert>
+    <app-recipes-preparation
+      *ngIf="expandState"
+      [rcvRecipe]="recipe"
+    ></app-recipes-preparation>
 
-    
-   
     <router-outlet #outlet="outlet"></router-outlet>
-    
   </div>
-  
+
   <!-- <app-recipes></app-recipes>
   <app-shopping-list></app-shopping-list> -->
 </div>
-

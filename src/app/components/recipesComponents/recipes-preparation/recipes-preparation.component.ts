@@ -1,15 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 //import { RouterLink } from '@angular/router';
 import { Instruction } from 'src/app/shared/Instruction.model';
-import { Recipe } from '../recipe.model';
-import {RecipeService} from '../recipe.service';
+import { Recipe } from '../../../recipes/recipe.model';
+import {RecipeService} from '../../../recipes/recipe.service';
 
 @Component({
-  selector: 'app-recipes-procedure',
-  templateUrl: './recipes-procedure.component.html',
-  styleUrls: ['./recipes-procedure.component.scss']
+  selector: 'app-recipes-preparation',
+  templateUrl: './recipes-preparation.component.html',
+  styleUrls: ['./recipes-preparation.component.scss']
 })
-export class RecipesProcedureComponent implements OnInit {
+export class RecipesPreparationComponent implements OnInit {
   @Input('rcvRecipe') recipe:Recipe;
   
   

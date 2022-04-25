@@ -3,18 +3,18 @@ import {SettingsService} from './settings.service';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import{AngularFireAuth} from '@angular/fire/auth';
-import {AuthService} from '../auth/auth.service';
-import { environment} from '../../environments/environment';
+import {AuthService} from '../../auth/auth.service';
+import { environment} from '../../../environments/environment';
 //import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { from, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { User } from '../auth/user.model';
+import { User } from '../../auth/user.model';
 import firebase from 'firebase/app';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {HttpClient, HttpEvent, HttpErrorResponse, HttpEventType, HttpResponse} from '@angular/common/http';
 import { FileUploader, FileUploaderOptions, ParsedResponseHeaders } from 'ng2-file-upload';
-import {AlertService} from '../shared/alert/alert.service';
+import {AlertService} from '../../shared/alert/alert.service';
 
 
 

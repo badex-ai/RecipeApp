@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { RecipeService} from '../../recipe.service';
-import { Recipe } from '../../recipe.model';
+import { RecipeService} from '../../../recipes/recipe.service';
+import { Recipe } from '../../../recipes/recipe.model';
 import { ReturnStatement } from '@angular/compiler';
 import {Router, ActivatedRoute} from '@angular/router';
 import { Subject } from 'rxjs';

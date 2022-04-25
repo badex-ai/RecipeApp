@@ -15,34 +15,16 @@
   border-radius: 2px;
   color: inherit;
   border: 0.5px solid transparent;
+  margin: 0 1.2rem;
 
-  &--skeleton {
-    width: 42rem;
-    height: 10.6rem;
-    display: flex;
-    overflow: hidden;
-    position: relative;
-    background-color: #dbe1e6;
-    justify-content: space-evenly;
-    align-items: center;
-    // cursor: pointer;
-    text-decoration: none;
-    border-radius: 2px;
-    // color: inherit;
-    border: 0.5px solid transparent;
-  }
+  
 
   &-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  &-topSkeleton {
-    background-color: rgba(255, 255, 255, 0.5);
-    margin-bottom: 8px;
-    margin-top: 4px;
-    width: 27rem;
-  }
+  
   &:hover {
     border: 0.4px solid rgba(157, 185, 204, 0.4);
   }
@@ -62,14 +44,7 @@
     object-position: 50% 50%;
     // background-color: violet;
   }
-  &-imageSkeleton {
-    width: 9rem;
-    height: 8.6rem;
-    border-radius: 0.5rem;
-    background-color: rgba(255, 255, 255, 0.6);
-    // object-fit:cover;
-    // object-position: 50% 50%;
-  }
+  
 
   &-description {
     display: flex;
@@ -79,12 +54,7 @@
     justify-content: space-evenly;
   }
 
-  &-descriptionSkeleton {
-    display: flex;
-    flex-direction: column;
-    width: 28.8rem;
-    height: 9rem;
-  }
+ 
 
   &-caption {
     width: 28.8rem;
@@ -97,20 +67,13 @@
     -webkit-box-orient: vertical;
   }
 
-  &-captionSkeleton {
-    width: 28.8rem;
-    height: 4.8rem;
-    background-color: rgba(255, 255, 255, 0.6);
-  }
+ 
 
   &-title {
     font-size: 1.6rem;
     height: 2.2rem;
   }
-  &-titleSkeleton {
-    height: 2.2rem;
-    background-color: rgba(255, 255, 255, 0.6);
-  }
+ 
 }
 .like {
   // margin-left: 2.5rem;

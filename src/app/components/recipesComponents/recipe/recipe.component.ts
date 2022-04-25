@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from '../recipes/recipe.model';
-import {RecipeService} from '../recipes/recipe.service';
+import { Recipe } from '../../../recipes/recipe.model';
+import {RecipeService} from '../../../recipes/recipe.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import{ ShoppingListService} from '../shopping-list/shopping-list.service';
+import{ ShoppingListService} from '../../../shopping-list/shopping-list.service';
 import{ ActivatedRoute, Router, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
-import {DataService} from '../shared/data.service';
-import {AlertService} from '../shared/alert/alert.service';
+import {DataService} from '../../../shared/data.service';
+import {AlertService} from '../../../shared/alert/alert.service';
 
 
 @Component({
