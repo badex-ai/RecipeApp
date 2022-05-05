@@ -19,14 +19,14 @@
     height: 61.1rem;
   }
 
-  &-box {
-    //     height:61.1rem;
-    // width: 46rem;
-    height: calc(100vh - 6rem);
-    // background-color: green;
-    // width: 94rem;
-    // background-color: blue;
-  }
+  // &-box {
+  //   //     height:61.1rem;
+  //   // width: 46rem;
+  //   height: calc(100vh - 6rem);
+  //   // background-color: green;
+  //   // width: 94rem;
+  //   // background-color: blue;
+  // }
 
   &-boxlike {
     height: 61.1rem;
@@ -35,8 +35,12 @@
 }
 //
 
-.tip {
-  height: 3rem;
+.addRecipe {
+  // height: 3rem;
+  position: absolute;
+  top: 2rem;
+  left :2rem;
+  z-index: 3;
 }
 .tester {
   // min-width:56.6;
@@ -98,24 +102,33 @@
   background-color: #d7e0e6;
   border-bottom: 2px solid #064e80;
 }
-.btn {
-  background-color: #064e80;
+.btn{
+  background-color: #064d80e9;
   border: none;
   border-radius: 5px;
   color: #ffffff;
   cursor: pointer;
   outline: none;
 
-  &__m {
-    width: 11rem;
-    height: 3rem;
-    margin-right: 10px;
+  &__add {
+    width: 5rem;
+    height: 5rem;
+    // margin-right: 10px;
+    border-radius: 50%;
+    // border: .2px solid grey;
     // margin-bottom: 1.5rem;
+    transform: scale(1);
+    transition: .1s ease-in;
   }
 }
-.btn__m:hover {
-  // margin-bottom: -1px;
-  // box-shadow: 0 2px 5px rgba(0,0,0,.4);
+.btn__add:hover {
+  transform: scale(1.06);
+  background-color: #064d80;
+  
+}
+
+.btn__add:active{
+  transform: scale(1);
 }
 .recipes {
   height: 100%;

@@ -10,44 +10,44 @@ import { animate, animateChild, query, state, style, transition, trigger } from 
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
   styleUrls: ['./recipes.component.scss'],
-  animations:[
+  // animations:[
 
-    trigger('recipesListAnimation',[
-      state('expanded', style({
-        width: '!',
+  //   trigger('recipesListAnimation',[
+  //     state('expanded', style({
+  //       width: '!',
       
       
-         })),
-         state('shrunk', style({
+  //        })),
+  //        state('shrunk', style({
         
-            width: '52.6rem',
+  //           width: '52.6rem',
     
             
-        //  backgroundColor: "red"
+  //       //  backgroundColor: "red"
            
-      }),),
-      transition('expanded<=>shrunk',[animate('200ms'),
-      query('listanimation', animateChild(), { optional: true })] ),
+  //     }),),
+  //     transition('expanded<=>shrunk',[animate('200ms'),
+  //     query('listanimation', animateChild(), { optional: true })] ),
       
-    ]),
-    trigger('recipesInfoAnimation',[
-      state('expanded', style({
-        width: '!',
+  //   ]),
+  //   trigger('recipesInfoAnimation',[
+  //     state('expanded', style({
+  //       width: '!',
       
       
-         })),
-         state('shrunk', style({
+  //        })),
+  //        state('shrunk', style({
         
-            width: '66.6rem',
+  //           width: '66.6rem',
     
             
-        //  backgroundColor: "red"
+  //       //  backgroundColor: "red"
            
-      }),),
-      transition('expanded<=>shrunk', animate('200ms')),
+  //     }),),
+  //     transition('expanded<=>shrunk', animate('200ms')),
       
-    ])
-  ]
+  //   ])
+  // ]
 })
 export class RecipesComponent implements OnInit {
   isShrunk: boolean;

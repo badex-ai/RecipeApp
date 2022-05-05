@@ -16,7 +16,9 @@ import { HttpErrorResponse } from '@angular/common/http';
   providedIn: 'root'
 })
 
-export class RecipeService implements OnInit{
+export class RecipeService implements 
+
+OnInit{
   editMode = new Subject<boolean>();
   recipesHasChanged = new Subject<Recipe[]>();
   expand = new Subject<Instruction>();
@@ -30,6 +32,7 @@ export class RecipeService implements OnInit{
   loadingRecipes= new BehaviorSubject<boolean>(true);
   isShrunk = new BehaviorSubject<boolean>(false);
   collapseDetail  = new Subject<boolean>();
+  result: Observable<any>;
   expandTrigger = new Subject<string>();
   fetchMoreCount = 1;
   hasIntConnected= new BehaviorSubject<any>({netConn: true, intConn:true});
@@ -46,12 +49,12 @@ export class RecipeService implements OnInit{
   ngOnInit() {}
 
   // .orderBy("population",'desc')
+  // console.log(this.rcp)
   
-    loadMoreRecipes(last: string){
-     // var lastVisible = this.recipes[this.recipes.length-1];
-      //let startingPoint= ((this.fetchMoreCount * 2) + 1) ;
+   fetchMoreRecipes(last){
+    
       
-      this.recipes = this.firestore.collection( 'Recipes', ref => ref.orderBy("createdOn",'desc').startAfter(last).limit(10)).snapshotChanges().pipe(
+     const newRecipes = this.firestore.collection( 'Recipes', ref => ref.orderBy("createdOn",'desc').startAfter(last).limit(14)).snapshotChanges().pipe(
         map(actions => actions.map(a => {
           const data = a.payload.doc.data() as Recipe;
           const id = a.payload.doc.id;
@@ -60,12 +63,12 @@ export class RecipeService implements OnInit{
         )
        );
        this.fetchMoreCount++
-        return this.recipes
+        return newRecipes
     }
     
     
   fetchRecipes() {
-    this.recipes = this.firestore.collection( 'Recipes', ref => ref.orderBy("createdOn",'desc').limit(10)).snapshotChanges().pipe(
+    this.result = this.firestore.collection( 'Recipes', ref => ref.orderBy("createdOn",'desc').limit(14)).snapshotChanges().pipe(
      map(actions => actions.map(a => {
        const data = a.payload.doc.data() as Recipe;
        const id = a.payload.doc.id;
@@ -79,89 +82,92 @@ export class RecipeService implements OnInit{
      })
      
      
-     ),map(data=>{
-        
-         let imgArray = data.map(item=>{
-          
-         
-          return item.imgUrl
-        })
-        let images = new Array()
+     ),map( (data)=>{
 
-        function preload(...ir :string[]) {
-          for (let i = 0; i < ir.length; i++) {
-            console.log(ir.length)
+ 
 
-            images[i] = new Image()
-            // images[i].src = preload.arguments[i]
-            images[i].src = ir[i]
-          }
-        }
-
-        preload(
-          ...imgArray
-        )
-        console.log(images)
-        return data
-     }),retry(2),tap(recipes=>{
-   //    console.log(recipes);
-       this.firstRecipes = recipes
-     })
-    // this.recipes = this.firestore.collection( 'Recipes', ref => ref.orderBy("createdOn",'desc').limit(10)).snapshotChanges().pipe(
-    //  map(actions => actions.map(a => {
-    //    const data = a.payload.doc.data() as Recipe;
-    //    const id = a.payload.doc.id;
-    //    return { id, ...data };
-    //  })
-    //  ),tap(recipes=>{
-    //   console.log(recipes);
-    //    this.firstRecipes = [{
-    //       id: '',
-    //       name: '',
-    //       ingredients: [],
-    //       instructions: [],
-    //       createdOn: Date.now(),
-    //       likes: 0,
-
-    //    }]
-    //  })
-     
 
      
-    // //  ,tap(maindata => {
+    return data
+//     }
+  }),retry(2)
+    
 
-    // //  console.log(maindata);
-    // //    this.recipeService.setRecipes(recipes);
-    // //  })
+     
+   
     );
     
     
-    // console.log(this.recipes);
-     return this.recipes
+    
+     return this.result
 
  }
- 
+
+
+
+
+ updateRecipe(recipe:Recipe, id: string){
+   
+
+  this.recipesCollection.doc<Recipe>(id).update(recipe).then(
+    
+  );
+  
+   
+    
+      
+    }
+
+ preloadImages(results: Recipe[]) {
+  return  new Promise(resolve => {
+    let imgArray = results.map(item=>{
+            
+           
+      return item.imgUrl
+    })
+
+    let preloadedImg = new Array()
+
+    if (!imgArray.length) {
+      return resolve(preloadedImg);
+    }
+    
+    let loadedImages = 0;
+    const onImageRequestComplete = () => {
+      loadedImages++;
+
+      if (loadedImages === imgArray.length) {
+        // console.log(images)
+        resolve(preloadedImg);
+      }
+    };
+
+    for (var i = 0; i < imgArray.length; i++) {
+      preloadedImg[i] = new Image();
+      preloadedImg[i].src = imgArray[i];
+      preloadedImg[i].onload = onImageRequestComplete;
+      preloadedImg[i].onerror = onImageRequestComplete;
+  }
+
+   
+  });
+}
+
 //  setRecipes(){
 //   console.log(this.firstRecipes);
 //   return this.firstRecipes
 // }
   
-   
+
+
+
+
+
 
 
   
    //console.log(this.recipes)
-  updateRecipe(recipe:Recipe, id: string){
-   
-
-this.recipesCollection.doc<Recipe>(id).update(recipe).then(
   
-);
-
- 
-  
-    
-  }
 
   //  getLocalStorage():Observable<string[]>{
   //   return this.localData.asObservable()
@@ -203,6 +209,8 @@ this.recipesCollection.doc<Recipe>(id).update(recipe).then(
 
 
   }
+
+
 
 
   

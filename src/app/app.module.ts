@@ -5,7 +5,7 @@ import { environment } from "src/environments/environment";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { HttpClientModule } from '@angular/common/http';
-// import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ConnectionServiceModule} from 'ngx-connection-service'; 
 import { StoreModule } from '@ngrx/store';
@@ -99,7 +99,7 @@ import { RecipeLoaderComponent } from './components/recipesComponents/recipe-loa
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     HttpClientModule,
-    // InfiniteScrollModule,
+    InfiniteScrollModule,
     ConnectionServiceModule
    // FormsModule,
     // CloudinaryModule

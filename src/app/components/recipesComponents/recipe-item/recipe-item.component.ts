@@ -5,6 +5,8 @@ import { ReturnStatement } from '@angular/compiler';
 import {Router, ActivatedRoute} from '@angular/router';
 import { Subject } from 'rxjs';
 import { element } from 'protractor';
+import { ImgHTMLAttributes } from 'react';
+import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-recipe-item',
@@ -13,12 +15,13 @@ import { element } from 'protractor';
   
 })
 export class RecipeItemComponent implements OnInit {
-  @Input('rcpInput') recipe: Recipe;
+  @Input('rcpInput') recipe : Recipe;
   @Input() index:string;
   @Input() isLikeUrl:boolean;
   firstIsLoaded: boolean;
   //@Output() loadDetailEvent = new EventEmitter<string>();
   //newState= new Subject();
+  image: HTMLImageElement;
 
   isLiked:boolean;
   likedRecipes:string[];
@@ -35,6 +38,12 @@ export class RecipeItemComponent implements OnInit {
     
 
   ngOnInit() {
+
+  //  this.recipeService.preloadImage(this.recipe.imgUrl).then((image:HTMLImageElement)=>{
+  //    this.image=image
+  //  });
+
+    
 
     this.recipeService.firstIsLoaded.subscribe(val=>{
       this.firstIsLoaded = val

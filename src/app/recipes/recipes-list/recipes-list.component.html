@@ -1,49 +1,53 @@
 <div class="container">
-  <div class="container-box">
-    <!-- <div class="tip">
-      <button
-        type="button"
-        *ngIf="!isLikeUrl && isAuthenticated"
-        class="btn btn__m"
-        (click)="onLoadAddNew()"
-      >
-        + Add Recipes
-      </button>
-      <div *ngIf="isLikeUrl" class="liked__header">Favourites</div>
-    </div> -->
+  <div *ngIf="!isLoadingFirstRcp" class="addRecipe">
+    <button
+      type="button"
+      *ngIf="!isLikeUrl && isAuthenticated"
+      class="btn btn__add"
+      (click)="onLoadAddNew()"
+    >
+      +
+    </button>
+  </div>
 
-    <!-- <div
+  <!-- <div
       [ngClass]="!isLikeUrl ? 'recipes recipes-home' : 'recipes recipes-like'"
     > -->
-    <div
-      id="nada"
-      [ngClass]="!isLikeUrl ? 'recipes__box' : 'recipes__box-like'"
-    >
-      <div *ngIf="isLoadingFirstRcp">
-        <div [ngClass]="!isLikeUrl ? 'recipes__list' : 'recipes__list-like'">
-          <app-recipe-loader
-            *ngFor="let recipe of demoRecipes"
-          ></app-recipe-loader>
-        </div>
+  <div
+    [ngClass]="!isLikeUrl ? 'recipes__box' : 'recipes__box-like'"
+    class="search-results"
+    infiniteScroll
+    [infiniteScrollDistance]="4"
+    [infiniteScrollThrottle]="150"
+    (scrolled)="onScroll()"
+    [scrollWindow]="false"
+    [infiniteScrollDisabled]="scrollFetchRecipes === []"
+  >
+    <div *ngIf="isLoadingFirstRcp">
+      <div [ngClass]="!isLikeUrl ? 'recipes__list' : 'recipes__list-like'">
+        <app-recipe-loader
+          *ngFor="let recipe of demoRecipes"
+        ></app-recipe-loader>
       </div>
+    </div>
 
-      <div *ngIf="!isLoadingFirstRcp">
-        <div [ngClass]="!isLikeUrl ? 'recipes__list' : 'recipes__list-like'">
-          <app-recipe-item
-            *ngFor="let recipe of recipes"
-            [index]="recipe.id"
-            [rcpInput]="recipe"
-            [isLikeUrl]="isLikeUrl"
-          >
-          </app-recipe-item>
-        </div>
+    <div *ngIf="!isLoadingFirstRcp">
+      <div [ngClass]="!isLikeUrl ? 'recipes__list' : 'recipes__list-like'">
+        <app-recipe-item
+          *ngFor="let recipe of recipes"
+          [index]="recipe.id"
+          [rcpInput]="recipe"
+          [isLikeUrl]="isLikeUrl"
+        >
+        </app-recipe-item>
       </div>
+    </div>
 
-      <!-- <div
+    <!-- <div
         [ngClass]="!isLikeUrl ? 'recipes__list' : 'recipes__list-like'"
       > -->
-      <!-- <div *ngIf="nofav">No Liked recipes</div> -->
-      <!-- <app-recipe-item
+    <!-- <div *ngIf="nofav">No Liked recipes</div> -->
+    <!-- <app-recipe-item
           *ngFor="let recipe of recipes"
           [index]="recipe.id"
           [rcpInput]="recipe"
@@ -51,50 +55,49 @@
         >
         </app-recipe-item> -->
 
-      <!-- <div
+    <!-- <div
           
           *ngIf="isLoadingFirstRcp || (isLoadingLike && !nofav)"
          
         > -->
-      <!-- this it the skeleton recipe demo -->
+    <!-- this it the skeleton recipe demo -->
 
-      <!-- </div> -->
+    <!-- </div> -->
 
-      <!-- this is the loader for more recipes -->
-      <app-small-loader
+    <!-- this is the loader for more recipes -->
+    <!-- <app-small-loader
         class="loader"
         *ngIf="isLoadingNewRcp && !isLoadingFirstRcp && Internet"
-      ></app-small-loader>
-    </div>
-
-    <div *ngIf="!Internet && !firstIsLoaded">
-      no internet connection<span class="loading"></span> retrying
-      <div class="noint">
-        <svg
-          class="noInternet"
-          version="1.1"
-          id="Layer_1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="0px"
-          y="0px"
-          viewBox="0 0 485 485"
-          style="enable-background: new 0 0 485 485"
-          xml:space="preserve"
-        >
-          <path
-            d="M91.4,55.7c0,9-5.7,17-14.2,20L29.6,28.1c8.2-8,21.4-7.8,29.4,0.5c1.9,2,3.5,4.4,4.5,7
-                    c11.1-3.7,23.1,2.3,26.9,13.4C91,51.1,91.4,53.4,91.4,55.7z M25.9,32.9l-5.3-5.3l-4.2,4.2l7.3,7.3c-0.2,1.3-0.4,2.6-0.4,3.9
-                    c-0.4,0-0.9-0.1-1.3-0.1c-9.4,0-17,7.6-17,17s7.6,17,17,17h39.6l10,10l4.3-4.3L70,76.9L25.9,32.9z"
-          />
-        </svg>
-      </div>
-    </div>
-
-    <!-- <div id="fill" class="tester"></div> -->
+      ></app-small-loader> -->
   </div>
 
-  <div *ngIf="!isLikeUrl">
+  <div *ngIf="!Internet && !firstIsLoaded">
+    no internet connection<span class="loading"></span> retrying
+    <div class="noint">
+      <svg
+        class="noInternet"
+        version="1.1"
+        id="Layer_1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px"
+        y="0px"
+        viewBox="0 0 485 485"
+        style="enable-background: new 0 0 485 485"
+        xml:space="preserve"
+      >
+        <path
+          d="M91.4,55.7c0,9-5.7,17-14.2,20L29.6,28.1c8.2-8,21.4-7.8,29.4,0.5c1.9,2,3.5,4.4,4.5,7
+                    c11.1-3.7,23.1,2.3,26.9,13.4C91,51.1,91.4,53.4,91.4,55.7z M25.9,32.9l-5.3-5.3l-4.2,4.2l7.3,7.3c-0.2,1.3-0.4,2.6-0.4,3.9
+                    c-0.4,0-0.9-0.1-1.3-0.1c-9.4,0-17,7.6-17,17s7.6,17,17,17h39.6l10,10l4.3-4.3L70,76.9L25.9,32.9z"
+        />
+      </svg>
+    </div>
+  </div>
+
+  <!-- <div id="fill" class="tester"></div> -->
+
+  <!-- <div *ngIf="!isLikeUrl">
     <div (click)="onExpand()" *ngIf="expander" class="expander">
       <div class="expander__svgCont">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26">
@@ -104,7 +107,7 @@
         </svg>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- </div> -->
   <!-- </div> -->
 </div>

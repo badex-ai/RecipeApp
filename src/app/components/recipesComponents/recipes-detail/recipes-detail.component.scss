@@ -8,9 +8,9 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  width: auto;
-  height: 61.1rem;
-  //  background-color: greenyellow;
+  width: 100%;
+  height: calc(100% - 6rem );
+  background-color: greenyellow;
 }
 #targetElement {
   transition: all 0.5s;

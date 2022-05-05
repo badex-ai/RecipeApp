@@ -3,6 +3,7 @@ html {
   box-sizing: border-box;
   font-size: 62.5%;
   font-family: Roboto;
+  --recipeWidth: 32rem;
 }
 * {
   margin: 0;
@@ -16,6 +17,7 @@ html {
 :root {
   --color-grey-light: #f2f2f2;
   --color-deep-blue: #064e80;
+  
   // --color-primary-dark: #BA265D;
 
   // --shadow-dark:0 2rem 6rem rgba(0,0,0,.3);

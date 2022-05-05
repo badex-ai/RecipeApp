@@ -3,7 +3,7 @@
   <div (click)="onClickUnlike()" *ngIf="isLiked" class="like">
     <svg
       version="1.1"
-      id="Capa_1"
+      class="Capa_1"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       x="0px"
@@ -66,18 +66,19 @@
     routerLinkActive="recipes__item--active"
   >
     <div>
-      <img
+      <!-- <img
         class="recipes__item-image"
         src="{{ recipe.imgUrl }}"
         alt="{{ recipe.name }}"
-      />
+      /> -->
+      {{ image }}
     </div>
     <div class="recipes__item-description">
       <div class="recipes__item-top">
         <div class="recipes__item-title">{{ recipe.name }}</div>
       </div>
 
-      <div class="recipes__item-caption">{{ recipe.description }}</div>
+      <div class="recipes__item-caption"></div>
     </div>
   </a>
   <a
@@ -99,7 +100,7 @@
         <div class="recipes__item-title">{{ recipe.name }}</div>
       </div>
 
-      <div class="recipes__item-caption">{{ recipe.description }}</div>
+      <div class="recipes__item-caption"></div>
     </div>
   </a>
 </div>
