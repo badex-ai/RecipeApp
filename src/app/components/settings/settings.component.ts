@@ -8,7 +8,7 @@ import { environment} from '../../../environments/environment';
 //import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { from, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { User } from '../../auth/user.model';
+import { User } from '../../shared/models/user.model';
 import firebase from 'firebase/app';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';

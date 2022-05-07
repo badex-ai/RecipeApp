@@ -5,7 +5,7 @@
 
 .recipes__item {
   width: var(--recipeWidth);
-  height: 10.6rem;
+  height: var(--recipeHeight);
   display: flex;
   position: relative;
   background-color: rgba(255, 255, 255);

@@ -11,6 +11,7 @@ export class Recipe{
   public vidUrls: VidUrl[] ;
   public creator?: string;
   public createdOn?: Date;
+  public createdBy?: string;
 
   constructor(name: string, description: string, imgUrl: string, instruction: string, ingredients:Ingredient[] ,vidUrls:VidUrl[],creator: string, createdOn: Date){
     this.name = name;

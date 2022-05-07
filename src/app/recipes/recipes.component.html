@@ -10,10 +10,13 @@
   <!-- </div> -->
 
   <!-- <div> -->
-  <app-recipes-list
-    [isLikeUrl]="isLikeUrl"
-    *ngIf="!isLikeUrl"
-  ></app-recipes-list>
+  <div class="recipe__list">
+    <app-recipes-list
+      [isLikeUrl]="isLikeUrl"
+      *ngIf="!isLikeUrl"
+    ></app-recipes-list>
+  </div>
+
   <!-- </div> -->
 
   <!-- <div [@recipesInfoAnimation]="!isShrunk ? 'shrunk' : 'expanded'">

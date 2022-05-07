@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AuthService } from '../auth/auth.service';
-import { User } from '../auth/user.model';
+import { User } from '../shared/models/user.model';
 import { Ingredient } from '../shared/ingredient.model';
 import {ShoppingListService} from './shopping-list.service';
 import { Observable } from 'rxjs';

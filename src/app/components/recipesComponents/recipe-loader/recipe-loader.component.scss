@@ -6,8 +6,8 @@
 
 
   &--skeleton {
-    width: 42rem;
-    height: 10.6rem;
+    width: var(--recipeWidth);
+    height: var(--recipeHeight);
     display: flex;
     overflow: hidden;
     position: relative;
@@ -15,8 +15,8 @@
     justify-content: space-evenly;
     align-items: center;
     // 
-    margin-left:1.2rem;
-    margin-right:1.2rem;
+    margin-left:0.3rem;
+    margin-right:0.3rem;
     margin-top: 1rem;
     // cursor: pointer;
     text-decoration: none;
@@ -29,9 +29,9 @@
 
   &-topSkeleton {
     background-color: rgba(255, 255, 255, 0.6);
-    margin-bottom: 16px;
-    margin-top: 4px;
-    width: 27rem;
+    margin-bottom: 1.6rem;
+    margin-top: .4rem;
+  
     position: relative;
     overflow: hidden;
   
@@ -51,7 +51,7 @@
   &-descriptionSkeleton {
     display: flex;
     flex-direction: column;
-    width: 28.8rem;
+    width: 60%;
     height: 9rem;
     position: relative;
     overflow: hidden

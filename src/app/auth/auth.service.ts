@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment} from '../../environments/environment';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { catchError,tap } from 'rxjs/operators';
-import { User} from './user.model';
+import { User} from '../shared/models/user.model';
 import { BehaviorSubject, from, of, Subject, throwError } from 'rxjs';
 import {Router,ActivatedRoute} from '@angular/router'
 import{AngularFireAuth} from '@angular/fire/auth';

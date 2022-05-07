@@ -1,12 +1,9 @@
-<!-- <div class="container"> -->
 <!-- detail-box -->
 
-<div
-  *ngIf="!isLoadingRcp"
-  [ngClass]="!isCollapsed ? 'detail-boxShrunk' : 'detail-box'"
->
-  <!-- detail-chng -->
-  <div [ngClass]="!isCollapsed ? ' detail-chngShrunk' : 'detail-chng'">
+<div *ngIf="!isLoadingRcp" class="detail-box">
+  <!--components for detail-chnging -->
+  <!-- *ngIf="recipe.author === user" -->
+  <div class="detail-chng">
     <div class="svg">
       <svg
         (click)="ondeleteRecipe()"
@@ -85,63 +82,50 @@
   </div>
 
   <!-- detail-box__content -->
-  <div
-    [ngClass]="
-      !isCollapsed ? 'detail-boxShrunk__content ' : ' detail-box__content'
-    "
-  >
+  <div class="detail-box__content">
     <!-- detail-box__main -->
-    <div
-      [ngClass]="!isCollapsed ? 'detail-boxShrunk__main' : 'detail-box__main'"
-    >
-      <!-- detail-box__main-img -->
-      <div class="">
-        <img
-          [ngClass]="
-            !isCollapsed ? 'detail-boxShrunk__main-img' : 'detail-box__main-img'
-          "
-          [src]="safeImg"
-          alt=""
-        />
+    <div class="detail-box__main">
+      <!--  -->
+      <div class="detail-box__main-img">
+        <img class="detail-img" [src]="safeImg" alt="" />
       </div>
-
+      <div class="detail-box__main-left">
+        <div class="detail-box__author">
+          <!-- <span class="detail-box__author-name">{{ recipe.author }}</span> -->
+          <div class="detail-box__author-img"></div>
+        </div>
+        <div class="detail-box__desc">
+          <div class="detail-box__title">{{ recipe.name }}</div>
+          <div class="detail-box__caption">{{ recipe.description }}</div>
+        </div>
+      </div>
       <!-- detail-box__desc -->
-      <div
-        [ngClass]="
-          !isCollapsed ? 'detail-boxShrunk__desc' : ' detail-box__desc'
-        "
-      >
-        <div class="detail-box__title">{{ recipe.name }}</div>
-        <div class="detail-box__caption">{{ recipe.description }}</div>
-      </div>
+
       <!-- <button (click)="onClickShrink()" style="width: 8rem;height: 4rem;background-color: black;color: white;">end</button> -->
     </div>
 
     <!-- detail-box__sub -->
-    <div
-      *ngIf="showSub"
-      [ngClass]="!isCollapsed ? 'detail-boxShrunk__desc' : 'detail-box__sub '"
-    >
-      <div class="detail-box__sub-content">
-        <div class="detail-box__method">
-          <div class="detail-box__method-ingredient">
-            <div class="detail-box__method-header">
-              <div>Ingredients</div>
-              <div class="shopping__share" (click)="onClickShare()">
-                <svg
-                  version="1.1"
-                  class="shopping__share-svg"
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  x="0px"
-                  y="0px"
-                  viewBox="0 0 486.6 486.6"
-                  style="enable-background: new 0 0 486.6 486.6"
-                  xml:space="preserve"
-                >
-                  <g>
-                    <path
-                      d="M136.8,322.8h235.1c26.7,0,48.4-21.7,48.4-48.4v-98.9c0-0.1,0-0.3,0-0.4c0-0.3,0-0.4,0-0.7c0-0.2,0-0.4-0.1-0.5
+    <!-- <div class="detail-box__sub"> -->
+    <div class="detail-box__sub-content">
+      <div class="detail-box__method">
+        <div class="detail-box__method-ingredient">
+          <div class="detail-box__method-header">
+            <div>Ingredients</div>
+            <div class="shopping__share" (click)="onClickShare()">
+              <svg
+                version="1.1"
+                class="shopping__share-svg"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                viewBox="0 0 486.6 486.6"
+                style="enable-background: new 0 0 486.6 486.6"
+                xml:space="preserve"
+              >
+                <g>
+                  <path
+                    d="M136.8,322.8h235.1c26.7,0,48.4-21.7,48.4-48.4v-98.9c0-0.1,0-0.3,0-0.4c0-0.3,0-0.4,0-0.7c0-0.2,0-0.4-0.1-0.5
                                c0-0.2-0.1-0.4-0.1-0.6s-0.1-0.4-0.1-0.5c-0.1-0.2-0.1-0.4-0.2-0.6c-0.1-0.2-0.1-0.4-0.2-0.5c-0.1-0.2-0.1-0.4-0.2-0.5
                                c-0.1-0.2-0.2-0.4-0.3-0.6c-0.1-0.2-0.2-0.4-0.3-0.4c-0.1-0.2-0.2-0.4-0.3-0.5c-0.1-0.2-0.2-0.3-0.3-0.4c-0.1-0.2-0.3-0.4-0.4-0.5
                                c-0.1-0.2-0.2-0.3-0.4-0.4c-0.1-0.2-0.3-0.3-0.4-0.4c-0.1-0.2-0.3-0.3-0.4-0.4c-0.1-0.2-0.3-0.3-0.4-0.4c-0.2-0.2-0.3-0.3-0.4-0.4
@@ -159,69 +143,67 @@
                                s-24.1-10.9-24.1-24.1s10.9-24.1,24.1-24.1S195.7,407.3,195.7,420.7z M384.6,420.7c0,13.3-10.9,24.1-24.1,24.1
                                s-24.1-10.9-24.1-24.1s10.9-24.1,24.1-24.1S384.6,407.3,384.6,420.7z M371.9,299.1H136.8c-13.7,0-24.7-11.1-24.7-24.7v-58.3v-65.2
                                v-4.4l284.6,39.2v88.7C396.6,288.1,385.5,299.1,371.9,299.1z"
-                    />
-                  </g>
-                  <path
-                    d="M294.5,170.9c-0.6,0-1.2-0.1-1.8-0.2c-3.6-0.8-6.3-4-6.3-7.7v-16.1c0-57.7,46.9-104.6,104.6-104.6h2.7V7.5
+                  />
+                </g>
+                <path
+                  d="M294.5,170.9c-0.6,0-1.2-0.1-1.8-0.2c-3.6-0.8-6.3-4-6.3-7.7v-16.1c0-57.7,46.9-104.6,104.6-104.6h2.7V7.5
                            c0-3.3,2-6.2,5-7.5c3-1.2,6.5-0.5,8.8,1.9l69.7,72.4c3,3.1,3,8,0,11.2l-69.7,72.4c-2.3,2.4-5.8,3.1-8.8,1.9c-3-1.2-5-4.2-5-7.5
                            v-34.9h-12.7c-33.7,0-64.1,18.7-79.1,48.9C300.4,169.1,297.5,170.9,294.5,170.9z M391,58.5c-45,0-82.3,33.8-87.8,77.4
                            c19.5-21.7,47.5-34.5,77.7-34.5h20.8c4.4,0,8,3.6,8,8v22.9l50.5-52.4l-50.5-52.4v23c0,4.4-3.6,8-8,8H391z"
-                  />
-                </svg>
-              </div>
-            </div>
-
-            <div class="detail-box__method-ingredients">
-              <ul class="cont">
-                <li
-                  class="ingdnt"
-                  *ngFor="let ingredient of recipe.ingredients; let i = index"
-                >
-                  {{ ingredient.name }}
-                </li>
-              </ul>
+                />
+              </svg>
             </div>
           </div>
-          <div class="detail-box__method-procedure">
-            <div class="detail-box__method-prepheader">
-              <div>Instructions</div>
-              <div class="expand" (click)="onExpandInst()">
-                <svg
-                  version="1.1"
-                  class="expand-svg"
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  x="0px"
-                  y="0px"
-                  viewBox="0 0 512 512"
-                  style="enable-background: new 0 0 512 512"
-                  xml:space="preserve"
-                >
-                  <g>
-                    <path
-                      d="M128,32V0H16C7.163,0,0,7.163,0,16v112h32V54.56L180.64,203.2l22.56-22.56L54.56,32H128z"
-                    />
-                    <path
-                      d="M496,0H384v32h73.44L308.8,180.64l22.56,22.56L480,54.56V128h32V16C512,7.163,504.837,0,496,0z"
-                    />
-                    <path
-                      d="M480,457.44L331.36,308.8l-22.56,22.56L457.44,480H384v32h112c8.837,0,16-7.163,16-16V384h-32V457.44z"
-                    />
-                    <path
-                      d="M180.64,308.64L32,457.44V384H0v112c0,8.837,7.163,16,16,16h112v-32H54.56L203.2,331.36L180.64,308.64z"
-                    />
-                  </g>
-                </svg>
-              </div>
-            </div>
 
-            <div class="detail-box__method-prep">
-              {{ recipe.instruction }}
+          <div class="detail-box__method-ingredients">
+            <ul class="cont">
+              <li
+                class="ingdnt"
+                *ngFor="let ingredient of recipe.ingredients; let i = index"
+              >
+                {{ ingredient.name }}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="detail-box__method-procedure">
+          <div class="detail-box__method-prepheader">
+            <div>Instructions</div>
+            <div class="expand" (click)="onExpandInst()">
+              <svg
+                version="1.1"
+                class="expand-svg"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                viewBox="0 0 512 512"
+                style="enable-background: new 0 0 512 512"
+                xml:space="preserve"
+              >
+                <g>
+                  <path
+                    d="M128,32V0H16C7.163,0,0,7.163,0,16v112h32V54.56L180.64,203.2l22.56-22.56L54.56,32H128z"
+                  />
+                  <path
+                    d="M496,0H384v32h73.44L308.8,180.64l22.56,22.56L480,54.56V128h32V16C512,7.163,504.837,0,496,0z"
+                  />
+                  <path
+                    d="M480,457.44L331.36,308.8l-22.56,22.56L457.44,480H384v32h112c8.837,0,16-7.163,16-16V384h-32V457.44z"
+                  />
+                  <path
+                    d="M180.64,308.64L32,457.44V384H0v112c0,8.837,7.163,16,16,16h112v-32H54.56L203.2,331.36L180.64,308.64z"
+                  />
+                </g>
+              </svg>
             </div>
+          </div>
+
+          <div class="detail-box__method-prep">
+            {{ recipe.instruction }}
           </div>
         </div>
       </div>
-
       <div
         *ngFor="let video of safeUrls; let i = index"
         class="detail-box__videos"
@@ -250,6 +232,8 @@
                      allowfullscreen></iframe> -->
       </div>
     </div>
+
+    <!-- </div> -->
   </div>
 </div>
 
@@ -269,4 +253,3 @@
     </div>
   </div>
 </div>
-<!-- </div> -->

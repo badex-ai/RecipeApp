@@ -15,6 +15,11 @@
     
     
 }
+.recipe__list{
+    height: calc(100vh - 6rem);
+  background-color: rebeccapurple;
+  width: calc( (var(--recipeWidth) * 2) + 4rem)
+}
 .cover{
     // width: 91vw;
     display: flex;
@@ -24,6 +29,7 @@
 .recipes-detail{
     width: 100%;
     height: calc(100vh - 6rem);
-    background-color: brown;
+    background-color: #994ce5;
+    
 }
 

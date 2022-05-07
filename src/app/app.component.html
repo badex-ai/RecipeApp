@@ -2,6 +2,7 @@
   <app-header></app-header>
   <div class="container__box">
     <app-alert *ngIf="alert"></app-alert>
+
     <app-recipes-preparation
       *ngIf="expandState"
       [rcvRecipe]="recipe"

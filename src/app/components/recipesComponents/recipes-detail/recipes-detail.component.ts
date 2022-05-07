@@ -2,8 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import{ ActivatedRoute, Router, Params } from '@angular/router';
 import {RecipeService} from '../../../recipes/recipe.service';
 import {Recipe} from '../../../recipes/recipe.model';
+import {User} from '../../../shared/models/user.model';
+
 import { Observable, Subscription } from 'rxjs';
 import { Ingredient } from 'src/app/shared/ingredient.model';
+import {AuthService} from '../../../auth/auth.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import{ ShoppingListService} from '../../../shopping-list/shopping-list.service';
 import {trigger,state,style, animate, transition} from '@angular/animations';
@@ -30,9 +33,10 @@ export class RecipesDetailComponent implements OnInit, OnDestroy {
   triggered: string = 'expanded';
   showSub: boolean= true;
   isLoadingRcp:boolean= true;
+  user:User;
   
 
-  constructor(private router: Router, private route: ActivatedRoute, private recipeService: RecipeService, private sanitizer:DomSanitizer,private shoppingListService: ShoppingListService,
+  constructor(private router: Router, private route: ActivatedRoute,private authService: AuthService, private recipeService: RecipeService, private sanitizer:DomSanitizer,private shoppingListService: ShoppingListService,
     private alertService: AlertService ) { }
   
 
@@ -67,8 +71,7 @@ export class RecipesDetailComponent implements OnInit, OnDestroy {
           
     
 //         })
-      
-      
+
 
        this.paramsSub = this.route.params.subscribe((params:Params) => {
       
@@ -110,6 +113,13 @@ export class RecipesDetailComponent implements OnInit, OnDestroy {
       
        
      // //console.log(this.recipe)
+    })
+
+    this.authService.user.subscribe((user)=>{
+         
+      //   console.log(user)
+        //  this.isAuthenticated = !!user;
+         this.user = {...user};
     })
 
     this.recipeService.isShrunk.subscribe(value=>{

@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { ShoppingListService} from '../shopping-list.service';
 import { Ingredient } from 'src/app/shared/ingredient.model';
 import { AuthService } from 'src/app/auth/auth.service';
-import { User } from 'src/app/auth/user.model';
+import { User } from 'src/app/shared/models/user.model';
 import { Store } from '@ngrx/store';
 import * as ShoppingListAction from '../store/shopping-list.actions'
 

@@ -40,6 +40,16 @@
         "hidden": true
       }
     }
+    // {
+    //   "type": "pwa-msedge",
+    //   "request": "attach",
+    //   // "runtimeArgs": [
+    //   //   "--remote-debugging-port=9222",
+    //   //   "--user-data-dir=remote-debug-profile"
+    //   // ],
+    //   "url": "localhost:4200",
+    //   "name": "Attach to browser"
+    // }
   ],
   "compounds": [
     {
@@ -53,5 +63,9 @@
       "name": "Launch Edge and attach DevTools",
       "configurations": ["Launch Microsoft Edge", "Open Edge DevTools"]
     }
+    // {
+    //   "name": "Attach to browser and attach DevTools",
+    //   "configurations": ["Attach to browser", "Open Edge DevTools"]
+    // }
   ]
 }

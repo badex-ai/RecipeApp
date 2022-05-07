@@ -1,7 +1,7 @@
 import { Component, OnInit , ViewChild, ElementRef} from '@angular/core';
 import {AuthService} from '../../auth/auth.service';
 //import { Subscription } from 'rxjs';
-import {User} from '../../auth/user.model';
+import {User} from '../../shared/models/user.model';
 import {DataService} from '../../shared/data.service';
 import {FormGroup, FormControl,Validators } from '@angular/forms';
 import {RecipeService } from '../../recipes/recipe.service';
